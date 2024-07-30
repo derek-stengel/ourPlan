@@ -1,0 +1,485 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FDCECBF52C575B700020C37D /* ourPlanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECBF42C575B700020C37D /* ourPlanApp.swift */; };
+		FDCECBF72C575B700020C37D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECBF62C575B700020C37D /* ContentView.swift */; };
+		FDCECBF92C575B700020C37D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDCECBF82C575B700020C37D /* Assets.xcassets */; };
+		FDCECBFC2C575B710020C37D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDCECBFB2C575B710020C37D /* Preview Assets.xcassets */; };
+		FDCECBFE2C575B710020C37D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECBFD2C575B710020C37D /* Persistence.swift */; };
+		FDCECC012C575B710020C37D /* ourPlan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FDCECBFF2C575B710020C37D /* ourPlan.xcdatamodeld */; };
+		FDCECC082C575B930020C37D /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC072C575B930020C37D /* Home.swift */; };
+		FDCECC0A2C59201B0020C37D /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC092C59201B0020C37D /* Person.swift */; };
+		FDCECC102C5921180020C37D /* PeopleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC0F2C5921180020C37D /* PeopleViewModel.swift */; };
+		FDCECC132C59253B0020C37D /* PeopleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC122C59253B0020C37D /* PeopleListView.swift */; };
+		FDCECC152C5925720020C37D /* AddPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC142C5925720020C37D /* AddPersonView.swift */; };
+		FDCECC172C5925930020C37D /* EditPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC162C5925930020C37D /* EditPersonView.swift */; };
+		FDCECC3E2C5931650020C37D /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = FDCECC3D2C5931650020C37D /* FSCalendar */; };
+		FDCECC402C5931880020C37D /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC3F2C5931880020C37D /* CalendarView.swift */; };
+		FDCECC422C59332F0020C37D /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC412C59332F0020C37D /* CalendarEvent.swift */; };
+		FDCECC442C59336E0020C37D /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC432C59336E0020C37D /* AddEventView.swift */; };
+		FDCECC472C59360B0020C37D /* CalendarDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC462C59360B0020C37D /* CalendarDisplayView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FDCECBF12C575B700020C37D /* ourPlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ourPlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDCECBF42C575B700020C37D /* ourPlanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ourPlanApp.swift; sourceTree = "<group>"; };
+		FDCECBF62C575B700020C37D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FDCECBF82C575B700020C37D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FDCECBFB2C575B710020C37D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FDCECBFD2C575B710020C37D /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		FDCECC002C575B710020C37D /* ourPlan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ourPlan.xcdatamodel; sourceTree = "<group>"; };
+		FDCECC072C575B930020C37D /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		FDCECC092C59201B0020C37D /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		FDCECC0F2C5921180020C37D /* PeopleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewModel.swift; sourceTree = "<group>"; };
+		FDCECC122C59253B0020C37D /* PeopleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListView.swift; sourceTree = "<group>"; };
+		FDCECC142C5925720020C37D /* AddPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonView.swift; sourceTree = "<group>"; };
+		FDCECC162C5925930020C37D /* EditPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPersonView.swift; sourceTree = "<group>"; };
+		FDCECC3F2C5931880020C37D /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		FDCECC412C59332F0020C37D /* CalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
+		FDCECC432C59336E0020C37D /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
+		FDCECC462C59360B0020C37D /* CalendarDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDisplayView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FDCECBEE2C575B700020C37D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDCECC3E2C5931650020C37D /* FSCalendar in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FDCECBE82C575B700020C37D = {
+			isa = PBXGroup;
+			children = (
+				FDCECBF32C575B700020C37D /* ourPlan */,
+				FDCECBF22C575B700020C37D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FDCECBF22C575B700020C37D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FDCECBF12C575B700020C37D /* ourPlan.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FDCECBF32C575B700020C37D /* ourPlan */ = {
+			isa = PBXGroup;
+			children = (
+				FDCECC0B2C5920310020C37D /* ContentView + App */,
+				FDCECC0C2C5920570020C37D /* CoreData */,
+				FDCECC0D2C5920740020C37D /* Model */,
+				FDCECC112C59211F0020C37D /* ViewModel */,
+				FDCECC0E2C59207F0020C37D /* Main Views */,
+				FDCECBF82C575B700020C37D /* Assets.xcassets */,
+				FDCECBFA2C575B710020C37D /* Preview Content */,
+			);
+			path = ourPlan;
+			sourceTree = "<group>";
+		};
+		FDCECBFA2C575B710020C37D /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				FDCECBFB2C575B710020C37D /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FDCECC0B2C5920310020C37D /* ContentView + App */ = {
+			isa = PBXGroup;
+			children = (
+				FDCECBF42C575B700020C37D /* ourPlanApp.swift */,
+				FDCECBF62C575B700020C37D /* ContentView.swift */,
+			);
+			name = "ContentView + App";
+			sourceTree = "<group>";
+		};
+		FDCECC0C2C5920570020C37D /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				FDCECBFD2C575B710020C37D /* Persistence.swift */,
+				FDCECBFF2C575B710020C37D /* ourPlan.xcdatamodeld */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		FDCECC0D2C5920740020C37D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FDCECC092C59201B0020C37D /* Person.swift */,
+				FDCECC412C59332F0020C37D /* CalendarEvent.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		FDCECC0E2C59207F0020C37D /* Main Views */ = {
+			isa = PBXGroup;
+			children = (
+				FDCECC072C575B930020C37D /* Home.swift */,
+				FDCECC452C5933850020C37D /* PeopleList */,
+				FDCECC3F2C5931880020C37D /* CalendarView.swift */,
+				FDCECC432C59336E0020C37D /* AddEventView.swift */,
+				FDCECC462C59360B0020C37D /* CalendarDisplayView.swift */,
+			);
+			name = "Main Views";
+			sourceTree = "<group>";
+		};
+		FDCECC112C59211F0020C37D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FDCECC0F2C5921180020C37D /* PeopleViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		FDCECC452C5933850020C37D /* PeopleList */ = {
+			isa = PBXGroup;
+			children = (
+				FDCECC122C59253B0020C37D /* PeopleListView.swift */,
+				FDCECC142C5925720020C37D /* AddPersonView.swift */,
+				FDCECC162C5925930020C37D /* EditPersonView.swift */,
+			);
+			name = PeopleList;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FDCECBF02C575B700020C37D /* ourPlan */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FDCECC042C575B710020C37D /* Build configuration list for PBXNativeTarget "ourPlan" */;
+			buildPhases = (
+				FDCECBED2C575B700020C37D /* Sources */,
+				FDCECBEE2C575B700020C37D /* Frameworks */,
+				FDCECBEF2C575B700020C37D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ourPlan;
+			packageProductDependencies = (
+				FDCECC3D2C5931650020C37D /* FSCalendar */,
+			);
+			productName = ourPlan;
+			productReference = FDCECBF12C575B700020C37D /* ourPlan.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FDCECBE92C575B700020C37D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					FDCECBF02C575B700020C37D = {
+						CreatedOnToolsVersion = 15.2;
+					};
+				};
+			};
+			buildConfigurationList = FDCECBEC2C575B700020C37D /* Build configuration list for PBXProject "ourPlan" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FDCECBE82C575B700020C37D;
+			packageReferences = (
+				FDCECC3C2C5931650020C37D /* XCRemoteSwiftPackageReference "FSCalendar" */,
+			);
+			productRefGroup = FDCECBF22C575B700020C37D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FDCECBF02C575B700020C37D /* ourPlan */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FDCECBEF2C575B700020C37D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDCECBFC2C575B710020C37D /* Preview Assets.xcassets in Resources */,
+				FDCECBF92C575B700020C37D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FDCECBED2C575B700020C37D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDCECC0A2C59201B0020C37D /* Person.swift in Sources */,
+				FDCECC172C5925930020C37D /* EditPersonView.swift in Sources */,
+				FDCECBFE2C575B710020C37D /* Persistence.swift in Sources */,
+				FDCECC152C5925720020C37D /* AddPersonView.swift in Sources */,
+				FDCECC422C59332F0020C37D /* CalendarEvent.swift in Sources */,
+				FDCECC472C59360B0020C37D /* CalendarDisplayView.swift in Sources */,
+				FDCECC442C59336E0020C37D /* AddEventView.swift in Sources */,
+				FDCECC012C575B710020C37D /* ourPlan.xcdatamodeld in Sources */,
+				FDCECC132C59253B0020C37D /* PeopleListView.swift in Sources */,
+				FDCECC402C5931880020C37D /* CalendarView.swift in Sources */,
+				FDCECC082C575B930020C37D /* Home.swift in Sources */,
+				FDCECC102C5921180020C37D /* PeopleViewModel.swift in Sources */,
+				FDCECBF72C575B700020C37D /* ContentView.swift in Sources */,
+				FDCECBF52C575B700020C37D /* ourPlanApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		FDCECC022C575B710020C37D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FDCECC032C575B710020C37D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FDCECC052C575B710020C37D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ourPlan/Preview Content\"";
+				DEVELOPMENT_TEAM = 85Q729JR8Z;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stengel.ourPlan;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FDCECC062C575B710020C37D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ourPlan/Preview Content\"";
+				DEVELOPMENT_TEAM = 85Q729JR8Z;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stengel.ourPlan;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FDCECBEC2C575B700020C37D /* Build configuration list for PBXProject "ourPlan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDCECC022C575B710020C37D /* Debug */,
+				FDCECC032C575B710020C37D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FDCECC042C575B710020C37D /* Build configuration list for PBXNativeTarget "ourPlan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDCECC052C575B710020C37D /* Debug */,
+				FDCECC062C575B710020C37D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FDCECC3C2C5931650020C37D /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FDCECC3D2C5931650020C37D /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FDCECC3C2C5931650020C37D /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		FDCECBFF2C575B710020C37D /* ourPlan.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FDCECC002C575B710020C37D /* ourPlan.xcdatamodel */,
+			);
+			currentVersion = FDCECC002C575B710020C37D /* ourPlan.xcdatamodel */;
+			path = ourPlan.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = FDCECBE92C575B700020C37D /* Project object */;
+}
