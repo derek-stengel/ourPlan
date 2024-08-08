@@ -8,24 +8,34 @@
 import Foundation
 import MapKit
 import SwiftUI
+import CoreLocation
 
-class MapViewModel: ObservableObject {
+class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 40.7608, longitude: -111.8910), // Default to Salt Lake City
-        span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        center: CLLocationCoordinate2D(latitude: 40.7608, longitude: -111.8910), // Salt Lake City
+        span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     )
     
-    @Published var locations: [Location] = []  // Holds the found restaurant locations
-    @Published var cityQuery: String = ""
-    @Published var stateFilter: String? = nil
+    @Published var locations: [Location] = []  // This will hold the found restaurant locations
     
-    func searchForRestaurants() {
-        // Initialize the request
+    private let locationManager = CLLocationManager()
+    @AppStorage("locationPermissionShown") private var locationPermissionShown = false
+    
+    override init() {
+        super.init()
+        locationManager.delegate = self
+        checkLocationAuthorizationStatus()
+    }
+    
+    func searchForRestaurants(city: String, state: String, radius: Double, searchText: String) {
         let request = MKLocalSearch.Request()
-        request.naturalLanguageQuery = "restaurant"
+        if searchText.isEmpty {
+            request.naturalLanguageQuery = "restaurant"
+        } else {
+            request.naturalLanguageQuery = searchText
+        }
         request.region = region
         
-        // Start the search
         let search = MKLocalSearch(request: request)
         search.start { response, error in
             if let error = error {
@@ -38,9 +48,6 @@ class MapViewModel: ObservableObject {
                 return
             }
             
-            // Print number of items found
-            print("Number of restaurants found: \(response.mapItems.count)")
-            
             let newLocations = response.mapItems.map { item in
                 Location(
                     name: item.name ?? "Unknown",
@@ -52,30 +59,57 @@ class MapViewModel: ObservableObject {
             
             DispatchQueue.main.async {
                 self.locations = newLocations
+                self.applyFilters(city: city, state: state, radius: radius, searchText: searchText)
             }
         }
     }
     
-    func updateRegion(for city: String) {
-        // Use a geocoding API to find the coordinate of the city
-        let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(city) { placemarks, error in
-            if let error = error {
-                print("Geocoding error: \(error.localizedDescription)")
-                return
+    private func checkLocationAuthorizationStatus() {
+        if !locationPermissionShown {
+            switch CLLocationManager.authorizationStatus() {
+            case .notDetermined:
+                locationManager.requestWhenInUseAuthorization()
+                
+            case .authorizedWhenInUse, .authorizedAlways:
+                locationManager.startUpdatingLocation()
+                
+            default:
+                break
             }
+        } else {
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse || status == .authorizedAlways {
+            locationManager.startUpdatingLocation()
+            locationPermissionShown = true
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let newLocation = locations.last else { return }
+        region.center = newLocation.coordinate
+    }
+    
+    private func applyFilters(city: String, state: String, radius: Double, searchText: String) {
+        let filteredLocations = locations.filter { location in
+            // Filter based on radius
+            let locationCoordinate = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            let centerCoordinate = CLLocation(latitude: region.center.latitude, longitude: region.center.longitude)
+            let distance = locationCoordinate.distance(from: centerCoordinate) * 0.000621371 // meters to miles
             
-            guard let placemark = placemarks?.first, let coordinate = placemark.location?.coordinate else {
-                print("No coordinates found.")
-                return
-            }
+            let withinRadius = distance <= radius
             
-            DispatchQueue.main.async {
-                self.region = MKCoordinateRegion(
-                    center: coordinate,
-                    span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1) // Adjust as needed
-                )
-            }
+            // Filter based on search text
+            let matchesSearchText = searchText.isEmpty || location.name.lowercased().contains(searchText.lowercased())
+            
+            return withinRadius && matchesSearchText
+        }
+        
+        DispatchQueue.main.async {
+            self.locations = filteredLocations
         }
     }
 }

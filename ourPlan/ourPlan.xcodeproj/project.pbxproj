@@ -29,6 +29,7 @@
 		FDCECC4F2C653B550020C37D /* MapDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC4E2C653B550020C37D /* MapDisplayView.swift */; };
 		FDCECC512C653E330020C37D /* LocationInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC502C653E330020C37D /* LocationInfoView.swift */; };
 		FDCECC532C654B880020C37D /* FilterSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC522C654B880020C37D /* FilterSheetView.swift */; };
+		FDCECC552C6555640020C37D /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC542C6555640020C37D /* FilterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		FDCECC4E2C653B550020C37D /* MapDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDisplayView.swift; sourceTree = "<group>"; };
 		FDCECC502C653E330020C37D /* LocationInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfoView.swift; sourceTree = "<group>"; };
 		FDCECC522C654B880020C37D /* FilterSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSheetView.swift; sourceTree = "<group>"; };
+		FDCECC542C6555640020C37D /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 				FDCECC4C2C653B2D0020C37D /* MapViewModel.swift */,
 				FDCECC4E2C653B550020C37D /* MapDisplayView.swift */,
 				FDCECC502C653E330020C37D /* LocationInfoView.swift */,
+				FDCECC542C6555640020C37D /* FilterView.swift */,
 				FDCECC522C654B880020C37D /* FilterSheetView.swift */,
 			);
 			name = Map;
@@ -268,6 +271,7 @@
 				FDCECC472C59360B0020C37D /* CalendarDisplayView.swift in Sources */,
 				FDCECC442C59336E0020C37D /* AddEventView.swift in Sources */,
 				FDCECC4D2C653B2D0020C37D /* MapViewModel.swift in Sources */,
+				FDCECC552C6555640020C37D /* FilterView.swift in Sources */,
 				FDCECC492C6537640020C37D /* Map.swift in Sources */,
 				FDCECC4F2C653B550020C37D /* MapDisplayView.swift in Sources */,
 				FDCECC532C654B880020C37D /* FilterSheetView.swift in Sources */,

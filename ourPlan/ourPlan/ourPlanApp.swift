@@ -9,6 +9,15 @@ import SwiftUI
 
 @main
 struct ourPlanApp: App {
+    init() {
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.configureWithDefaultBackground()
+        tabBarAppearance.backgroundColor = UIColor.systemBackground // Default background color
+        
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+        UITabBar.appearance().standardAppearance = tabBarAppearance
+    }
+    
     let persistenceController = PersistenceController.shared
 
     var body: some Scene {
