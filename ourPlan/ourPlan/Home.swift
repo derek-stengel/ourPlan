@@ -48,15 +48,10 @@ struct HomeView: View {
 
 struct MapView: View {
     var body: some View {
-        VStack {
-            Text("Map View")
-                .font(.largeTitle)
-                .padding()
-            Text("This is the map view where you will be able to see venue and catering info.")
-        }
+        MapDisplayView()
     }
 }
-
+    
 struct PeopleList: View {
     var body: some View {
         PeopleListView()

@@ -24,6 +24,11 @@
 		FDCECC422C59332F0020C37D /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC412C59332F0020C37D /* CalendarEvent.swift */; };
 		FDCECC442C59336E0020C37D /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC432C59336E0020C37D /* AddEventView.swift */; };
 		FDCECC472C59360B0020C37D /* CalendarDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC462C59360B0020C37D /* CalendarDisplayView.swift */; };
+		FDCECC492C6537640020C37D /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC482C6537640020C37D /* Map.swift */; };
+		FDCECC4D2C653B2D0020C37D /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC4C2C653B2D0020C37D /* MapViewModel.swift */; };
+		FDCECC4F2C653B550020C37D /* MapDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC4E2C653B550020C37D /* MapDisplayView.swift */; };
+		FDCECC512C653E330020C37D /* LocationInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC502C653E330020C37D /* LocationInfoView.swift */; };
+		FDCECC532C654B880020C37D /* FilterSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC522C654B880020C37D /* FilterSheetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +49,11 @@
 		FDCECC412C59332F0020C37D /* CalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
 		FDCECC432C59336E0020C37D /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
 		FDCECC462C59360B0020C37D /* CalendarDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDisplayView.swift; sourceTree = "<group>"; };
+		FDCECC482C6537640020C37D /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		FDCECC4C2C653B2D0020C37D /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		FDCECC4E2C653B550020C37D /* MapDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDisplayView.swift; sourceTree = "<group>"; };
+		FDCECC502C653E330020C37D /* LocationInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfoView.swift; sourceTree = "<group>"; };
+		FDCECC522C654B880020C37D /* FilterSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSheetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,10 +137,9 @@
 			isa = PBXGroup;
 			children = (
 				FDCECC072C575B930020C37D /* Home.swift */,
+				FDCECC4A2C65376D0020C37D /* Map */,
 				FDCECC452C5933850020C37D /* PeopleList */,
-				FDCECC3F2C5931880020C37D /* CalendarView.swift */,
-				FDCECC432C59336E0020C37D /* AddEventView.swift */,
-				FDCECC462C59360B0020C37D /* CalendarDisplayView.swift */,
+				FDCECC4B2C65377A0020C37D /* Calendar */,
 			);
 			name = "Main Views";
 			sourceTree = "<group>";
@@ -151,6 +160,28 @@
 				FDCECC162C5925930020C37D /* EditPersonView.swift */,
 			);
 			name = PeopleList;
+			sourceTree = "<group>";
+		};
+		FDCECC4A2C65376D0020C37D /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				FDCECC482C6537640020C37D /* Map.swift */,
+				FDCECC4C2C653B2D0020C37D /* MapViewModel.swift */,
+				FDCECC4E2C653B550020C37D /* MapDisplayView.swift */,
+				FDCECC502C653E330020C37D /* LocationInfoView.swift */,
+				FDCECC522C654B880020C37D /* FilterSheetView.swift */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		FDCECC4B2C65377A0020C37D /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				FDCECC3F2C5931880020C37D /* CalendarView.swift */,
+				FDCECC432C59336E0020C37D /* AddEventView.swift */,
+				FDCECC462C59360B0020C37D /* CalendarDisplayView.swift */,
+			);
+			name = Calendar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,11 +267,16 @@
 				FDCECC422C59332F0020C37D /* CalendarEvent.swift in Sources */,
 				FDCECC472C59360B0020C37D /* CalendarDisplayView.swift in Sources */,
 				FDCECC442C59336E0020C37D /* AddEventView.swift in Sources */,
+				FDCECC4D2C653B2D0020C37D /* MapViewModel.swift in Sources */,
+				FDCECC492C6537640020C37D /* Map.swift in Sources */,
+				FDCECC4F2C653B550020C37D /* MapDisplayView.swift in Sources */,
+				FDCECC532C654B880020C37D /* FilterSheetView.swift in Sources */,
 				FDCECC012C575B710020C37D /* ourPlan.xcdatamodeld in Sources */,
 				FDCECC132C59253B0020C37D /* PeopleListView.swift in Sources */,
 				FDCECC402C5931880020C37D /* CalendarView.swift in Sources */,
 				FDCECC082C575B930020C37D /* Home.swift in Sources */,
 				FDCECC102C5921180020C37D /* PeopleViewModel.swift in Sources */,
+				FDCECC512C653E330020C37D /* LocationInfoView.swift in Sources */,
 				FDCECBF72C575B700020C37D /* ContentView.swift in Sources */,
 				FDCECBF52C575B700020C37D /* ourPlanApp.swift in Sources */,
 			);
