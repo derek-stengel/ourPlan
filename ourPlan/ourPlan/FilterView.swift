@@ -32,6 +32,7 @@ struct FilterView: View {
                 
                 Button("Apply") {
                     applyFilters()
+                    viewModel.searchForRestaurants(city: city, state: state, radius: radius, searchText: "")
                     presentationMode.wrappedValue.dismiss()
                 }
             }
