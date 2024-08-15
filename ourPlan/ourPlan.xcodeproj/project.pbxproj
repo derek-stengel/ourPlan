@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD6CF0E42C6BEBFC0070B7FE /* Honeymoon.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6CF0E32C6BEBFC0070B7FE /* Honeymoon.swift */; };
+		FD6CF0E72C6BF7180070B7FE /* SyncContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6CF0E62C6BF7180070B7FE /* SyncContactsView.swift */; };
 		FDCECBF52C575B700020C37D /* ourPlanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECBF42C575B700020C37D /* ourPlanApp.swift */; };
 		FDCECBF72C575B700020C37D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECBF62C575B700020C37D /* ContentView.swift */; };
 		FDCECBF92C575B700020C37D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDCECBF82C575B700020C37D /* Assets.xcassets */; };
@@ -37,6 +39,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FD6CF0E32C6BEBFC0070B7FE /* Honeymoon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Honeymoon.swift; sourceTree = "<group>"; };
+		FD6CF0E62C6BF7180070B7FE /* SyncContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncContactsView.swift; sourceTree = "<group>"; };
+		FD6CF0E82C6BF8910070B7FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		FDCECBF12C575B700020C37D /* ourPlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ourPlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDCECBF42C575B700020C37D /* ourPlanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ourPlanApp.swift; sourceTree = "<group>"; };
 		FDCECBF62C575B700020C37D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -78,6 +83,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FD6CF0E52C6BEC050070B7FE /* Honeymoon */ = {
+			isa = PBXGroup;
+			children = (
+				FD6CF0E32C6BEBFC0070B7FE /* Honeymoon.swift */,
+			);
+			name = Honeymoon;
+			sourceTree = "<group>";
+		};
 		FDCECBE82C575B700020C37D = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +132,7 @@
 			children = (
 				FDCECBF42C575B700020C37D /* ourPlanApp.swift */,
 				FDCECBF62C575B700020C37D /* ContentView.swift */,
+				FD6CF0E82C6BF8910070B7FE /* Info.plist */,
 			);
 			name = "ContentView + App";
 			sourceTree = "<group>";
@@ -138,6 +152,7 @@
 			children = (
 				FDCECC072C575B930020C37D /* Display.swift */,
 				FDCECC4B2C65377A0020C37D /* Calendar */,
+				FD6CF0E52C6BEC050070B7FE /* Honeymoon */,
 				FDCECC4A2C65376D0020C37D /* Map */,
 				FDCECC582C6680EF0020C37D /* Home  */,
 				FDCECC452C5933850020C37D /* PeopleList */,
@@ -153,6 +168,7 @@
 				FDCECC0F2C5921180020C37D /* PeopleViewModel.swift */,
 				FDCECC142C5925720020C37D /* AddPersonView.swift */,
 				FDCECC162C5925930020C37D /* EditPersonView.swift */,
+				FD6CF0E62C6BF7180070B7FE /* SyncContactsView.swift */,
 			);
 			name = PeopleList;
 			sourceTree = "<group>";
@@ -267,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD6CF0E72C6BF7180070B7FE /* SyncContactsView.swift in Sources */,
 				FDCECC5C2C66A7190020C37D /* BackgroundItems.swift in Sources */,
 				FDCECC0A2C59201B0020C37D /* Person.swift in Sources */,
 				FDCECC172C5925930020C37D /* EditPersonView.swift in Sources */,
@@ -283,6 +300,7 @@
 				FDCECC4F2C653B550020C37D /* MapDisplayView.swift in Sources */,
 				FDCECC532C654B880020C37D /* FilterSheetView.swift in Sources */,
 				FDCECC012C575B710020C37D /* ourPlan.xcdatamodeld in Sources */,
+				FD6CF0E42C6BEBFC0070B7FE /* Honeymoon.swift in Sources */,
 				FDCECC132C59253B0020C37D /* PeopleListView.swift in Sources */,
 				FDCECC402C5931880020C37D /* CalendarView.swift in Sources */,
 				FDCECC082C575B930020C37D /* Display.swift in Sources */,
@@ -427,6 +445,7 @@
 				DEVELOPMENT_TEAM = 85Q729JR8Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ourPlan/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -456,6 +475,7 @@
 				DEVELOPMENT_TEAM = 85Q729JR8Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ourPlan/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -8,6 +8,15 @@
 import Foundation
 import SwiftUI
 
+// Things to do:
+// Change the calendar page to a honeymoon page (impliment flight data, hotels, locations, etc.)
+// make the progress view just be on the home page
+// instead of a calendar, make an 'events' tab. Allow the user to create an event, and have a set time and date (single or repeating) that the user will recieve a notification from the app about the certain event.
+// make a button that allows the user to change the 'theme' (color scheme) in the Profile Settings view
+
+// the tabs after this should be:
+// Honeymoon, Map, Home, Events, People
+
 enum Tab {
     case calendar
     case map
@@ -22,19 +31,19 @@ struct HomeContentView: View {
     var body: some View {
         ZStack {
             TabView(selection: $selectedTab) {
-                CalendarDisplayView()
+                CalendarDisplayView() // change this back to honeymoon, and look up documentation to impliment flight data, hotels, locations, etc.
                     .tabItem {
                         Image(systemName: "calendar")
                     }
                     .tag(0)
                 
-                MapView()
+                MapDisplayView()
                     .tabItem {
                         Image(systemName: "mappin.and.ellipse")
                     }
                     .tag(1)
                 
-                HomeView()
+                WeddingHomeView()
                     .tabItem {
                         Image(systemName: "house")
                     }
@@ -46,7 +55,7 @@ struct HomeContentView: View {
                     }
                     .tag(3)
                 
-                PeopleList()
+                PeopleListView()
                     .tabItem {
                         Image(systemName: "person.badge.shield.checkmark.fill")
                     }
@@ -55,49 +64,29 @@ struct HomeContentView: View {
             .onAppear {
                 setupTabBarAppearance()
             }
-//            .onChange(of: selectedTab) { newValue in
-//                updateTabBarAppearance(for: newValue)
-            }
         }
     }
-    
-    struct HomeView: View {
-        var body: some View {
-            WeddingHomeView()
+}
+
+struct WeddingProgressView: View {
+    var body: some View {
+        VStack {
+            Text("Progress View")
+                .font(.largeTitle)
+                .padding()
+            Text("This will be a view where you can track progress of wedding goals.")
         }
     }
-    
-    struct MapView: View {
-        var body: some View {
-            MapDisplayView()
-        }
-    }
-    
-    struct PeopleList: View {
-        var body: some View {
-            PeopleListView()
-        }
-    }
-    
-    struct WeddingProgressView: View {
-        var body: some View {
-            VStack {
-                Text("Progress View")
-                    .font(.largeTitle)
-                    .padding()
-                Text("This will be a view where you can track progress of wedding goals.")
-            }
-        }
-    }
+}
 
 private func setupTabBarAppearance() {
     print("Setting up tab bar appearance") // Debug print statement
     
     let tabBarAppearance = UITabBarAppearance()
-
+    
     // Background color setup
     tabBarAppearance.backgroundColor = UIColor.systemBackground
-
+    
     // Set the appearance for selected and unselected tab items
     tabBarAppearance.stackedLayoutAppearance.selected.iconColor = .systemIndigo
     tabBarAppearance.stackedLayoutAppearance.selected.titleTextAttributes = [

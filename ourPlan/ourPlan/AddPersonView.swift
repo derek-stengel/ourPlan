@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Contacts
 
 struct AddPersonView: View {
     @Environment(\.presentationMode) var presentationMode

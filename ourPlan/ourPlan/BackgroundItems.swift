@@ -7,25 +7,20 @@
 
 import Foundation
 
-struct UserDefaultsKeys {
-    static let userName = "userName"
-    static let spouseName = "spouseName"
-}
-
-class UserSettings {
-    static func saveUserName(_ name: String) {
-        UserDefaults.standard.set(name, forKey: UserDefaultsKeys.userName)
-    }
-
+struct UserSettings {
     static func getUserName() -> String? {
-        return UserDefaults.standard.string(forKey: UserDefaultsKeys.userName)
+        UserDefaults.standard.string(forKey: "userName")
     }
-
-    static func saveSpouseName(_ name: String) {
-        UserDefaults.standard.set(name, forKey: UserDefaultsKeys.spouseName)
-    }
-
+    
     static func getSpouseName() -> String? {
-        return UserDefaults.standard.string(forKey: UserDefaultsKeys.spouseName)
+        UserDefaults.standard.string(forKey: "spouseName")
+    }
+    
+    static func saveUserName(_ name: String) {
+        UserDefaults.standard.set(name, forKey: "userName")
+    }
+    
+    static func saveSpouseName(_ name: String) {
+        UserDefaults.standard.set(name, forKey: "spouseName")
     }
 }

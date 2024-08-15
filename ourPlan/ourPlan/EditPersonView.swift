@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Contacts
 
 struct EditPersonView: View {
     @Binding var person: Person

@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Contacts
 
 struct Person: Identifiable {
     let id = UUID()
