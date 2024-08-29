@@ -9,25 +9,23 @@ import SwiftUI
 
 @main
 struct ourPlanApp: App {
+    @State private var selectedColor: UIColor = .systemIndigo
+    
     init() {
-        let tabBarAppearance = UITabBarAppearance()
-        tabBarAppearance.configureWithDefaultBackground()
-        tabBarAppearance.backgroundColor = UIColor.systemBackground // Default background color
-        
-        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
-        UITabBar.appearance().standardAppearance = tabBarAppearance
+        requestNotificationAuthorization()
     }
     
-    let persistenceController = PersistenceController.shared
-
     var body: some Scene {
         WindowGroup {
-            HomeContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            HomeContentView(selectedColor: $selectedColor)
+                .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+                .onOpenURL(perform: { url in
+                    SpotifyAuthManager.shared.handleCallback(url: url)
+                })
         }
     }
 }
 
-// This app idea is for all the wedding planners out there. I recently got married, and I know the stress behind putting everything together, making sure venues are reserved, catering, guest lists, flowers, registry, the list goes on.
+// This app idea is for all the wedding planners out there. I recently got married, and I know the stress behind putting everything together, making sure important events are taken care of, guest lists, catering, a playlist? That's just the start.
 
-// Having everything in one, simplified place would save time, money, and worry. This app would allow this to happen for the first time on the App Store! There could be a screen for goal tracking with a progress bar, another screen with a map that shows venues and catering options, another screen where you can input emails or phone numbers to send out a mass text, etc.
+// Having everything in one, simplified place would save time, money, and worry. This app would allow this to happen in the simpliest way possible. There could be a screen for goal tracking with a progress bar, another screen with a map that shows venues and catering options, another screen where you can input emails or phone numbers to send out a mass text, etc.

@@ -83,53 +83,8 @@ struct PeopleListView: View {
     }
 }
 
-
-
-//struct PeopleListView: View {
-//    @StateObject private var viewModel = PeopleViewModel()
-//    @State private var showingAddPerson = false
-//    @State private var showingSyncContacts = false
-//
-//    var body: some View {
-//        NavigationView {
-//            List {
-//                ForEach($viewModel.people) { $person in
-//                    NavigationLink(destination: EditPersonView(person: $person)) {
-//                        VStack(alignment: .leading) {
-//                            Text(person.name)
-//                                .font(.headline)
-//                            Text(person.job)
-//                                .font(.subheadline)
-//                        }
-//                    }
-//                }
-//                .onDelete(perform: viewModel.deletePerson)
-//                .onMove(perform: movePerson)
-//            }
-//            .navigationTitle("People")
-//            .navigationBarItems(leading: HStack {
-//                EditButton()
-//                Button(action: {
-//                    showingSyncContacts = true
-//                }) {
-//                    Image(systemName: "person.2.circle")
-//                }
-//            }, trailing: Button(action: {
-//                showingAddPerson = true
-//            }) {
-//                Image(systemName: "plus")
-//            })
-//            .sheet(isPresented: $showingAddPerson) {
-//                AddPersonView(viewModel: viewModel)
-//            }
-//            .sheet(isPresented: $showingSyncContacts) {
-//                SyncContactsView(viewModel: viewModel)
-//            }
-//        }
-//    }
-//
-//    private func movePerson(from source: IndexSet, to destination: Int) {
-//        viewModel.people.move(fromOffsets: source, toOffset: destination)
-//    }
-//}
-
+struct PeopleListView_Previews: PreviewProvider {
+    static var previews: some View {
+        PeopleListView()
+    }
+}

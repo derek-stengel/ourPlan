@@ -11,7 +11,8 @@ import Contacts
 
 struct EditPersonView: View {
     @Binding var person: Person
-
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
         Form {
             Section(header: Text("Name")) {
@@ -20,7 +21,13 @@ struct EditPersonView: View {
             Section(header: Text("Job")) {
                 TextField("Job", text: $person.job)
             }
+            Section(header: Text("Phone Number")) {
+                TextField("Phone Number", text: $person.phoneNumber)
+            }
         }
         .navigationTitle("Edit Person")
+        .navigationBarItems(trailing: Button("Save") {
+            presentationMode.wrappedValue.dismiss()
+        })
     }
 }

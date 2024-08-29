@@ -8,6 +8,15 @@
         "revision" : "0fbdec5172fccb90f707472eeaea4ffe095278f6",
         "version" : "2.8.4"
       }
+    },
+    {
+      "identity" : "ios-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/spotify/ios-sdk",
+      "state" : {
+        "branch" : "master",
+        "revision" : "b5f10bbfa689f51a240c922cc5b11df06fe283d2"
+      }
     }
   ],
   "version" : 2

@@ -15,6 +15,7 @@ struct AddPersonView: View {
 
     @State private var name = ""
     @State private var job = ""
+    @State private var phoneNumber = ""
 
     var body: some View {
         NavigationView {
@@ -25,14 +26,19 @@ struct AddPersonView: View {
                 Section(header: Text("Job")) {
                     TextField("Job", text: $job)
                 }
+                Section(header: Text("Phone Number")) {
+                    TextField("Phone Number", text: $phoneNumber)
+                }
             }
             .navigationTitle("Add Person")
             .navigationBarItems(leading: Button("Cancel") {
                 presentationMode.wrappedValue.dismiss()
             }, trailing: Button("Save") {
-                viewModel.addPerson(name: name, job: job)
+                viewModel.addPerson(name: name, job: job, phoneNumber: phoneNumber)
                 presentationMode.wrappedValue.dismiss()
-            })
+            }
+                .disabled(name.isEmpty)
+            )
         }
     }
 }

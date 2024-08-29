@@ -12,7 +12,7 @@ import CoreLocation
 
 class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 40.7608, longitude: -111.8910), // Salt Lake City
+        center: CLLocationCoordinate2D(latitude: 40.7608, longitude: -111.8910), // Default to Salt Lake City
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     )
     
@@ -24,16 +24,15 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     override init() {
         super.init()
         locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         checkLocationAuthorizationStatus()
     }
     
     func searchForRestaurants(city: String, state: String, radius: Double, searchText: String) {
+        locations.removeAll() // Clear existing locations
+        
         let request = MKLocalSearch.Request()
-        if searchText.isEmpty {
-            request.naturalLanguageQuery = "restaurant"
-        } else {
-            request.naturalLanguageQuery = searchText
-        }
+        request.naturalLanguageQuery = searchText.isEmpty ? "restaurant" : searchText
         request.region = region
         
         let search = MKLocalSearch(request: request)
@@ -59,14 +58,13 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
             
             DispatchQueue.main.async {
                 self.locations = newLocations
-                self.applyFilters(city: city, state: state, radius: radius, searchText: searchText)
             }
         }
     }
     
-    private func checkLocationAuthorizationStatus() {
+    func checkLocationAuthorizationStatus() {
         if !locationPermissionShown {
-            switch CLLocationManager.authorizationStatus() {
+            switch locationManager.authorizationStatus {
             case .notDetermined:
                 locationManager.requestWhenInUseAuthorization()
                 
@@ -91,25 +89,5 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let newLocation = locations.last else { return }
         region.center = newLocation.coordinate
-    }
-    
-    private func applyFilters(city: String, state: String, radius: Double, searchText: String) {
-        let filteredLocations = locations.filter { location in
-            // Filter based on radius
-            let locationCoordinate = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            let centerCoordinate = CLLocation(latitude: region.center.latitude, longitude: region.center.longitude)
-            let distance = locationCoordinate.distance(from: centerCoordinate) * 0.000621371 // meters to miles
-            
-            let withinRadius = distance <= radius
-            
-            // Filter based on search text
-            let matchesSearchText = searchText.isEmpty || location.name.lowercased().contains(searchText.lowercased())
-            
-            return withinRadius && matchesSearchText
-        }
-        
-        DispatchQueue.main.async {
-            self.locations = filteredLocations
-        }
     }
 }
