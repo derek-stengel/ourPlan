@@ -16,6 +16,10 @@ struct EditEventView: View {
         Form {
             Section(header: Text("Event Title")) {
                 TextField("Enter New Event Title", text: $event.name)
+                    .onChange(of: event.name) { newValue in
+                        // Ensure that the value updates immediately
+                        event.name = newValue
+                    }
             }
             Section(header: Text("Event Date")) {
                 DatePicker("Event Date", selection: $event.date, in: Date()..., displayedComponents: .date)
@@ -23,11 +27,19 @@ struct EditEventView: View {
                     .frame(height: UIScreen.main.bounds.height * 0.1)
                     .padding()
             }
-            Section(header: Text("Event Time")) {
-                DatePicker("Event Time", selection: $event.time, displayedComponents: .hourAndMinute)
+            Section(header: Text("Reminder")) {
+                DatePicker("Reminder set for", selection: $event.time, displayedComponents: .hourAndMinute)
                     .datePickerStyle(CompactDatePickerStyle())
                     .frame(height: UIScreen.main.bounds.height * 0.01)
                     .padding()
+            }
+            Section(header: Text("Note")) {
+                TextField("Write a note...", text: $event.note)
+                    .frame(height: 150)
+                    .onChange(of: event.note) { newValue in
+                        // Ensure that the value updates immediately
+                        event.note = newValue
+                    }
             }
         }
         .navigationTitle("Edit Event")
@@ -36,6 +48,6 @@ struct EditEventView: View {
 
 //struct EditEventView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        EditEventView(event: Event($name: "", $date: Date(), $time: Date()))
+//        EditEventView(event: Event(name: "", date: 12/29/02, time: <#T##Date#>, note: <#T##String#>)
 //    }
 //}

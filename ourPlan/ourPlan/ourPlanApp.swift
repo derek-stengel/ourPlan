@@ -9,7 +9,9 @@ import SwiftUI
 
 @main
 struct ourPlanApp: App {
+    @StateObject var authManager = SpotifyAuthManager.shared
     @State private var selectedColor: UIColor = .systemIndigo
+    var eventViewModel = EventViewModel()
     
     init() {
         requestNotificationAuthorization()
@@ -19,12 +21,14 @@ struct ourPlanApp: App {
         WindowGroup {
             HomeContentView(selectedColor: $selectedColor)
                 .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+                .environmentObject(authManager) // Pass the authManager to the environment
                 .onOpenURL(perform: { url in
                     SpotifyAuthManager.shared.handleCallback(url: url)
                 })
         }
     }
 }
+
 
 // This app idea is for all the wedding planners out there. I recently got married, and I know the stress behind putting everything together, making sure important events are taken care of, guest lists, catering, a playlist? That's just the start.
 

@@ -75,7 +75,7 @@ struct MapDisplayView: View {
                 }
                 .padding()
                 .background(RoundedRectangle(cornerRadius: 20.0)
-                    .fill(.thinMaterial)
+                    .fill(.gray)
                     .padding()
                     .frame(maxWidth: .infinity)
                     .frame(height: 100)

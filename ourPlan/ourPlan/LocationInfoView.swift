@@ -26,5 +26,3 @@ struct LocationInfoView: View {
         .padding()
     }
 }
-
-

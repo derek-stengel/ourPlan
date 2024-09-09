@@ -30,6 +30,7 @@ struct EventListView: View {
                     .onMove(perform: moveEvent)
                 }
                 .navigationTitle("Events")
+                .font(.system(size: 18, design: .serif))
                 
             }
             .navigationBarItems(leading: HStack {

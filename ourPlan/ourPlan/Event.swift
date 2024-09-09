@@ -8,9 +8,11 @@
 import Foundation
 import SwiftUI
 
-struct Event: Identifiable {
+struct Event: Identifiable, Codable {
     var id = UUID()
     var name: String
     var date: Date
     var time: Date
+    var note: String
 }
+

@@ -14,6 +14,7 @@ struct AddEventView: View {
 
     @State private var date = Date()
     @State private var time = Date()
+    @State private var note = ""
     @State private var name = "" {
         didSet {
             if name.count > 15 {
@@ -45,12 +46,18 @@ struct AddEventView: View {
                         .frame(height: UIScreen.main.bounds.height * 0.01)
                         .padding()
                 }
+                Section(header: Text("Note")) {
+                    TextEditor(text: $note)
+                        .frame(height: 150)
+                        .background(Color(UIColor.secondarySystemBackground))
+                        .cornerRadius(10)
+                }
             }
             .navigationTitle("New Event")
             .navigationBarItems(leading: Button("Cancel") {
                 presentationMode.wrappedValue.dismiss()
             }, trailing: Button("Save") {
-                viewModel.addEvent(name: name, date: date, time: time)
+                viewModel.addEvent(name: name, date: date, time: time, note: note)
                 presentationMode.wrappedValue.dismiss()
             }
                 .disabled(name.isEmpty)
