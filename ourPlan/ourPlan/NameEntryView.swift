@@ -12,9 +12,18 @@ struct NameEntryView: View {
     @State private var userName: String = ""
     @State private var spouseName: String = ""
     @Binding var isPresented: Bool
+    @Binding var selectedColor: UIColor
 
     var body: some View {
         VStack {
+            Image("ourPlanLogoRed")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 100, height: 100)
+                .rotatingGradientBorderHome(selectedColor: $selectedColor)
+                
+            
+            Spacer().frame(height: 20)
             Text("Enter Your Names")
                 .font(.largeTitle)
                 .padding()
@@ -26,6 +35,8 @@ struct NameEntryView: View {
             TextField("Spouse's Name", text: $spouseName)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
+            
+            Spacer().frame(height: 50)
 
             Button(action: {
                 UserSettings.saveUserName(userName)
@@ -35,12 +46,22 @@ struct NameEntryView: View {
                 Text("Save")
                     .font(.title)
                     .padding()
+                    .frame(height: 65)
+                    .frame(width: 300)
                     .background(Color.blue)
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
             .padding()
         }
+        .preferredColorScheme(.light)
         .padding()
     }
 }
+
+struct NameEntryView_Previews: PreviewProvider {
+    static var previews: some View {
+        NameEntryView(isPresented: .constant(true), selectedColor: .constant(.red))
+    }
+}
+

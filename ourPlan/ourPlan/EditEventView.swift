@@ -11,6 +11,7 @@ import Contacts
 
 struct EditEventView: View {
     @Binding var event: Event
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         Form {
@@ -43,11 +44,8 @@ struct EditEventView: View {
             }
         }
         .navigationTitle("Edit Event")
+        .navigationBarItems(trailing: Button("Done") {
+            presentationMode.wrappedValue.dismiss()
+        })
     }
 }
-
-//struct EditEventView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EditEventView(event: Event(name: "", date: 12/29/02, time: <#T##Date#>, note: <#T##String#>)
-//    }
-//}

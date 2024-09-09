@@ -12,6 +12,7 @@ struct EventInfoView: View {
     @Binding var event: Event
     @Binding var isPresented: Bool
     @State private var isEditPresented = false
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         NavigationView {
@@ -39,6 +40,9 @@ struct EventInfoView: View {
                 EditEventView(event: $event)
             }
         }
+        .navigationBarItems(trailing: Button("Done") {
+            presentationMode.wrappedValue.dismiss()
+        })
     }
 }
 

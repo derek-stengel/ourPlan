@@ -35,13 +35,13 @@ struct AddEventView: View {
                         }
                 }
                 Section(header: Text("Event Date")) {
-                    DatePicker("Event Date", selection: $date, in: Date()..., displayedComponents: .date)
+                    DatePicker("Event Date", selection: $date, displayedComponents: .date)
                         .datePickerStyle(WheelDatePickerStyle())
                         .frame(height: UIScreen.main.bounds.height * 0.1)
                         .padding()
                 }
                 Section(header: Text("Recieve an Alert")) {
-                    DatePicker("Reminder", selection: $time, in: Date()..., displayedComponents: .hourAndMinute)
+                    DatePicker("Reminder", selection: $time, displayedComponents: .hourAndMinute)
                         .datePickerStyle(CompactDatePickerStyle())
                         .frame(height: UIScreen.main.bounds.height * 0.01)
                         .padding()

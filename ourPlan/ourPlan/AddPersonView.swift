@@ -40,7 +40,8 @@ struct AddPersonView: View {
             }, trailing: Button("Save") {
                 viewModel.addPerson(name: name, job: job, phoneNumber: phoneNumber, email: email)
                 presentationMode.wrappedValue.dismiss()
-            })
+            }
+            .disabled(name.isEmpty))
         }
     }
 }

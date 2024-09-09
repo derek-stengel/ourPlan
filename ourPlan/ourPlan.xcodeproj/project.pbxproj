@@ -44,6 +44,7 @@
 		FDCECC5A2C6681500020C37D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC592C6681500020C37D /* ProfileView.swift */; };
 		FDCECC5C2C66A7190020C37D /* BackgroundFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC5B2C66A7190020C37D /* BackgroundFunctions.swift */; };
 		FDCECC5E2C66A72E0020C37D /* NameEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC5D2C66A72E0020C37D /* NameEntryView.swift */; };
+		FDEE6B2C2C8F856F00213E85 /* HomeScreenGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEE6B2B2C8F856F00213E85 /* HomeScreenGradient.swift */; };
 		FDEEA1C92C87515300BC8645 /* SpotifyRotatingColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEEA1C82C87515300BC8645 /* SpotifyRotatingColor.swift */; };
 		FDEEA1CB2C875E3A00BC8645 /* hexExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEEA1CA2C875E3A00BC8645 /* hexExtension.swift */; };
 /* End PBXBuildFile section */
@@ -86,6 +87,7 @@
 		FDCECC592C6681500020C37D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		FDCECC5B2C66A7190020C37D /* BackgroundFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundFunctions.swift; sourceTree = "<group>"; };
 		FDCECC5D2C66A72E0020C37D /* NameEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEntryView.swift; sourceTree = "<group>"; };
+		FDEE6B2B2C8F856F00213E85 /* HomeScreenGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenGradient.swift; sourceTree = "<group>"; };
 		FDEEA1C82C87515300BC8645 /* SpotifyRotatingColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyRotatingColor.swift; sourceTree = "<group>"; };
 		FDEEA1CA2C875E3A00BC8645 /* hexExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hexExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,6 +110,7 @@
 			children = (
 				FDEEA1C82C87515300BC8645 /* SpotifyRotatingColor.swift */,
 				FD3344D02C876F3000B61B57 /* WeddingRotatingColor.swift */,
+				FDEE6B2B2C8F856F00213E85 /* HomeScreenGradient.swift */,
 				FDEEA1CA2C875E3A00BC8645 /* hexExtension.swift */,
 			);
 			name = ViewModifers;
@@ -340,6 +343,7 @@
 				FDCECC4F2C653B550020C37D /* MapDisplayView.swift in Sources */,
 				FD3344D62C87E4F900B61B57 /* PlaylistDetailView.swift in Sources */,
 				FD6CF0EF2C6E47050070B7FE /* EventViewModel.swift in Sources */,
+				FDEE6B2C2C8F856F00213E85 /* HomeScreenGradient.swift in Sources */,
 				FDCECC532C654B880020C37D /* FilterSheetView.swift in Sources */,
 				FDEEA1CB2C875E3A00BC8645 /* hexExtension.swift in Sources */,
 				FD5124132C7D0FF5002B6DB8 /* SpotifyPlaylistView.swift in Sources */,

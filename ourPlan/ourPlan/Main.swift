@@ -15,10 +15,10 @@ import SpotifyiOS
 // fix the button on peopleListView that takes the user to iMessages: the contact doesnt get taken the first time, you have to deselected a contact, then reselect one, then it will grab ALL the selected contacts
 //  !! blue dot on map showing current location ?
 // app tour screens? If possible in time.
-// the editEvent view that comes from EventInfoList does not send data back, so you cant update an event and have that data after closing the sheet
+// eventInfoView doesnt display until the events tab has been opened, then it will load
+// add done button to the editEventView that displays with the weddingHomeView from EventInfoView
 
-// TALK TO INSTRUCTOR: spotifylistview nav header moving, weddinghomeview eventdetailview not passing data back
-
+// if there are 0 days left, let the floating widget say 'best day ever is today' or something like that
 // fix the import contacts button being present even though the contacts are imported
 // when creating an event, allow the users to create / use filters to sort events by (like a color scheme)
 // add search bar at the top of the syncContacts top allow people to search for specific people
