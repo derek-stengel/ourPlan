@@ -15,4 +15,3 @@ struct Event: Identifiable, Codable {
     var time: Date
     var note: String
 }
-

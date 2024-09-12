@@ -6,6 +6,7 @@
 //
 
 // MapDisplayView.swift
+
 import MapKit
 import SwiftUI
 
@@ -52,36 +53,45 @@ struct MapDisplayView: View {
             }
             
             VStack {
-                HStack {
+                HStack(spacing: 10) { // Adjust spacing between elements
                     TextField("Search for a restaurant", text: $searchText, onCommit: {
                         viewModel.searchForRestaurants(city: city, state: state, radius: radius, searchText: searchText)
                     })
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                    
+                    .textFieldStyle(PlainTextFieldStyle())
+                    .padding(10)
+                    .background(Color.white)
+                    .foregroundColor(.secondary) // Ensure text color is white
+                    .cornerRadius(11)
+
                     Button(action: {
                         viewModel.searchForRestaurants(city: city, state: state, radius: radius, searchText: searchText)
                     }) {
                         Text("Search")
-//                            .padding()
+                            .foregroundColor(.secondary) // Set button text color to white
+                            .padding(10)
+                            .background(Color.white) // Set background color to gray
+                            .cornerRadius(11)
                     }
-                    
+
                     Button(action: {
                         isFilterPresented = true
                     }) {
                         Image(systemName: "slider.horizontal.3")
-                            .padding()
+                            .foregroundColor(.secondary)
+                            .padding(10)
+                            .background(Color.white) // Set background color to gray
+                            .cornerRadius(11)
                     }
                 }
                 .padding()
                 .background(RoundedRectangle(cornerRadius: 20.0)
-                    .fill(.gray)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 100)
+                    .fill(Color.secondary.opacity(0.9)) // Set the background color of the HStack
                 )
+                .padding(.horizontal)
+                .frame(maxWidth: .infinity)
                 Spacer()
             }
+
         }
         .sheet(isPresented: $isFilterPresented) {
             FilterView(viewModel: viewModel, city: $city, state: $state, radius: $radius)
@@ -89,6 +99,12 @@ struct MapDisplayView: View {
     }
 }
 
+struct MapDisplayView_Previews: PreviewProvider {
+    static var previews: some View {
+        MapDisplayView()
+    }
+}
+//
 //import MapKit
 //import SwiftUI
 //
@@ -103,7 +119,7 @@ struct MapDisplayView: View {
 //    
 //    var body: some View {
 //        ZStack {
-//            Map(coordinateRegion: $viewModel.region, annotationItems: viewModel.locations) { location in
+//            Map(coordinateRegion: $viewModel.region, showsUserLocation: true, annotationItems: viewModel.locations) { location in
 //                MapAnnotation(coordinate: location.coordinate) {
 //                    Button(action: {
 //                        selectedLocation = location
@@ -119,7 +135,7 @@ struct MapDisplayView: View {
 //            }
 //            .edgesIgnoringSafeArea(.all)
 //            .onAppear {
-//                viewModel.searchForRestaurants(city: city, state: state, radius: radius, searchText: searchText)
+//                viewModel.checkLocationAuthorizationStatus()
 //            }
 //            
 //            if let location = selectedLocation {
@@ -135,32 +151,54 @@ struct MapDisplayView: View {
 //            }
 //            
 //            VStack {
-//                HStack {
+//                HStack(spacing: 10) { // Adjust spacing between elements
 //                    TextField("Search for a restaurant", text: $searchText, onCommit: {
 //                        viewModel.searchForRestaurants(city: city, state: state, radius: radius, searchText: searchText)
 //                    })
-//                    .textFieldStyle(RoundedBorderTextFieldStyle())
-//                    .padding()
-//                    
+//                    .textFieldStyle(PlainTextFieldStyle())
+//                    .padding(10)
+//                    .background(Color.white)
+//                    .foregroundColor(.secondary) // Ensure text color is white
+//                    .cornerRadius(11)
+//
 //                    Button(action: {
 //                        viewModel.searchForRestaurants(city: city, state: state, radius: radius, searchText: searchText)
 //                    }) {
 //                        Text("Search")
-//                            .padding()
+//                            .foregroundColor(.secondary) // Set button text color to white
+//                            .padding(10)
+//                            .background(Color.white) // Set background color to gray
+//                            .cornerRadius(11)
 //                    }
-//                    
+//
 //                    Button(action: {
 //                        isFilterPresented = true
 //                    }) {
 //                        Image(systemName: "slider.horizontal.3")
-//                            .padding()
+//                            .foregroundColor(.secondary)
+//                            .padding(10)
+//                            .background(Color.white) // Set background color to gray
+//                            .cornerRadius(11)
 //                    }
 //                }
+//                .padding()
+//                .background(RoundedRectangle(cornerRadius: 20.0)
+//                    .fill(Color.secondary.opacity(0.9)) // Set the background color of the HStack
+//                )
+//                .padding(.horizontal)
+//                .frame(maxWidth: .infinity)
 //                Spacer()
 //            }
+//
 //        }
 //        .sheet(isPresented: $isFilterPresented) {
 //            FilterView(viewModel: viewModel, city: $city, state: $state, radius: $radius)
 //        }
+//    }
+//}
+//
+//struct MapDisplayView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MapDisplayView()
 //    }
 //}

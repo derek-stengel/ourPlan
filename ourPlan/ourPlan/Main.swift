@@ -9,21 +9,18 @@ import Foundation
 import SwiftUI
 import SpotifyiOS
 
-// Things to do:
-// Persistance is done on home, events, and the playlists for spotify. make sure you handle the individual songs persistance too. Map doesnt need it.
-// Persistance is needed on PeopleList, and after you finish Spotify implimentation.
-// fix the button on peopleListView that takes the user to iMessages: the contact doesnt get taken the first time, you have to deselected a contact, then reselect one, then it will grab ALL the selected contacts
-//  !! blue dot on map showing current location ?
+// TO DO LIST
+// Spotify implimentation.
 // app tour screens? If possible in time.
-// eventInfoView doesnt display until the events tab has been opened, then it will load
-// add done button to the editEventView that displays with the weddingHomeView from EventInfoView
-
-// if there are 0 days left, let the floating widget say 'best day ever is today' or something like that
-// fix the import contacts button being present even though the contacts are imported
+// display the EditEventView on weddingHomeView as a view, not a sheet
 // when creating an event, allow the users to create / use filters to sort events by (like a color scheme)
 // add search bar at the top of the syncContacts top allow people to search for specific people
 // allow a filter in peopleListView for last name, first name, and job type
 // when choosing a job on addPeopleView, make it a drop down where people have default list to choose from, but could also add their own
+
+// BUG FIXES
+// eventInfoView doesnt display until a different tab has been opened, then it will load
+// fix the button on peopleListView that takes the user to iMessages: the contact doesnt get taken the first time, you have to deselected a contact, then reselect one, then it will grab ALL the selected contacts
 
 enum Tab {
     case honeymoon

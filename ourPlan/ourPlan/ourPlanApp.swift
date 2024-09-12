@@ -9,9 +9,9 @@ import SwiftUI
 
 @main
 struct ourPlanApp: App {
-    @StateObject var authManager = SpotifyAuthManager.shared
+    @StateObject private var authManager = SpotifyAuthManager.shared
     @State private var selectedColor: UIColor = .systemIndigo
-    var eventViewModel = EventViewModel()
+    @StateObject private var eventViewModel = EventViewModel()
     
     init() {
         requestNotificationAuthorization()
@@ -21,15 +21,17 @@ struct ourPlanApp: App {
         WindowGroup {
             HomeContentView(selectedColor: $selectedColor)
                 .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+                .environmentObject(eventViewModel) // Pass the view model to the environment
                 .environmentObject(authManager) // Pass the authManager to the environment
-                .onOpenURL(perform: { url in
+                .onOpenURL { url in
                     SpotifyAuthManager.shared.handleCallback(url: url)
-                })
+                }
+                .onAppear {
+                    // Ensure event data is loaded when the app launches
+                    eventViewModel.loadEvents()
+                }
         }
     }
 }
 
-
-// This app idea is for all the wedding planners out there. I recently got married, and I know the stress behind putting everything together, making sure important events are taken care of, guest lists, catering, a playlist? That's just the start.
-
-// Having everything in one, simplified place would save time, money, and worry. This app would allow this to happen in the simpliest way possible. There could be a screen for goal tracking with a progress bar, another screen with a map that shows venues and catering options, another screen where you can input emails or phone numbers to send out a mass text, etc.
+// The purpose of this app is to help organize your wedding in one place, from notifications, to easily messaging large groups, to building your ideal spotify playlist. 

@@ -105,8 +105,6 @@ struct SyncContactsView_Previews: PreviewProvider {
     }
 }
 
-
-//
 //import SwiftUI
 //import Contacts
 //
@@ -128,8 +126,22 @@ struct SyncContactsView_Previews: PreviewProvider {
 //                    } else {
 //                        return $0.givenName < $1.givenName
 //                    }
-//                })) { contact in
+//                }), id: \.identifier) { contact in
 //                    HStack {
+//                        Button(action: {
+//                            if selectedContacts.contains(contact.identifier) {
+//                                selectedContacts.remove(contact.identifier)
+//                            } else {
+//                                selectedContacts.insert(contact.identifier)
+//                            }
+//                        }) {
+//                            Image(systemName: selectedContacts.contains(contact.identifier) ? "checkmark.circle.fill" : "circle")
+//                                .resizable()
+//                                .frame(width: 24, height: 24)
+//                                .foregroundColor(selectedContacts.contains(contact.identifier) ? .blue : .gray)
+//                        }
+//                        .buttonStyle(PlainButtonStyle())
+//                        
 //                        VStack(alignment: .leading) {
 //                            Text("\(contact.givenName) \(contact.familyName)")
 //                            if !contact.jobTitle.isEmpty {

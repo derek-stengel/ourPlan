@@ -46,7 +46,6 @@ struct AddPersonView: View {
     }
 }
 
-
 //import Foundation
 //import SwiftUI
 //import Contacts
@@ -83,8 +82,7 @@ struct AddPersonView: View {
 //                viewModel.addPerson(name: name, job: job, phoneNumber: phoneNumber, email: email)
 //                presentationMode.wrappedValue.dismiss()
 //            }
-//                .disabled(name.isEmpty)
-//            )
+//            .disabled(name.isEmpty))
 //        }
 //    }
 //}
