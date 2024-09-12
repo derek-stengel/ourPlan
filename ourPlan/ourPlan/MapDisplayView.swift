@@ -18,6 +18,7 @@ struct MapDisplayView: View {
     @State private var state: String = ""
     @State private var radius: Double = 10.0
     @State private var isFilterPresented: Bool = false
+    @Binding var selectedColor: UIColor
     
     var body: some View {
         ZStack {
@@ -53,7 +54,19 @@ struct MapDisplayView: View {
             }
             
             VStack {
-                HStack(spacing: 10) { // Adjust spacing between elements
+                HStack(spacing: 10) {  // Adjust spacing between elements
+                    Button(action: {
+                        isFilterPresented = true
+                    }) {
+                        Image(systemName: "slider.vertical.3")
+                            .resizable()
+                            .frame(width: 16, height: 16)
+                            .foregroundColor(.secondary)
+                            .padding(10)
+                            .background(Color.white) // Set background color to gray
+                            .cornerRadius(11)
+                    }
+                   
                     TextField("Search for a restaurant", text: $searchText, onCommit: {
                         viewModel.searchForRestaurants(city: city, state: state, radius: radius, searchText: searchText)
                     })
@@ -61,31 +74,24 @@ struct MapDisplayView: View {
                     .padding(10)
                     .background(Color.white)
                     .foregroundColor(.secondary) // Ensure text color is white
-                    .cornerRadius(11)
+                    .cornerRadius(10)
 
                     Button(action: {
                         viewModel.searchForRestaurants(city: city, state: state, radius: radius, searchText: searchText)
                     }) {
-                        Text("Search")
-                            .foregroundColor(.secondary) // Set button text color to white
-                            .padding(10)
-                            .background(Color.white) // Set background color to gray
-                            .cornerRadius(11)
-                    }
-
-                    Button(action: {
-                        isFilterPresented = true
-                    }) {
-                        Image(systemName: "slider.horizontal.3")
-                            .foregroundColor(.secondary)
-                            .padding(10)
-                            .background(Color.white) // Set background color to gray
-                            .cornerRadius(11)
+                        Image(systemName: "arrow.up.right")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                            .foregroundColor(.white) // Set button text color to white
+                            .padding(3)
+//                            .background(Color.white) // Set background color to gray
+                            .cornerRadius(12)
                     }
                 }
                 .padding()
                 .background(RoundedRectangle(cornerRadius: 20.0)
-                    .fill(Color.secondary.opacity(0.9)) // Set the background color of the HStack
+//                    .fill(Color.black.opacity(0.7)) // Set the background color of the HStack
+                    .fill(Color(selectedColor).opacity(0.7))
                 )
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity)
@@ -101,9 +107,10 @@ struct MapDisplayView: View {
 
 struct MapDisplayView_Previews: PreviewProvider {
     static var previews: some View {
-        MapDisplayView()
+        MapDisplayView(selectedColor: .constant(.black))
     }
 }
+
 //
 //import MapKit
 //import SwiftUI

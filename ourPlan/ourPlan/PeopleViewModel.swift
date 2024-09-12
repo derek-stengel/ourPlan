@@ -97,10 +97,6 @@ class PeopleViewModel: ObservableObject {
         }
     }
     
-    func movePerson(from source: IndexSet, to destination: Int) {
-        people.move(fromOffsets: source, toOffset: destination)
-    }
-    
     func requestContactsAccess() {
         contactStore.requestAccess(for: .contacts) { granted, error in
             if granted {

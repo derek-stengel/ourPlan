@@ -79,7 +79,7 @@ struct PeopleListView: View {
             .navigationBarItems(
                 leading: HStack {
                     if viewModel.contactsImported {
-                        EditButton()
+//                        EditButton()
                         Button(action: {
                             showingSyncContacts = true
                         }) {
@@ -227,7 +227,6 @@ struct PeopleListView_Previews: PreviewProvider {
     }
 }
 
-//
 //import Foundation
 //import SwiftUI
 //import Contacts
@@ -294,7 +293,7 @@ struct PeopleListView_Previews: PreviewProvider {
 //                                }
 //                            }
 //                        }
-//                        .onMove(perform: movePerson)
+////                        .onMove(perform: movePerson)
 //                    }
 //                    .navigationTitle("People")
 //                }
@@ -370,9 +369,9 @@ struct PeopleListView_Previews: PreviewProvider {
 //        }
 //    }
 //    
-//    private func movePerson(from source: IndexSet, to destination: Int) {
-//        viewModel.people.move(fromOffsets: source, toOffset: destination)
-//    }
+////    private func movePerson(from source: IndexSet, to destination: Int) {
+////        viewModel.people.move(fromOffsets: source, toOffset: destination)
+////    }
 //    
 //    // Simplified and broken down the groupedPeople and groupedPeopleKeys properties
 //    private var groupedPeople: [String: [Binding<Person>]] {

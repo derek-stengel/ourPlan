@@ -13,10 +13,9 @@ import SpotifyiOS
 // Spotify implimentation.
 // app tour screens? If possible in time.
 // display the EditEventView on weddingHomeView as a view, not a sheet
-// when creating an event, allow the users to create / use filters to sort events by (like a color scheme)
+// when creating an event, allow the users to create / use filters to sort events by (like a color scheme), and when choosing a job on AddPeopleView, make it a drop down where people have default list to choose from, but could also add their own
 // add search bar at the top of the syncContacts top allow people to search for specific people
 // allow a filter in peopleListView for last name, first name, and job type
-// when choosing a job on addPeopleView, make it a drop down where people have default list to choose from, but could also add their own
 
 // BUG FIXES
 // eventInfoView doesnt display until a different tab has been opened, then it will load
@@ -27,7 +26,7 @@ enum Tab {
     case map
     case home
     case events
-    case peopleList
+    case people
 }
 
 struct HomeContentView: View {
@@ -44,7 +43,7 @@ struct HomeContentView: View {
                     }
                     .tag(0)
 
-                MapDisplayView()
+                MapDisplayView(selectedColor: $selectedColor)
                     .tabItem {
                         Image(systemName: "location")
                     }
