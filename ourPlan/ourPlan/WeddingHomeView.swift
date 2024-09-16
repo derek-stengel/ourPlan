@@ -212,6 +212,13 @@ struct WeddingHomeView_Previews: PreviewProvider {
     }
 }
 
+////
+////  WeddingHomeView.swift
+////  ourPlan
+////
+////  Created by Derek Stengel on 8/9/24.
+////
+//
 //import SwiftUI
 //
 //struct WeddingHomeView: View {

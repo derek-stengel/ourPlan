@@ -50,6 +50,13 @@ struct EditEventView: View {
     }
 }
 
+////
+////  EditEventView.swift
+////  ourPlan
+////
+////  Created by Derek Stengel on 8/15/24.
+////
+//
 //import Foundation
 //import SwiftUI
 //import Contacts

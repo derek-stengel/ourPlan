@@ -6,12 +6,11 @@
 //
 
 import SwiftUI
-import Foundation
 
 struct EventInfoView: View {
     @Binding var event: Event
     @Binding var isPresented: Bool
-    @State private var isEditPresented = false
+    @State private var isEditPresented = false // No longer needed, can be removed
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var eventViewModel: EventViewModel // Use environment object if needed
 
@@ -34,16 +33,13 @@ struct EventInfoView: View {
                 refreshEventDetails()
             }
             .navigationBarItems(
-                leading: Button("Edit Event") {
-                    isEditPresented = true
+                leading: NavigationLink("Edit Event") {
+                    EditEventView(event: $event)
                 },
                 trailing: Button("Done") {
                     isPresented = false
                 }
             )
-            .sheet(isPresented: $isEditPresented) {
-                EditEventView(event: $event)
-            }
         }
         .navigationBarItems(trailing: Button("Done") {
             presentationMode.wrappedValue.dismiss()
@@ -58,6 +54,7 @@ struct EventInfoView: View {
     }
 }
 
+
 struct EventInfoView_Previews: PreviewProvider {
     @State static var event = Event(name: "The big thing!", date: .now, time: .now, note: "A note about the event")
     @State static var isPresented = true
@@ -68,6 +65,13 @@ struct EventInfoView_Previews: PreviewProvider {
     }
 }
 
+////
+////  EventInfoView.swift
+////  ourPlan
+////
+////  Created by Derek Stengel on 9/7/24.
+////
+//
 //import SwiftUI
 //import Foundation
 //

@@ -27,19 +27,6 @@ struct EditPersonView: View {
             Section(header: Text("Email")) {
                 TextField("Email Address", text: $person.email)
             }
-//            Spacer()
-//            
-//            Button(action: {
-//                viewModel.deletePerson(by: person.id)
-//            }) {
-//                Text("Delete Contact")
-//                    .foregroundColor(.white)
-//                    .frame(maxWidth: .infinity)
-//                    .padding()
-//                    .background(Color.red)
-//                    .cornerRadius(10)
-//            }
-//            .padding()
         }
         .navigationTitle("Edit Person")
         .navigationBarItems(trailing: Button("Save") {

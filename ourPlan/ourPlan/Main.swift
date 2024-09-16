@@ -12,10 +12,9 @@ import SpotifyiOS
 // TO DO LIST
 // Spotify implimentation.
 // app tour screens? If possible in time.
-// display the EditEventView on weddingHomeView as a view, not a sheet
 // when creating an event, allow the users to create / use filters to sort events by (like a color scheme), and when choosing a job on AddPeopleView, make it a drop down where people have default list to choose from, but could also add their own
-// add search bar at the top of the syncContacts top allow people to search for specific people
 // allow a filter in peopleListView for last name, first name, and job type
+// add search bar at the top of the syncContacts top allow people to search for specific people
 
 // BUG FIXES
 // eventInfoView doesnt display until a different tab has been opened, then it will load
@@ -30,7 +29,7 @@ enum Tab {
 }
 
 struct HomeContentView: View {
-    @State private var selectedTab: Int = 2
+    @State private var selectedTab: Int = 2 // controls which tab displays upon app launch
     @Binding var selectedColor: UIColor
     @StateObject private var eventViewModel = EventViewModel()
     
@@ -77,7 +76,6 @@ struct HomeContentView: View {
 
 struct HomeContentView_Previews: PreviewProvider {
     static var previews: some View {
-        // Create a binding for selectedColor with a default color
         HomeContentView(selectedColor: .constant(UIColor.systemCyan))
             .environmentObject(EventViewModel())
             .environmentObject(SpotifyAuthManager.shared)
