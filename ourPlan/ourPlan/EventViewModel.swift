@@ -85,6 +85,7 @@ class EventViewModel: ObservableObject {
     // Rest of the methods remain unchanged
     func deleteEvent(at offsets: IndexSet) {
         events.remove(atOffsets: offsets)
+        saveEvents()
     }
     
     func moveEvent(from source: IndexSet, to destination: Int) {
@@ -99,15 +100,70 @@ class EventViewModel: ObservableObject {
         }
     }
     
-    func addEvent(name: String, date: Date, time: Date, note: String) {
-        let newEvent = Event(name: name, date: date, time: time, note: note)
+    func addEvent(name: String, date: Date, time: Date, note: String, filter: String) {
+        let newEvent = Event(name: name, date: date, time: time, note: note, filter: filter)
         events.append(newEvent)
         scheduleNotification(for: newEvent)
     }
 
     private func scheduleNotification(for event: Event) {
-        // Notification scheduling code
+        let center = UNUserNotificationCenter.current()
+
+        // First, check the current notification settings
+        center.getNotificationSettings { settings in
+            guard settings.authorizationStatus == .authorized || settings.authorizationStatus == .provisional else {
+                // If notifications are not authorized, print a message and return
+                print("Notifications are not allowed.")
+                return
+            }
+
+            // Prepare the content of the notification
+            let content = UNMutableNotificationContent()
+//            content.title = event.name
+            content.body = "Reminder: \(event.name) at \(self.formatTime(event.time))"
+            content.sound = UNNotificationSound.default
+
+            // Combine the event's date and time into one Date object
+            let calendar = Calendar.current
+            if let combinedEventDateTime = calendar.date(
+                bySettingHour: calendar.component(.hour, from: event.time),
+                minute: calendar.component(.minute, from: event.time),
+                second: 0,
+                of: event.date
+            ) {
+                // Ensure the notification is set for a future date
+                if combinedEventDateTime > Date() {
+                    // Create the trigger for the notification
+                    let triggerDate = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: combinedEventDateTime)
+                    let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
+
+                    // Create the request with a unique identifier using the event's UUID
+                    let request = UNNotificationRequest(identifier: event.id.uuidString, content: content, trigger: trigger)
+
+                    // Schedule the notification
+                    center.add(request) { error in
+                        if let error = error {
+                            print("Error scheduling notification: \(error.localizedDescription)")
+                        } else {
+                            print("Notification scheduled for event: \(event.name) on \(combinedEventDateTime)")
+                        }
+                    }
+                } else {
+                    print("Event time is in the past. No notification scheduled.")
+                }
+            } else {
+                print("Failed to combine event date and time.")
+            }
+        }
     }
+
+    // Helper function to format time for the notification body
+    private func formatTime(_ time: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        return formatter.string(from: time)
+    }
+
 }
 
 //import SwiftUI

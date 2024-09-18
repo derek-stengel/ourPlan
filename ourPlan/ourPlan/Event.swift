@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 struct Event: Identifiable, Codable {
     var id = UUID()
@@ -14,4 +13,18 @@ struct Event: Identifiable, Codable {
     var date: Date
     var time: Date
     var note: String
+    var filter: String
+    
+    static var defaultFilters: [String] {
+        get {
+            UserDefaults.standard.stringArray(forKey: "defaultFilters") ?? ["IMPORTANT", "Design", "Catering"]
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "defaultFilters")
+        }
+    }
 }
+
+
+
+

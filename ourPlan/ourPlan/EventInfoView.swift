@@ -5,26 +5,28 @@
 //  Created by Derek Stengel on 9/7/24.
 //
 
+import Foundation
 import SwiftUI
 
 struct EventInfoView: View {
     @Binding var event: Event
-    @Binding var isPresented: Bool
-    @State private var isEditPresented = false // No longer needed, can be removed
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var eventViewModel: EventViewModel // Use environment object if needed
-
+    @Binding var selectedColor: UIColor
+    @Binding var sheetHeight: PresentationDetent
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 20) {
-                Spacer().frame(height: 10)
+//                Spacer().frame(height: 50)
                 Text(event.name)
-                    .font(.largeTitle)
+                    .font(.system(size: 40, design: .serif))
                     .bold()
                 
-                Text("Scheduled for \(event.date, formatter: DateFormatter.shortDateFormatter) at \(event.time, formatter: DateFormatter.shortTimeFormatter)")
-                    .font(.headline)
-                
+                Text("Scheduled for \(formattedDateWithSuffix(from: event.date)) at \(event.time, formatter: DateFormatter.shortTimeFormatter)")
+//                    .font(.headline)
+                    .font(.system(size: 16, design: .serif))
+                Text(event.note)
+                    .font(.system(size: 14, design: .serif))
                 Spacer()
             }
             .padding()
@@ -33,17 +35,14 @@ struct EventInfoView: View {
                 refreshEventDetails()
             }
             .navigationBarItems(
-                leading: NavigationLink("Edit Event") {
-                    EditEventView(event: $event)
-                },
-                trailing: Button("Done") {
-                    isPresented = false
+//                leading: NavigationLink("Edit Event") {
+//                    EditEventView(event: $event, selectedColor: $selectedColor)
+//                },
+                trailing: Button("Close") {
+                    dismiss() // dismiss the view when done is pressed
                 }
             )
         }
-        .navigationBarItems(trailing: Button("Done") {
-            presentationMode.wrappedValue.dismiss()
-        })
     }
     
     private func refreshEventDetails() {
@@ -54,17 +53,53 @@ struct EventInfoView: View {
     }
 }
 
+extension DateFormatter {
+    static var fullDateWithSuffixFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM d"
+        return formatter
+    }
+}
+
+// Function to get the day suffix
+func daySuffix(from day: Int) -> String {
+    switch day {
+    case 11, 12, 13:
+        return "th"
+    case _ where day % 10 == 1:
+        return "st"
+    case _ where day % 10 == 2:
+        return "nd"
+    case _ where day % 10 == 3:
+        return "rd"
+    default:
+        return "th"
+    }
+}
+
+// Function to format the date with a suffix
+func formattedDateWithSuffix(from date: Date) -> String {
+    let calendar = Calendar.current
+    let day = calendar.component(.day, from: date)
+    
+    let formattedDate = DateFormatter.fullDateWithSuffixFormatter.string(from: date)
+    return "\(formattedDate)\(daySuffix(from: day))"
+}
 
 struct EventInfoView_Previews: PreviewProvider {
-    @State static var event = Event(name: "The big thing!", date: .now, time: .now, note: "A note about the event")
+    @State static var event = Event(name: "The big thing!", date: .now, time: .now, note: "This is a note about a long bit of nothing", filter: "")
     @State static var isPresented = true
     
     static var previews: some View {
-        EventInfoView(event: $event, isPresented: $isPresented)
+        @State var sheetHeight = PresentationDetent.height(CGFloat(180))
+        
+        EventInfoView(event: $event, selectedColor: .constant(.red), sheetHeight: $sheetHeight)
             .environmentObject(EventViewModel())
     }
 }
 
+//
+//
 ////
 ////  EventInfoView.swift
 ////  ourPlan
@@ -73,14 +108,12 @@ struct EventInfoView_Previews: PreviewProvider {
 ////
 //
 //import SwiftUI
-//import Foundation
 //
 //struct EventInfoView: View {
 //    @Binding var event: Event
-//    @Binding var isPresented: Bool
-//    @State private var isEditPresented = false
-//    @Environment(\.presentationMode) var presentationMode
+//    @Environment(\.dismiss) var dismiss
 //    @EnvironmentObject var eventViewModel: EventViewModel // Use environment object if needed
+//    @Binding var selectedColor: UIColor
 //
 //    var body: some View {
 //        NavigationView {
@@ -101,20 +134,14 @@ struct EventInfoView_Previews: PreviewProvider {
 //                refreshEventDetails()
 //            }
 //            .navigationBarItems(
-//                leading: Button("Edit Event") {
-//                    isEditPresented = true
+//                leading: NavigationLink("Edit Event") {
+//                    EditEventView(event: $event, selectedColor: $selectedColor)
 //                },
 //                trailing: Button("Done") {
-//                    isPresented = false
+//                    dismiss() // dismiss the view when done is pressed
 //                }
 //            )
-//            .sheet(isPresented: $isEditPresented) {
-//                EditEventView(event: $event)
-//            }
 //        }
-//        .navigationBarItems(trailing: Button("Done") {
-//            presentationMode.wrappedValue.dismiss()
-//        })
 //    }
 //    
 //    private func refreshEventDetails() {
@@ -125,12 +152,14 @@ struct EventInfoView_Previews: PreviewProvider {
 //    }
 //}
 //
+//
 //struct EventInfoView_Previews: PreviewProvider {
-//    @State static var event = Event(name: "The big thing!", date: .now, time: .now, note: "A note about the event")
+//    @State static var event = Event(name: "The big thing!", date: .now, time: .now, note: "A note about the event", filter: "")
 //    @State static var isPresented = true
 //    
 //    static var previews: some View {
-//        EventInfoView(event: $event, isPresented: $isPresented)
+//        EventInfoView(event: $event, selectedColor: .constant(.red))
 //            .environmentObject(EventViewModel())
 //    }
 //}
+//

@@ -47,6 +47,9 @@
 		FDEE6B2C2C8F856F00213E85 /* HomeScreenGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEE6B2B2C8F856F00213E85 /* HomeScreenGradient.swift */; };
 		FDEEA1C92C87515300BC8645 /* SpotifyRotatingColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEEA1C82C87515300BC8645 /* SpotifyRotatingColor.swift */; };
 		FDEEA1CB2C875E3A00BC8645 /* hexExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEEA1CA2C875E3A00BC8645 /* hexExtension.swift */; };
+		FDF75EE32C99D3FC001B1C8B /* CreateCustomFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF75EE22C99D3FC001B1C8B /* CreateCustomFilterView.swift */; };
+		FDF75EE52C99D7C7001B1C8B /* ManageFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF75EE42C99D7C7001B1C8B /* ManageFiltersView.swift */; };
+		FDF75EE82C99DCF4001B1C8B /* CustomSheetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF75EE72C99DCF4001B1C8B /* CustomSheetModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +93,9 @@
 		FDEE6B2B2C8F856F00213E85 /* HomeScreenGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenGradient.swift; sourceTree = "<group>"; };
 		FDEEA1C82C87515300BC8645 /* SpotifyRotatingColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyRotatingColor.swift; sourceTree = "<group>"; };
 		FDEEA1CA2C875E3A00BC8645 /* hexExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hexExtension.swift; sourceTree = "<group>"; };
+		FDF75EE22C99D3FC001B1C8B /* CreateCustomFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCustomFilterView.swift; sourceTree = "<group>"; };
+		FDF75EE42C99D7C7001B1C8B /* ManageFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageFiltersView.swift; sourceTree = "<group>"; };
+		FDF75EE72C99DCF4001B1C8B /* CustomSheetModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheetModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,8 +118,16 @@
 				FD3344D02C876F3000B61B57 /* WeddingRotatingColor.swift */,
 				FDEE6B2B2C8F856F00213E85 /* HomeScreenGradient.swift */,
 				FDEEA1CA2C875E3A00BC8645 /* hexExtension.swift */,
+				FDF75EE72C99DCF4001B1C8B /* CustomSheetModifier.swift */,
 			);
 			name = ViewModifers;
+			sourceTree = "<group>";
+		};
+		FD3776752C9B31EC0027497C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		FD6CF0E52C6BEC050070B7FE /* Spotify Playlist */ = {
@@ -137,6 +151,7 @@
 				FD660BB72C8D61E000F811A6 /* EventInfoView.swift */,
 				FD6CF0F22C6E52960070B7FE /* AddEventView.swift */,
 				FD6CF0F02C6E49A40070B7FE /* EditEventView.swift */,
+				FDF75EE62C99D7FE001B1C8B /* Filters */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -146,6 +161,7 @@
 			children = (
 				FDCECBF32C575B700020C37D /* ourPlan */,
 				FDCECBF22C575B700020C37D /* Products */,
+				FD3776752C9B31EC0027497C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -247,6 +263,15 @@
 			name = "Home ";
 			sourceTree = "<group>";
 		};
+		FDF75EE62C99D7FE001B1C8B /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				FDF75EE22C99D3FC001B1C8B /* CreateCustomFilterView.swift */,
+				FDF75EE42C99D7C7001B1C8B /* ManageFiltersView.swift */,
+			);
+			name = Filters;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -335,6 +360,7 @@
 				FD660BB82C8D61E000F811A6 /* EventInfoView.swift in Sources */,
 				FDCECC5E2C66A72E0020C37D /* NameEntryView.swift in Sources */,
 				FDCECC152C5925720020C37D /* AddPersonView.swift in Sources */,
+				FDF75EE82C99DCF4001B1C8B /* CustomSheetModifier.swift in Sources */,
 				FDCECC572C6680EB0020C37D /* WeddingHomeView.swift in Sources */,
 				FDEEA1C92C87515300BC8645 /* SpotifyRotatingColor.swift in Sources */,
 				FDCECC4D2C653B2D0020C37D /* MapViewModel.swift in Sources */,
@@ -350,6 +376,7 @@
 				FD660BB62C8C343400F811A6 /* CreatePlaylistView.swift in Sources */,
 				FDCECC012C575B710020C37D /* ourPlan.xcdatamodeld in Sources */,
 				FDCECC132C59253B0020C37D /* PeopleListView.swift in Sources */,
+				FDF75EE32C99D3FC001B1C8B /* CreateCustomFilterView.swift in Sources */,
 				FD3344D12C876F3000B61B57 /* WeddingRotatingColor.swift in Sources */,
 				FDCECC082C575B930020C37D /* Main.swift in Sources */,
 				FD6CF0F12C6E49A40070B7FE /* EditEventView.swift in Sources */,
@@ -361,6 +388,7 @@
 				FDCECBF72C575B700020C37D /* ContentView.swift in Sources */,
 				FDCECC5A2C6681500020C37D /* ProfileView.swift in Sources */,
 				FDCECBF52C575B700020C37D /* ourPlanApp.swift in Sources */,
+				FDF75EE52C99D7C7001B1C8B /* ManageFiltersView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,6 +519,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ourPlan/ourPlan.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ourPlan/Preview Content\"";
@@ -527,6 +556,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ourPlan/ourPlan.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ourPlan/Preview Content\"";

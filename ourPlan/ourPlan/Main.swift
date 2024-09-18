@@ -12,12 +12,14 @@ import SpotifyiOS
 // TO DO LIST
 // Spotify implimentation.
 // app tour screens? If possible in time.
-// when creating an event, allow the users to create / use filters to sort events by (like a color scheme), and when choosing a job on AddPeopleView, make it a drop down where people have default list to choose from, but could also add their own
+// make filters append to main thread of filters, and deleting them in manageView deletes them
+// when creating an event, allow the users to create / use filters to sort events by (like a color scheme), and when choosing a job on AddPeopleView, make it a drop down where people have default list to choose from, but could also add their own.
 // allow a filter in peopleListView for last name, first name, and job type
 // add search bar at the top of the syncContacts top allow people to search for specific people
 
 // BUG FIXES
 // eventInfoView doesnt display until a different tab has been opened, then it will load
+// Fix spotify not displaying for other users (secret or user id being yours?)
 // fix the button on peopleListView that takes the user to iMessages: the contact doesnt get taken the first time, you have to deselected a contact, then reselect one, then it will grab ALL the selected contacts
 
 enum Tab {
@@ -55,7 +57,7 @@ struct HomeContentView: View {
                     }
                     .tag(2)
 
-                EventListView()
+                EventListView(selectedColor: $selectedColor)
                     .environmentObject(eventViewModel)
                     .tabItem {
                         Image(systemName: "calendar.badge.plus")
