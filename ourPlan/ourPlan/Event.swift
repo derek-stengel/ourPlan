@@ -24,7 +24,3 @@ struct Event: Identifiable, Codable {
         }
     }
 }
-
-
-
-

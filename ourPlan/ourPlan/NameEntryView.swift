@@ -25,6 +25,7 @@ struct NameEntryView: View {
             
             Spacer().frame(height: 20)
             Text("Enter Your Names")
+                .font(.system(size: 40, design: .serif))
                 .font(.largeTitle)
                 .padding()
 
@@ -44,6 +45,7 @@ struct NameEntryView: View {
                 isPresented = false
             }) {
                 Text("Save")
+                    .font(.system(size: 25, design: .serif))
                     .font(.title)
                     .padding()
                     .frame(height: 65)

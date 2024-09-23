@@ -88,7 +88,7 @@ struct ProfileView: View {
                 displayedComponents: .date
             ) {
                 Text("Wedding Date")
-                    .font(.title3)
+                    .font(.system(size: 20, design: .serif))
                     .fontWeight(.bold)
             }
             .datePickerStyle(CompactDatePickerStyle())
@@ -101,7 +101,7 @@ struct ProfileView: View {
 
             HStack {
                 Text("Theme Color")
-                    .font(.title3)
+                    .font(.system(size: 20, design: .serif))
                     .fontWeight(.bold)
                 ColorPicker("", selection: Binding(
                     get: { Color(selectedColor) },
@@ -119,6 +119,8 @@ struct ProfileView: View {
                 Text("Save")
                     .padding()
             }
+            .font(.system(size: 20, design: .serif))
+            .bold()
             .frame(maxWidth: .infinity)
             .background(Color.blue)
             .foregroundColor(.white)

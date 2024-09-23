@@ -50,7 +50,7 @@ struct EventListView: View {
 
     private func eventList(for key: String) -> some View {
         ForEach(groupedEvents[key] ?? []) { event in
-            NavigationLink(destination: EditEventView(event: Binding(
+            NavigationLink(destination: EventInformationView(event: Binding( // start here, changing the eventlistview to display different info view instead of editeventview
                 get: { event },
                 set: { updatedEvent in
                     if let index = eventViewModel.events.firstIndex(where: { $0.id == event.id }) {
@@ -75,6 +75,34 @@ struct EventListView: View {
             }
         }
     }
+    
+//    private func eventList(for key: String) -> some View {
+//        ForEach(groupedEvents[key] ?? []) { event in
+//            NavigationLink(destination: EditEventView(event: Binding(
+//                get: { event },
+//                set: { updatedEvent in
+//                    if let index = eventViewModel.events.firstIndex(where: { $0.id == event.id }) {
+//                        eventViewModel.events[index] = updatedEvent
+//                    }
+//                }), selectedColor: $selectedColor)) {
+//                VStack(alignment: .leading) {
+//                    Text(event.name)
+//                        .font(.headline)
+//                    Text("Reminder on \(event.date, formatter: DateFormatter.shortDateFormatter) at \(event.time, formatter: DateFormatter.shortTimeFormatter)")
+//                        .font(.subheadline)
+//                }
+//            }
+//            .swipeActions {
+//                Button(role: .destructive) {
+//                    if let index = eventViewModel.events.firstIndex(where: { $0.id == event.id }) {
+//                        eventViewModel.deleteEvent(at: IndexSet(integer: index))
+//                    }
+//                } label: {
+//                    Label("Delete", systemImage: "trash")
+//                }
+//            }
+//        }
+//    }
 
     private var addButton: some View {
         Button(action: {

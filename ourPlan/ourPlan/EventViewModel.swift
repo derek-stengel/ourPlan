@@ -163,7 +163,6 @@ class EventViewModel: ObservableObject {
         formatter.timeStyle = .short
         return formatter.string(from: time)
     }
-
 }
 
 //import SwiftUI

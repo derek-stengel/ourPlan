@@ -13,6 +13,7 @@ struct CreateCustomFilterView: View {
     @State private var newFilter: String = ""
     @State private var filters = Event.defaultFilters
     @Binding var selectedColor: UIColor
+    @Environment(\.dismiss) var dismiss
 
     var body: some View {
         NavigationView {
@@ -32,6 +33,8 @@ struct CreateCustomFilterView: View {
                         }
                     }
                     showingCustomFilterSheet = false
+                    dismiss()
+                    
                 }) {
                     Text("Save")
                         .frame(maxWidth: .infinity)
@@ -43,9 +46,9 @@ struct CreateCustomFilterView: View {
                 .padding()
             }
             .navigationTitle("Custom Filter")
-            .navigationBarItems(leading: Button("Cancel") {
-                showingCustomFilterSheet = false
-            })
+//            .navigationBarItems(leading: Button("Cancel") {
+//                showingCustomFilterSheet = false
+//            })
         }
     }
 }

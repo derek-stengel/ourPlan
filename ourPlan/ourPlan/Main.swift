@@ -12,10 +12,7 @@ import SpotifyiOS
 // TO DO LIST
 // Spotify implimentation.
 // app tour screens? If possible in time.
-// make filters append to main thread of filters, and deleting them in manageView deletes them
-// when creating an event, allow the users to create / use filters to sort events by (like a color scheme), and when choosing a job on AddPeopleView, make it a drop down where people have default list to choose from, but could also add their own.
-// allow a filter in peopleListView for last name, first name, and job type
-// add search bar at the top of the syncContacts top allow people to search for specific people
+// syncContactsView now has a search bar, but cannot import contacts. Mix the search bar code from the commented code, with the working displayed code. also line 117 in personListView was changed with this change. make sure to dobule check that doesnt effect the work.
 
 // BUG FIXES
 // eventInfoView doesnt display until a different tab has been opened, then it will load

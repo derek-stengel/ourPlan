@@ -19,7 +19,7 @@ struct WeddingHomeView: View {
     
     @State private var selectedEvent: Event? // Track the selected Event
     @State private var isEventInfoViewPresented = false
-    @State var sheetHeight = PresentationDetent.height(CGFloat(180))
+    @State var sheetHeight = PresentationDetent.height(CGFloat(200))
     
     init(selectedColor: Binding<UIColor>) {
         _selectedColor = selectedColor
@@ -131,7 +131,7 @@ struct WeddingHomeView: View {
                 set: { selectedEvent = $0 }
             )
             
-            EventInfoView(event: binding, selectedColor: $selectedColor, sheetHeight: $sheetHeight)
+            EventInfoSheet(event: binding, selectedColor: $selectedColor, sheetHeight: $sheetHeight)
                 .environmentObject(eventViewModel)
                 .background(Color.white)
                 .onDisappear {

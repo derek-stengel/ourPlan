@@ -114,7 +114,8 @@ struct PeopleListView: View {
                 AddPersonView(viewModel: viewModel)
             }
             .sheet(isPresented: $showingSyncContacts) {
-                SyncContactsView(viewModel: viewModel)
+//                SyncContactsView() // maybe fix this
+                SyncContactsView(viewModel: viewModel) // maybe fix this
                     .onDisappear {
                         viewModel.contactsImported = true // Update the state on disappear
                     }
