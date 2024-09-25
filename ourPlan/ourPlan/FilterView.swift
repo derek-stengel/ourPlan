@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 
 struct FilterView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel: MapViewModel
     @Binding var city: String
     @Binding var state: String
@@ -33,12 +33,12 @@ struct FilterView: View {
                 Button("Apply") {
                     applyFilters()
                     viewModel.searchForRestaurants(city: city, state: state, radius: radius, searchText: "")
-                    presentationMode.wrappedValue.dismiss()
+                    dismiss()
                 }
             }
             .navigationTitle("Filters")
             .navigationBarItems(trailing: Button("Cancel") {
-                presentationMode.wrappedValue.dismiss()
+                dismiss()
             })
         }
     }

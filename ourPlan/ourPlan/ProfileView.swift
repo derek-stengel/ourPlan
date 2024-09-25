@@ -17,7 +17,7 @@ struct ProfileView: View {
 
     @State private var userNameError: String? = nil
     @State private var spouseNameError: String? = nil
-    @Environment(\.presentationMode) var presentationMode  // Environment variable for dismissing the view
+    @Environment(\.dismiss) var dismiss  // Environment variable for dismissing the view
 
     var body: some View {
         VStack(alignment: .center, spacing: 12) {
@@ -168,7 +168,7 @@ struct ProfileView: View {
             UserSettings.saveWeddingDate(weddingDate)
 
             // Dismiss the view
-            presentationMode.wrappedValue.dismiss()
+            dismiss()
         }
     }
 

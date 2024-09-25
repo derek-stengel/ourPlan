@@ -21,6 +21,7 @@ struct WeddingHomeView: View {
     @State private var isEventInfoViewPresented = false
     @State var sheetHeight = PresentationDetent.height(CGFloat(200))
     
+    
     init(selectedColor: Binding<UIColor>) {
         _selectedColor = selectedColor
         _isNameEntryViewPresented = State(initialValue: userName.isEmpty || spouseName.isEmpty)

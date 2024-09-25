@@ -10,7 +10,7 @@ import SwiftUI
 import Contacts
 
 struct AddPersonView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel: PeopleViewModel
 
     @State private var name = ""
@@ -36,10 +36,10 @@ struct AddPersonView: View {
             }
             .navigationTitle("Add Person")
             .navigationBarItems(leading: Button("Cancel") {
-                presentationMode.wrappedValue.dismiss()
+                dismiss()
             }, trailing: Button("Save") {
                 viewModel.addPerson(name: name, job: job, phoneNumber: phoneNumber, email: email)
-                presentationMode.wrappedValue.dismiss()
+                dismiss()
             }
             .disabled(name.isEmpty))
         }

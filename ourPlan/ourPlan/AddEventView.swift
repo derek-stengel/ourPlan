@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddEventView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel: EventViewModel
     
     @Binding var selectedColor: UIColor
@@ -87,10 +87,10 @@ struct AddEventView: View {
             }
             .navigationTitle("New Event")
             .navigationBarItems(leading: Button("Cancel") {
-                presentationMode.wrappedValue.dismiss()
+                dismiss()
             }, trailing: Button("Save") {
                 viewModel.addEvent(name: name, date: date, time: time, note: note, filter: selectedFilter)
-                presentationMode.wrappedValue.dismiss()
+                dismiss()
             }
                 .disabled(name.isEmpty)
             )

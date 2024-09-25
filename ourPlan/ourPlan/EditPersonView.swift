@@ -10,7 +10,7 @@ import SwiftUI
 
 struct EditPersonView: View {
     @Binding var person: Person
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
 //    @ObservedObject var viewModel: PeopleViewModel
 
     var body: some View {
@@ -30,7 +30,7 @@ struct EditPersonView: View {
         }
         .navigationTitle("Edit Person")
         .navigationBarItems(trailing: Button("Save") {
-            presentationMode.wrappedValue.dismiss()
+            dismiss()
         })
     }
 }

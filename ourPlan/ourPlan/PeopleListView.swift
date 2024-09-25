@@ -114,7 +114,7 @@ struct PeopleListView: View {
                 AddPersonView(viewModel: viewModel)
             }
             .sheet(isPresented: $showingSyncContacts) {
-//                SyncContactsView() // maybe fix this
+//                SyncContactsView1() // maybe fix this
                 SyncContactsView(viewModel: viewModel) // maybe fix this
                     .onDisappear {
                         viewModel.contactsImported = true // Update the state on disappear
@@ -184,7 +184,7 @@ struct PeopleListView: View {
 
 
 struct MessageComposeView: UIViewControllerRepresentable {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     var recipients: [String]
     var body: String
 
@@ -197,7 +197,7 @@ struct MessageComposeView: UIViewControllerRepresentable {
 
         func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
             controller.dismiss(animated: true)
-            parent.presentationMode.wrappedValue.dismiss()
+            parent.dismiss()
         }
     }
 
