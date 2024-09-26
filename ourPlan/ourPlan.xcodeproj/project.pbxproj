@@ -23,7 +23,6 @@
 		FD6CF0F12C6E49A40070B7FE /* EditEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6CF0F02C6E49A40070B7FE /* EditEventView.swift */; };
 		FD6CF0F32C6E52960070B7FE /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6CF0F22C6E52960070B7FE /* AddEventView.swift */; };
 		FDCECBF52C575B700020C37D /* ourPlanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECBF42C575B700020C37D /* ourPlanApp.swift */; };
-		FDCECBF72C575B700020C37D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECBF62C575B700020C37D /* ContentView.swift */; };
 		FDCECBF92C575B700020C37D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDCECBF82C575B700020C37D /* Assets.xcassets */; };
 		FDCECBFC2C575B710020C37D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDCECBFB2C575B710020C37D /* Preview Assets.xcassets */; };
 		FDCECBFE2C575B710020C37D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECBFD2C575B710020C37D /* Persistence.swift */; };
@@ -71,7 +70,6 @@
 		FD6CF0F22C6E52960070B7FE /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
 		FDCECBF12C575B700020C37D /* ourPlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ourPlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDCECBF42C575B700020C37D /* ourPlanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ourPlanApp.swift; sourceTree = "<group>"; };
-		FDCECBF62C575B700020C37D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FDCECBF82C575B700020C37D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FDCECBFB2C575B710020C37D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FDCECBFD2C575B710020C37D /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -200,7 +198,6 @@
 			isa = PBXGroup;
 			children = (
 				FDCECBF42C575B700020C37D /* ourPlanApp.swift */,
-				FDCECBF62C575B700020C37D /* ContentView.swift */,
 				FD6CF0E82C6BF8910070B7FE /* Info.plist */,
 			);
 			name = "ContentView + App";
@@ -389,7 +386,6 @@
 				FDCECC102C5921180020C37D /* PeopleViewModel.swift in Sources */,
 				FD3344D42C87DC1300B61B57 /* Playlist.swift in Sources */,
 				FDCECC512C653E330020C37D /* LocationInfoView.swift in Sources */,
-				FDCECBF72C575B700020C37D /* ContentView.swift in Sources */,
 				FDCECC5A2C6681500020C37D /* ProfileView.swift in Sources */,
 				FDCECBF52C575B700020C37D /* ourPlanApp.swift in Sources */,
 				FDF75EE52C99D7C7001B1C8B /* ManageFiltersView.swift in Sources */,
