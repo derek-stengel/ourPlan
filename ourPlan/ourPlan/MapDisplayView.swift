@@ -78,6 +78,7 @@ struct MapDisplayView: View {
 
                     Button(action: {
                         viewModel.searchForRestaurants(city: city, state: state, radius: radius, searchText: searchText)
+                        viewModel.applyStateFilter(state)
                     }) {
                         Image(systemName: "arrow.up.right")
                             .resizable()
