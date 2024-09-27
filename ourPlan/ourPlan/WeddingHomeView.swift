@@ -31,6 +31,9 @@ struct WeddingHomeView: View {
         ZStack {
             if isNameEntryViewPresented {
                 NameEntryView(isPresented: $isNameEntryViewPresented, selectedColor: $selectedColor)
+                    .onDisappear {
+                        loadProfileData()
+                    }
             } else {
                 VStack(spacing: 0) {
                     // Top bar with profile icon

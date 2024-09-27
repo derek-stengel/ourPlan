@@ -15,10 +15,12 @@ struct CreatePlaylistView: View {
     @State private var isCreatingPlaylist = false
     @State private var showError = false
     @Binding private var selectedColor: UIColor
+    @Binding var createPlaylistSheetHeight: PresentationDetent
     
-    init(isPresented: Binding<Bool>, selectedColor: Binding<UIColor>) {
+    init(isPresented: Binding<Bool>, selectedColor: Binding<UIColor>, createPlaylistSheetHeight: Binding<PresentationDetent>) {
             _isPresented = isPresented
             _selectedColor = selectedColor
+            _createPlaylistSheetHeight = createPlaylistSheetHeight
         }
     
     var body: some View {
@@ -28,6 +30,8 @@ struct CreatePlaylistView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding(.horizontal)
                     .padding(.top)
+                
+                    .padding(10)
                 
                 Button(action: {
                     createPlaylist(name: playlistName)
@@ -91,6 +95,21 @@ struct CreatePlaylistView: View {
         }.resume()
     }
 }
+
+struct CreatePlaylistView_Previews: PreviewProvider {
+    static var previews: some View {
+        
+        CreatePlaylistView(
+            isPresented: .constant(true), // Binding for showing or dismissing the view
+            selectedColor: .constant(UIColor.systemCyan),
+            createPlaylistSheetHeight: .constant(PresentationDetent.height(300)) // Provide a default value here
+        )
+        .environmentObject(SpotifyAuthManager()) // Provide an environment object if needed
+    }
+}
+
+
+
 //
 //import SwiftUI
 //import SpotifyiOS

@@ -17,35 +17,29 @@ struct EventInfoSheet: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 20) {
-                //                Spacer().frame(height: 50)
                 Text(event.name)
                     .font(.system(size: 40, design: .serif))
                     .bold()
                 
                 Text("Scheduled for \(formattedDateWithSuffix(from: event.date)) at \(event.time, formatter: DateFormatter.shortTimeFormatter)")
-                //                    .font(.headline)
                     .font(.system(size: 16, design: .serif))
                 if !event.note.isEmpty {
-                    Text(event.note)
+                    Text(event.note.trimmingCharacters(in: .whitespaces))
                         .font(.system(size: 14, design: .serif))
                         .background(Color.gray.opacity(0.1).cornerRadius(8).padding(-5))
                 } else {
-                    Text(event.note)
+                    Text(event.note.trimmingCharacters(in: .whitespaces))
                         .font(.system(size: 14, design: .serif))
                 }
                 Spacer()
             }
             .padding()
             .onAppear {
-                // Refresh or update event details here if necessary
                 refreshEventDetails()
             }
             .navigationBarItems(
-                //                leading: NavigationLink("Edit Event") {
-                //                    EditEventView(event: $event, selectedColor: $selectedColor)
-                //                },
                 trailing: Button("Close") {
-                    dismiss() // dismiss the view when done is pressed
+                    dismiss()
                 }
             )
         }
@@ -67,7 +61,6 @@ extension DateFormatter {
     }
 }
 
-// Function to get the day suffix
 func daySuffix(from day: Int) -> String {
     switch day {
     case 11, 12, 13:
@@ -83,7 +76,6 @@ func daySuffix(from day: Int) -> String {
     }
 }
 
-// Function to format the date with a suffix
 func formattedDateWithSuffix(from date: Date) -> String {
     let calendar = Calendar.current
     let day = calendar.component(.day, from: date)

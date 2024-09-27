@@ -11,7 +11,7 @@ import UIKit
 import SpotifyiOS
 
 class SpotifyAuthManager: ObservableObject {
-    static let shared = SpotifyAuthManager()  // Singleton instance
+    static let shared = SpotifyAuthManager()
     
     @Published var accessToken: String? {
         didSet {
@@ -37,12 +37,19 @@ class SpotifyAuthManager: ObservableObject {
     struct TokenResponse: Decodable {
         let access_token: String
         let refresh_token: String?
+        let expires_in: Int
+    }
+    
+    private var expirationDate: Date? {
+        didSet {
+            UserDefaults.standard.set(expirationDate, forKey: "tokenExpirationDate")
+        }
     }
     
     init() {
-        // Load tokens from UserDefaults on initialization
         accessToken = UserDefaults.standard.string(forKey: "accessToken")
         refreshToken = UserDefaults.standard.string(forKey: "refreshToken")
+        expirationDate = UserDefaults.standard.object(forKey: "tokenExpirationDate") as? Date
     }
     
     func authorize() {
@@ -94,6 +101,7 @@ class SpotifyAuthManager: ObservableObject {
             }, receiveValue: { tokenResponse in
                 self.accessToken = tokenResponse.access_token
                 self.refreshToken = tokenResponse.refresh_token
+                self.expirationDate = Date().addingTimeInterval(TimeInterval(tokenResponse.expires_in))
             })
             .store(in: &cancellables)
     }
@@ -124,17 +132,34 @@ class SpotifyAuthManager: ObservableObject {
                 self.isLoading = false
                 switch completionStatus {
                 case .finished:
-                    completion() // Retry the failed request after token is refreshed
+                    completion()
                 case .failure(let error):
                     self.lastError = error
                     print("Error refreshing access token: \(error.localizedDescription)")
                 }
             }, receiveValue: { tokenResponse in
                 self.accessToken = tokenResponse.access_token
+                self.expirationDate = Date().addingTimeInterval(TimeInterval(tokenResponse.expires_in))
             })
             .store(in: &cancellables)
     }
+    
+    func checkAndRefreshTokenIfNeeded(completion: @escaping () -> Void) {
+        if let expirationDate = expirationDate, Date() > expirationDate {
+            refreshAccessToken(completion: completion)
+        } else {
+            completion()
+        }
+    }
 }
+
+
+////
+////  SpotifyAuthManager.swift
+////  ourPlan
+////
+////  Created by Derek Stengel on 8/26/24.
+////
 //
 //import Foundation
 //import Combine
@@ -142,7 +167,7 @@ class SpotifyAuthManager: ObservableObject {
 //import SpotifyiOS
 //
 //class SpotifyAuthManager: ObservableObject {
-//    static let shared = SpotifyAuthManager()  // Singleton instance
+//    static let shared = SpotifyAuthManager()
 //    
 //    @Published var accessToken: String? {
 //        didSet {
@@ -171,7 +196,6 @@ class SpotifyAuthManager: ObservableObject {
 //    }
 //    
 //    init() {
-//        // Load tokens from UserDefaults on initialization
 //        accessToken = UserDefaults.standard.string(forKey: "accessToken")
 //        refreshToken = UserDefaults.standard.string(forKey: "refreshToken")
 //    }
@@ -266,4 +290,3 @@ class SpotifyAuthManager: ObservableObject {
 //            .store(in: &cancellables)
 //    }
 //}
-//

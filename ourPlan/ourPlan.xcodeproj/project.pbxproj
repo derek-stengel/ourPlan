@@ -14,6 +14,7 @@
 		FD5124112C7D0E3F002B6DB8 /* SpotifyAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5124102C7D0E3F002B6DB8 /* SpotifyAuthManager.swift */; };
 		FD5124132C7D0FF5002B6DB8 /* SpotifyPlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5124122C7D0FF5002B6DB8 /* SpotifyPlaylistView.swift */; };
 		FD5124162C7E129D002B6DB8 /* SpotifyiOS in Frameworks */ = {isa = PBXBuildFile; productRef = FD5124152C7E129D002B6DB8 /* SpotifyiOS */; };
+		FD545FE72CA6F8140076ACD2 /* SpotifyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD545FE62CA6F8140076ACD2 /* SpotifyManager.swift */; };
 		FD660BB62C8C343400F811A6 /* CreatePlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD660BB52C8C343400F811A6 /* CreatePlaylistView.swift */; };
 		FD660BB82C8D61E000F811A6 /* EventInfoSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD660BB72C8D61E000F811A6 /* EventInfoSheet.swift */; };
 		FD6CF0E72C6BF7180070B7FE /* SyncContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6CF0E62C6BF7180070B7FE /* SyncContactsView.swift */; };
@@ -59,6 +60,7 @@
 		FD3776792C9B45A40027497C /* EventInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInformationView.swift; sourceTree = "<group>"; };
 		FD5124102C7D0E3F002B6DB8 /* SpotifyAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyAuthManager.swift; sourceTree = "<group>"; };
 		FD5124122C7D0FF5002B6DB8 /* SpotifyPlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyPlaylistView.swift; sourceTree = "<group>"; };
+		FD545FE62CA6F8140076ACD2 /* SpotifyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyManager.swift; sourceTree = "<group>"; };
 		FD660BB52C8C343400F811A6 /* CreatePlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistView.swift; sourceTree = "<group>"; };
 		FD660BB72C8D61E000F811A6 /* EventInfoSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoSheet.swift; sourceTree = "<group>"; };
 		FD6CF0E62C6BF7180070B7FE /* SyncContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncContactsView.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				FD5124122C7D0FF5002B6DB8 /* SpotifyPlaylistView.swift */,
 				FD3344D52C87E4F900B61B57 /* PlaylistDetailView.swift */,
 				FD660BB52C8C343400F811A6 /* CreatePlaylistView.swift */,
+				FD545FE62CA6F8140076ACD2 /* SpotifyManager.swift */,
 			);
 			name = "Spotify Playlist";
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				FD6CF0F12C6E49A40070B7FE /* EditEventView.swift in Sources */,
 				FD6CF0F32C6E52960070B7FE /* AddEventView.swift in Sources */,
 				FD6CF0EA2C6E42170070B7FE /* Event.swift in Sources */,
+				FD545FE72CA6F8140076ACD2 /* SpotifyManager.swift in Sources */,
 				FD37767A2C9B45A40027497C /* EventInformationView.swift in Sources */,
 				FDCECC102C5921180020C37D /* PeopleViewModel.swift in Sources */,
 				FD3344D42C87DC1300B61B57 /* Playlist.swift in Sources */,

@@ -15,7 +15,7 @@ struct PeopleListView: View {
     @State private var showingAddPerson = false
     @State private var showingSyncContacts = false
     @State private var showingAlert = false
-    @State private var messageRecipients: [String] = []
+    @State private var selectedContacts: [String] = []
     @State private var showingMessageCompose = false
     @Binding var selectedColor: UIColor
     
@@ -120,7 +120,7 @@ struct PeopleListView: View {
                     }
             }
             .sheet(isPresented: $showingMessageCompose) {
-                MessageComposeView(recipients: messageRecipients, body: "")
+                MessageComposeView(recipients: selectedContacts, body: "")
             }
             .alert(isPresented: $showingAlert) {
                 Alert(
@@ -135,11 +135,11 @@ struct PeopleListView: View {
     private func sendMessage() {
         viewModel.objectWillChange.send()
         DispatchQueue.main.async {
-            messageRecipients = viewModel.people.filter { $0.isSelected }.compactMap {
+            selectedContacts = viewModel.people.filter { $0.isSelected }.compactMap {
                 !$0.phoneNumber.isEmpty ? $0.phoneNumber : $0.email
             }
             
-            if messageRecipients.isEmpty {
+            if selectedContacts.isEmpty {
                 showingAlert = true
             } else {
                 showingMessageCompose = true

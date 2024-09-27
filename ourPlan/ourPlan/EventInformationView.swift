@@ -10,7 +10,7 @@ struct EventInformationView: View {
         VStack {
             ScrollView {
                 VStack(alignment: .center, spacing: 25) {
-                    Text(event.name)
+                    Text(event.name.trimmingCharacters(in: .whitespaces))
                         .font(.system(size: 40, design: .serif))
                         .bold()
                     
@@ -21,11 +21,11 @@ struct EventInformationView: View {
                         .font(.system(size: 16, design: .serif))
                     
                     if !event.note.isEmpty {
-                        Text(event.note)
+                        Text(event.note.trimmingCharacters(in: .whitespaces))
                             .font(.system(size: 14, design: .serif))
                             .background(Color.gray.opacity(0.1).cornerRadius(8).padding(-5))
                     } else {
-                        Text(event.note)
+                        Text(event.note.trimmingCharacters(in: .whitespaces))
                             .font(.system(size: 14, design: .serif))
                     }
                     

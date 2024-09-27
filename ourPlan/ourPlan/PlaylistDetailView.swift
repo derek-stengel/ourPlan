@@ -25,13 +25,6 @@ struct PlaylistDetailView: View {
                 List(tracks, id: \.id) { track in
                     HStack {
                         VStack(alignment: .leading) {
-                            //                            if let previewUrl = track.previewUrl {
-                            //                                AsyncImage(url: previewUrl) { image in
-                            //                                    image.resizable()
-                            //                                         .aspectRatio(contentMode: .fit)
-                            //                                         .frame(width: 50, height: 50)
-                            //                                         .cornerRadius(5)
-                            //                                }
                             Text(track.name)
                                 .font(.headline)
                             Text(track.artist)
@@ -107,7 +100,7 @@ struct PlaylistDetailView: View {
         }
     }
 }
-//
+
 //import SwiftUI
 //import AVFoundation
 //import SpotifyiOS

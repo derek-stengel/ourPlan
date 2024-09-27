@@ -21,5 +21,3 @@ struct Playlist: Identifiable {
     let name: String
     let imageUrl: URL?
 }
-
-

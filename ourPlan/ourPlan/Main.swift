@@ -10,11 +10,9 @@ import SwiftUI
 import SpotifyiOS
 
 // TO DO LIST
-// Spotify implimentation for other users.
-// app tour screens? If possible in time.
+// ADD A TAB BAR BACKGROUND
 
 // BUG FIXES
-// Fix spotify not displaying for other users (secret or user id being yours?)
 // fix the button on peopleListView that takes the user to iMessages: the contact doesnt get taken the first time, you have to deselected a contact, then reselect one, then it will grab ALL the selected contacts. Maybe update the binding or the state, or refresh so it collects the selected contacts before opening the sheet?
 
 enum Tab {

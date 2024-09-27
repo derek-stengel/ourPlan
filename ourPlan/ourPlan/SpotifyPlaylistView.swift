@@ -16,6 +16,7 @@ struct SpotifyPlaylistView: View {
     @State private var showError = false
     @Binding var selectedColor: UIColor
     @Environment(\.scenePhase) var scenePhase
+    @State var createPlaylistSheetHeight = PresentationDetent.height(CGFloat(235))
     
     var body: some View {
         VStack {
@@ -75,8 +76,10 @@ struct SpotifyPlaylistView: View {
                         Alert(title: Text("Error"), message: Text(authManager.lastError?.localizedDescription ?? "Unknown error"))
                     }
                     .sheet(isPresented: $showCreatePlaylistView) {
-                        CreatePlaylistView(isPresented: $showCreatePlaylistView, selectedColor: $selectedColor)  // Pass the binding
+                        CreatePlaylistView(isPresented: $showCreatePlaylistView, selectedColor: $selectedColor, createPlaylistSheetHeight: $createPlaylistSheetHeight)
                             .environmentObject(authManager)
+                            .presentationDetents([createPlaylistSheetHeight], selection: $createPlaylistSheetHeight)
+                            .presentationDragIndicator(.hidden)
                     }
                 }
             }
@@ -84,36 +87,62 @@ struct SpotifyPlaylistView: View {
     }
     
     func refreshSpotifyData() {
-        guard let token = authManager.accessToken else { return }
-        
+        authManager.checkAndRefreshTokenIfNeeded {
+            fetchUserPlaylists()
+        }
+    }
+    
+    func fetchUserPlaylists() {
+        guard let accessToken = authManager.accessToken else { return }
         let url = URL(string: "https://api.spotify.com/v1/me/playlists")!
+        
         var request = URLRequest(url: url)
-        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.httpMethod = "GET"
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
-                authManager.lastError = error
-                showError = true
+                print("Error fetching playlists: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    showError = true
+                    authManager.lastError = error
+                }
                 return
             }
             
-            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 401 {
-                // Token is expired, try to refresh it
-                authManager.refreshAccessToken()
+            guard let data = data else {
+                print("No data received")
                 return
             }
             
-            if let data = data {
-                if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
                    let items = json["items"] as? [[String: Any]] {
+                    let playlists = items.compactMap { item -> Playlist? in
+                        guard let id = item["id"] as? String,
+                              let name = item["name"] as? String else { return nil }
+                        let imageUrl = (item["images"] as? [[String: Any]])?.first?["url"] as? String
+                        return Playlist(id: id, name: name, imageUrl: URL(string: imageUrl ?? ""))
+                    }
+                    
                     DispatchQueue.main.async {
-                        userPlaylists = items.map { Playlist(id: $0["id"] as! String, name: $0["name"] as! String, imageUrl: URL(string: ($0["images"] as? [[String: Any]])?.first?["url"] as? String ?? "")) }
+                        userPlaylists = playlists
                     }
                 }
+            } catch {
+                print("Error parsing JSON: \(error.localizedDescription)")
             }
         }.resume()
     }
 }
+
+
+////
+////  SpotifyPlaylistView.swift
+////  ourPlan
+////
+////  Created by Derek Stengel on 8/26/24.
+////
 //
 //import SwiftUI
 //import SpotifyiOS
@@ -224,4 +253,3 @@ struct SpotifyPlaylistView: View {
 //        }.resume()
 //    }
 //}
-//
