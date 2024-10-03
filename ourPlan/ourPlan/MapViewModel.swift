@@ -29,14 +29,11 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func applyStateFilter(_ state: String) {
-            // Update your logic here to filter the locations based on the provided state
-            // This might involve setting a filtered list of locations
             self.locations = self.locations.filter { $0.address?.contains(state) == true }
-            // Call your search function or update the view as needed
         }
     
     func searchForRestaurants(city: String, state: String, radius: Double, searchText: String) {
-        locations.removeAll() // Clear existing locations
+        locations.removeAll()
         
         let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = searchText.isEmpty ? "restaurant" : searchText

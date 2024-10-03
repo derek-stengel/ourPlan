@@ -9,6 +9,7 @@
 
 import MapKit
 import SwiftUI
+import UIKit
 
 struct MapDisplayView: View {
     @StateObject private var viewModel = MapViewModel()
@@ -41,6 +42,9 @@ struct MapDisplayView: View {
                 viewModel.checkLocationAuthorizationStatus()
             }
             
+//            .toolbarBackgroundVisibility(.visible, for: .tabBar) // add this in a future iOS 18 update
+            .toolbarBackground(Color(selectedColor).opacity(0.1), for: .tabBar)
+            
             if let location = selectedLocation {
                 VStack {
                     Spacer()
@@ -54,7 +58,7 @@ struct MapDisplayView: View {
             }
             
             VStack {
-                HStack(spacing: 10) {  // Adjust spacing between elements
+                HStack(spacing: 10) {
                     Button(action: {
                         isFilterPresented = true
                     }) {
@@ -63,7 +67,7 @@ struct MapDisplayView: View {
                             .frame(width: 16, height: 16)
                             .foregroundColor(.secondary)
                             .padding(10)
-                            .background(Color.white) // Set background color to gray
+                            .background(Color.white)
                             .cornerRadius(11)
                     }
                    
@@ -73,7 +77,7 @@ struct MapDisplayView: View {
                     .textFieldStyle(PlainTextFieldStyle())
                     .padding(10)
                     .background(Color.white)
-                    .foregroundColor(.secondary) // Ensure text color is white
+                    .foregroundColor(.secondary)
                     .cornerRadius(10)
 
                     Button(action: {
@@ -83,15 +87,13 @@ struct MapDisplayView: View {
                         Image(systemName: "arrow.up.right")
                             .resizable()
                             .frame(width: 20, height: 20)
-                            .foregroundColor(.white) // Set button text color to white
+                            .foregroundColor(.white)
                             .padding(3)
-//                            .background(Color.white) // Set background color to gray
                             .cornerRadius(12)
                     }
                 }
                 .padding()
                 .background(RoundedRectangle(cornerRadius: 20.0)
-//                    .fill(Color.black.opacity(0.7)) // Set the background color of the HStack
                     .fill(Color(selectedColor).opacity(0.7))
                 )
                 .padding(.horizontal)

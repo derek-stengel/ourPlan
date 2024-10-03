@@ -10,12 +10,18 @@ import SwiftUI
 import Contacts
 import MessageUI
 
+struct SelectedContacts: Identifiable {
+    var id: String { UUID().uuidString }
+    
+    let selectedContacts: [String]
+}
+
 struct PeopleListView: View {
     @StateObject private var viewModel = PeopleViewModel()
     @State private var showingAddPerson = false
     @State private var showingSyncContacts = false
     @State private var showingAlert = false
-    @State private var selectedContacts: [String] = []
+    @State private var selectedContacts: SelectedContacts?
     @State private var showingMessageCompose = false
     @Binding var selectedColor: UIColor
     
@@ -42,7 +48,10 @@ struct PeopleListView: View {
                                 ForEach(groupedPeople[key] ?? []) { $person in
                                     HStack {
                                         Button(action: {
-                                            person.isSelected.toggle()
+                                            if let index = viewModel.people.firstIndex(where: { $0.id == person.id }) {
+                                                viewModel.people[index].isSelected.toggle()
+                                                viewModel.objectWillChange.send()
+                                            }
                                         }) {
                                             Image(systemName: person.isSelected ? "circle.fill" : "circle")
                                                 .resizable()
@@ -50,6 +59,7 @@ struct PeopleListView: View {
                                                 .foregroundColor(person.isSelected ? .blue : .gray)
                                         }
                                         .buttonStyle(PlainButtonStyle())
+                                        
                                         
                                         NavigationLink(destination: EditPersonView(person: $person)) {
                                             VStack(alignment: .leading) {
@@ -59,7 +69,7 @@ struct PeopleListView: View {
                                                     .font(.subheadline)
                                             }
                                         }
-                                        .background(Color.clear) // Ensure the background is clear
+                                        .background(Color.clear)
                                     }
                                 }
                                 .onDelete { offsets in
@@ -79,7 +89,7 @@ struct PeopleListView: View {
             .navigationBarItems(
                 leading: HStack {
                     if viewModel.contactsImported {
-//                        EditButton()
+                        //                        EditButton()
                         Button(action: {
                             showingSyncContacts = true
                         }) {
@@ -119,8 +129,8 @@ struct PeopleListView: View {
                         viewModel.contactsImported = true // Update the state on disappear
                     }
             }
-            .sheet(isPresented: $showingMessageCompose) {
-                MessageComposeView(recipients: selectedContacts, body: "")
+            .sheet(item: $selectedContacts) { contacts in
+                MessageComposeView(recipients: contacts.selectedContacts, body: "")
             }
             .alert(isPresented: $showingAlert) {
                 Alert(
@@ -131,21 +141,19 @@ struct PeopleListView: View {
             }
         }
     }
-    
+
     private func sendMessage() {
-        viewModel.objectWillChange.send()
-        DispatchQueue.main.async {
-            selectedContacts = viewModel.people.filter { $0.isSelected }.compactMap {
-                !$0.phoneNumber.isEmpty ? $0.phoneNumber : $0.email
-            }
-            
-            if selectedContacts.isEmpty {
-                showingAlert = true
-            } else {
-                showingMessageCompose = true
-            }
+        let selectedContacts = viewModel.people.filter { $0.isSelected }.compactMap {
+            !$0.phoneNumber.isEmpty ? $0.phoneNumber : $0.email
+        }
+        
+        if selectedContacts.isEmpty {
+            showingAlert = true
+        } else {
+            self.selectedContacts = SelectedContacts(selectedContacts: selectedContacts)
         }
     }
+    
     
     private func movePerson(from source: IndexSet, to destination: Int) {
         viewModel.people.move(fromOffsets: source, toOffset: destination)
@@ -153,13 +161,11 @@ struct PeopleListView: View {
     
     // Simplified and broken down the groupedPeople and groupedPeopleKeys properties
     private var groupedPeople: [String: [Binding<Person>]] {
-        // Step 1: Group people by their first letter
         let grouped = Dictionary(
             grouping: viewModel.people,
             by: { String($0.name.prefix(1).uppercased()) }
         )
-        
-        // Step 2: Convert the array to bindings
+    
         var result = [String: [Binding<Person>]]()
         for (key, peopleArray) in grouped {
             result[key] = peopleArray.map { person in
@@ -186,24 +192,24 @@ struct MessageComposeView: UIViewControllerRepresentable {
     @Environment(\.dismiss) var dismiss
     var recipients: [String]
     var body: String
-
+    
     class Coordinator: NSObject, MFMessageComposeViewControllerDelegate {
         var parent: MessageComposeView
-
+        
         init(_ parent: MessageComposeView) {
             self.parent = parent
         }
-
+        
         func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
             controller.dismiss(animated: true)
             parent.dismiss()
         }
     }
-
+    
     func makeCoordinator() -> Coordinator {
         return Coordinator(self)
     }
-
+    
     func makeUIViewController(context: Context) -> MFMessageComposeViewController {
         let messageComposeVC = MFMessageComposeViewController()
         messageComposeVC.messageComposeDelegate = context.coordinator
@@ -211,11 +217,11 @@ struct MessageComposeView: UIViewControllerRepresentable {
         messageComposeVC.body = body
         return messageComposeVC
     }
-
+    
     func updateUIViewController(_ uiViewController: MFMessageComposeViewController, context: Context) {
         // No update needed
     }
-
+    
     static func dismantleUIViewController(_ uiViewController: MFMessageComposeViewController, coordinator: ()) {
         uiViewController.dismiss(animated: true, completion: nil)
     }

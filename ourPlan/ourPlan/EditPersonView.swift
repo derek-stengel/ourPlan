@@ -11,7 +11,6 @@ import SwiftUI
 struct EditPersonView: View {
     @Binding var person: Person
     @Environment(\.dismiss) var dismiss
-//    @ObservedObject var viewModel: PeopleViewModel
 
     var body: some View {
         Form {

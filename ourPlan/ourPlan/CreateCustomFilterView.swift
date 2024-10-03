@@ -25,10 +25,9 @@ struct CreateCustomFilterView: View {
                 }
                 Button(action: {
                     if !newFilter.isEmpty {
-                        // Append the new filter to the list and set it as the selected filter
                         if !filters.contains(newFilter) {
                             filters.append(newFilter)
-                            Event.defaultFilters = filters // Update the global list with new filter
+                            Event.defaultFilters = filters
                             selectedFilter = newFilter
                         }
                     }
@@ -46,9 +45,6 @@ struct CreateCustomFilterView: View {
                 .padding()
             }
             .navigationTitle("Custom Filter")
-//            .navigationBarItems(leading: Button("Cancel") {
-//                showingCustomFilterSheet = false
-//            })
         }
     }
 }
@@ -61,5 +57,3 @@ struct CustomFilterView_Previews: PreviewProvider {
         CreateCustomFilterView(selectedFilter: $selectedFilter, showingCustomFilterSheet: $showingCustomFilterSheet, selectedColor: .constant(.systemCyan))
     }
 }
-
-

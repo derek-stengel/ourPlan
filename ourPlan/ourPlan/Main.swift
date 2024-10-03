@@ -9,12 +9,6 @@ import Foundation
 import SwiftUI
 import SpotifyiOS
 
-// TO DO LIST
-// ADD A TAB BAR BACKGROUND
-
-// BUG FIXES
-// fix the button on peopleListView that takes the user to iMessages: the contact doesnt get taken the first time, you have to deselected a contact, then reselect one, then it will grab ALL the selected contacts. Maybe update the binding or the state, or refresh so it collects the selected contacts before opening the sheet?
-
 enum Tab {
     case honeymoon
     case map
@@ -33,13 +27,15 @@ struct HomeContentView: View {
             TabView(selection: $selectedTab) {
                 SpotifyPlaylistView(selectedColor: $selectedColor)
                     .tabItem {
-                        Image(systemName: "music.note")
+                        Image(systemName: "music.quarternote.3")
+                        Text("Spotify")
                     }
                     .tag(0)
 
                 MapDisplayView(selectedColor: $selectedColor)
                     .tabItem {
                         Image(systemName: "location")
+                        Text("Maps")
                     }
                     .tag(1)
 
@@ -47,6 +43,7 @@ struct HomeContentView: View {
                     .environmentObject(eventViewModel)
                     .tabItem {
                         Image(systemName: "house")
+                        Text("Home")
                     }
                     .tag(2)
 
@@ -54,12 +51,14 @@ struct HomeContentView: View {
                     .environmentObject(eventViewModel)
                     .tabItem {
                         Image(systemName: "calendar.badge.plus")
+                        Text("Events")
                     }
                     .tag(3)
 
                 PeopleListView(selectedColor: $selectedColor)
                     .tabItem {
                         Image(systemName: "list.bullet.clipboard")
+                        Text("People")
                     }
                     .tag(4)
             }

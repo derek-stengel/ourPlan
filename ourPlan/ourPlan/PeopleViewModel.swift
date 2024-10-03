@@ -16,7 +16,11 @@ class PeopleViewModel: ObservableObject {
         }
     }
     @Published var contacts: [CNContact] = []
-    @Published var contactsImported: Bool = false
+    @Published var contactsImported: Bool = false {
+        didSet {
+            UserDefaults.standard.set(contactsImported, forKey: contactsImportedKey)
+        }
+    }
     
     private let peopleKey = "peopleKey"
     private let contactsImportedKey = "contactsImportedKey"

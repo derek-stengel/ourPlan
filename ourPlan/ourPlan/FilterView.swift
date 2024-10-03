@@ -45,21 +45,18 @@ struct FilterView: View {
     }
     
     private func applyFilters() {
-        viewModel.searchForRestaurants(city: city, state: state, radius: radius, searchText: "") // Search with updated filters
+        viewModel.searchForRestaurants(city: city, state: state, radius: radius, searchText: "")
     }
 }
 
 struct FilterView_Previews: PreviewProvider {
     static var previews: some View {
-        // Create State variables for the preview
         @State var city = "San Francisco"
         @State var state = "CA"
         @State var radius = 10.0
         
-        // Pass these as bindings to the FilterView
         FilterView(viewModel: MapViewModel(), city: $city, state: $state, radius: $radius)
-            .preferredColorScheme(.light) // Optional: Set preferred color scheme for preview
-//            .previewLayout(.sizeThatFits)  // Optional: Use size that fits for the preview
+            .preferredColorScheme(.light)
             .padding()
     }
 }
