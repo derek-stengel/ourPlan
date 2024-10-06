@@ -6,19 +6,24 @@
 //
 //
 
-import Foundation
 import SwiftUI
+import MapKit
 
 struct ProfileView: View {
     @Binding var weddingDate: Date
     @Binding var userName: String
     @Binding var spouseName: String
     @Binding var selectedColor: UIColor
-
+    @Binding var weddingCity: String
+    
     @State private var userNameError: String? = nil
     @State private var spouseNameError: String? = nil
     @Environment(\.dismiss) var dismiss
-
+    
+    // City autocomplete
+    @StateObject private var citySearchViewModel = CitySearchViewModel()
+    @State private var showDropdown = false
+    
     var body: some View {
         VStack(alignment: .center, spacing: 12) {
             ZStack {
@@ -52,7 +57,7 @@ struct ProfileView: View {
                     .foregroundColor(.red)
                     .padding(.leading, 10)
                     .padding(.top, 4)
-    }
+            }
             
             Spacer().frame(height: 5)
             
@@ -61,22 +66,49 @@ struct ProfileView: View {
                 .padding(.leading, -165)
                 .foregroundColor(.gray)
             
-                TextField("Spouse Name", text: $spouseName)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding(.leading, 10)
-                    .onChange(of: spouseName) { _ in
-                        validateSpouseName()
-                    }
-                
-                if let spouseNameError = spouseNameError {
-                    Text(spouseNameError)
-                        .font(.caption)
-                        .foregroundColor(.red)
-                        .padding(.bottom, 8)
+            TextField("Spouse Name", text: $spouseName)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding(.leading, 10)
+                .onChange(of: spouseName) { _ in
+                    validateSpouseName()
                 }
+                
+            if let spouseNameError = spouseNameError {
+                Text(spouseNameError)
+                    .font(.caption)
+                    .foregroundColor(.red)
+                    .padding(.bottom, 8)
+            }
+            
+            Spacer().frame(height: 5)
+            
+            Text("Wedding City")
+                .font(.footnote)
+                .padding(.leading, -165)
+                .foregroundColor(.gray)
+            
+            TextField("Wedding City", text: $weddingCity, onEditingChanged: { editing in
+                showDropdown = editing
+            })
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .padding(.leading, 10)
+            .onChange(of: weddingCity) { newValue in
+                citySearchViewModel.updateQuery(query: newValue)
+            }
+            
+            if showDropdown && !citySearchViewModel.completions.isEmpty {
+                List(citySearchViewModel.completions, id: \.self) { completion in
+                    Text(completion.title)
+                        .onTapGesture {
+                            weddingCity = completion.title
+                            showDropdown = false
+                        }
+                }
+                .frame(height: 200)
+            }
             
             Spacer().frame(height: 20)
-
+            
             DatePicker(
                 selection: $weddingDate,
                 in: Date()...,
@@ -160,7 +192,7 @@ struct ProfileView: View {
             UserSettings.saveSpouseName(spouseName)
             UserSettings.saveThemeColor(selectedColor)
             UserSettings.saveWeddingDate(weddingDate)
-
+            UserSettings.saveWeddingCity(weddingCity)
             dismiss()
         }
     }
@@ -173,6 +205,7 @@ struct ProfileView: View {
     }
 }
 
+
 #Preview {
-    ProfileView(weddingDate: .constant(Date()), userName: .constant("Derek"), spouseName: .constant("Kaylee"), selectedColor: .constant(.systemIndigo))
+    ProfileView(weddingDate: .constant(Date()), userName: .constant("Derek"), spouseName: .constant("Kaylee"), selectedColor: .constant(.systemIndigo), weddingCity: .constant("South Jordan, UT"))
 }

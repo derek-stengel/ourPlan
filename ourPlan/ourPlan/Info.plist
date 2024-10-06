@@ -2,18 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLName</key>
-			<string>com.stengel.ourPlan</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>ourplan</string>
-			</array>
-		</dict>
-	</array>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Your location is needed to provide personalized recommendations for venues and services related to your wedding plan.</string>
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLName</key>
+            <string>com.stengel.ourPlan</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>ourplan</string>
+            </array>
+        </dict>
+    </array>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Your location is needed to provide personalized recommendations for venues and services related to your wedding plan.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>This app requires access to your photo library to allow you to upload an image for personalization.</string>
 </dict>
 </plist>

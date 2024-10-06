@@ -1,3 +1,4 @@
+
 //
 //  WeddingHomeView.swift
 //  ourPlan
@@ -14,16 +15,19 @@ struct WeddingHomeView: View {
     @State private var userName: String = UserSettings.getUserName() ?? ""
     @State private var spouseName: String = UserSettings.getSpouseName() ?? ""
     @Binding private var selectedColor: UIColor
+    @Binding var weddingCity: String
     
     @EnvironmentObject private var eventViewModel: EventViewModel
     
     @State private var selectedEvent: Event?
     @State private var isEventInfoViewPresented = false
     @State var sheetHeight = PresentationDetent.height(CGFloat(200))
+    @State private var selectedImage: UIImage? = UserDefaults.standard.getImage(forKey: "selectedWeddingImage")
+    @State private var isImagePickerPresented: Bool = false
     
-    
-    init(selectedColor: Binding<UIColor>) {
+    init(selectedColor: Binding<UIColor>, weddingCity: Binding<String>) {
         _selectedColor = selectedColor
+        _weddingCity = weddingCity
         _isNameEntryViewPresented = State(initialValue: userName.isEmpty || spouseName.isEmpty)
     }
     
@@ -36,37 +40,80 @@ struct WeddingHomeView: View {
                     }
             } else {
                 VStack(spacing: 0) {
-                    // Top bar with profile icon
-                    HStack {
-                        Spacer()
-                        Button(action: {
-                            isProfileViewPresented.toggle()
-                        }) {
-                            Image(systemName: "person.circle.fill")
-                                .resizable()
-                                .frame(width: 30, height: 30)
-                                .foregroundColor(Color(selectedColor))
-                                .padding(.trailing)
-                                .padding(.top, 16)
-                        }
-                        .sheet(isPresented: $isProfileViewPresented) {
-                            ProfileView(weddingDate: $weddingDate, userName: $userName, spouseName: $spouseName, selectedColor: $selectedColor)
-                        }
-                    }
                     
-                    // Content with names + widget
-                    VStack(alignment: .leading, spacing: 16) {
-                        Text("\(userName) & \(spouseName)")
-                            .font(.system(size: 40, design: .serif))
-                            .foregroundColor(.black)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        FloatingWidget(weddingDate: $weddingDate, selectedColor: $selectedColor)
-                            .frame(width: 350, height: 160)
-                            .shadow(radius: 10)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                    // Top profile view
+                    VStack(alignment: .leading, spacing: 10) {
+                        HStack {
+                            VStack(alignment: .leading, spacing: 4) {
+                                HStack {
+                                    let daysRemaining = calculateDaysRemaining(until: weddingDate)
+                                    Text(buildAttributedText(for: daysRemaining))
+                                        .font(.system(size: 21, design: .serif))
+                                        .foregroundColor(.gray)
+                                    Spacer()
+                                    Button(action: {
+                                        isProfileViewPresented.toggle()
+                                    }) {
+                                        Image(systemName: "person.circle.fill")
+                                            .resizable()
+                                            .frame(width: 30, height: 30)
+                                            .foregroundColor(Color(selectedColor))
+                                            .padding(.bottom, 0)
+                                    }
+                                    .sheet(isPresented: $isProfileViewPresented) {
+                                        ProfileView(weddingDate: $weddingDate, userName: $userName, spouseName: $spouseName, selectedColor: $selectedColor, weddingCity: $weddingCity)
+                                    }
+                                }
+                                
+                                Text("\(userName) & \(spouseName)")
+                                    .font(.system(size: 40, design: .serif))
+                                    .fontWeight(.bold)
+                                
+                                HStack {
+                                    Text(formattedWeddingDate(weddingDate))
+                                    Text("•")
+                                    Text(weddingCity)
+                                }
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                            }
+                        }
                     }
-                    .padding()
+                    .padding(14)
+                    
+                    Button(action: {
+                        isImagePickerPresented.toggle()
+                    }) {
+                        ZStack {
+                            if let image = selectedImage {
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 340, height: 150)
+                                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                                    .padding()
+                            } else {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(Color.gray, lineWidth: 4)
+                                    .frame(width: 340, height: 160)
+                                    .overlay(
+                                        Text("Add Image")
+                                            .foregroundColor(.gray)
+                                            .font(.headline)
+                                    )
+                                    .padding()
+                            }
+                        }
+                    }
+                    .sheet(isPresented: $isImagePickerPresented) {
+                        ImagePicker(selectedImage: $selectedImage, isPresented: $isImagePickerPresented)
+                            .onDisappear {
+                                if let newImage = selectedImage {
+                                    UserDefaults.standard.deleteImage(forKey: "selectedWeddingImage")
+                                    UserDefaults.standard.setImage(newImage, forKey: "selectedWeddingImage")
+                                }
+                            }
+                    }
                     
                     // Display upcoming events
                     VStack(alignment: .center, spacing: 12) {
@@ -150,26 +197,23 @@ struct WeddingHomeView: View {
         spouseName = UserSettings.getSpouseName() ?? ""
         selectedColor = UserSettings.getThemeColor()
         weddingDate = UserSettings.getWeddingDate() ?? Date()
+        selectedImage = UserDefaults.standard.getImage(forKey: "selectedWeddingImage")
     }
-}
-
-struct FloatingWidget: View {
-    @Binding var weddingDate: Date
-    @Binding var selectedColor: UIColor
     
-    var body: some View {
-        let daysRemaining = calculateDaysRemaining(until: weddingDate)
-        
-        ZStack {
-            RoundedRectangle(cornerRadius: 20)
-                .fill(Color(selectedColor))
-                .frame(width: 350, height: 150)
-                .rotatingGradientBorderTwo(selectedColor: $selectedColor)
-            
-            Text(buildAttributedText(for: daysRemaining))
-                .font(.system(size: 30, weight: .thin, design: .serif))
-                .foregroundColor(.white)
-                .padding()
+    private func formattedWeddingDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM d'\(daySuffix(for: date))', yyyy"
+        return formatter.string(from: date)
+    }
+    
+    private func daySuffix(for date: Date) -> String {
+        let calendar = Calendar.current
+        let day = calendar.component(.day, from: date)
+        switch day {
+        case 1, 21, 31: return "st"
+        case 2, 22: return "nd"
+        case 3, 23: return "rd"
+        default: return "th"
         }
     }
     
@@ -179,14 +223,14 @@ struct FloatingWidget: View {
         if daysRemaining == 0 {
             attributedString = AttributedString("Todays the day!")
         } else if daysRemaining > 0 {
-            attributedString = AttributedString("\(daysRemaining) days until the Best Day Ever!")
+            attributedString = AttributedString("\(daysRemaining) days to go!")
         } else {
             let daysSince = abs(daysRemaining)
-            attributedString = AttributedString("\(daysSince) days since the Best Day Ever!")
+            attributedString = AttributedString("\(daysSince) days since!")
         }
         
         if daysRemaining != 0, let range = attributedString.range(of: "\(abs(daysRemaining))") {
-            attributedString[range].font = .system(size: 36, weight: .bold, design: .serif)
+            attributedString[range].font = .system(size: 30, design: .serif)
         }
         
         return attributedString
@@ -204,7 +248,8 @@ struct FloatingWidget: View {
 
 struct WeddingHomeView_Previews: PreviewProvider {
     static var previews: some View {
-        WeddingHomeView(selectedColor: .constant(.orange))
+        
+        WeddingHomeView(selectedColor: .constant(.orange), weddingCity: .constant("New York, NY"))
             .environmentObject(EventViewModel())
     }
 }

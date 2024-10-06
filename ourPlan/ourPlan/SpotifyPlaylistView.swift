@@ -24,12 +24,13 @@ struct SpotifyPlaylistView: View {
                 Button(action: {
                     authManager.authorize()
                 }) {
-                    Image("SpotifyLogo")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 100, height: 100)
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
-                        .rotatingGradientBorder()
+                    Text("Log into your Spotify")
+                        .font(.system(size: 22, weight: .semibold, design: .serif))
+                        .padding()
+                        .background(Color.green.gradient.opacity(0.8))
+                        .foregroundColor(.black)
+                        .frame(minHeight: 50)
+                        .cornerRadius(10)
                 }
             } else {
                 NavigationView {
@@ -133,5 +134,12 @@ struct SpotifyPlaylistView: View {
                 print("Error parsing JSON: \(error.localizedDescription)")
             }
         }.resume()
+    }
+}
+
+struct SpotifyPlaylistView_Previews: PreviewProvider {
+    static var previews: some View {
+        SpotifyPlaylistView(selectedColor: .constant(.blue))
+            .environmentObject(SpotifyAuthManager())
     }
 }

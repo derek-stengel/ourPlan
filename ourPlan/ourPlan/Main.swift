@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 import SpotifyiOS
 
+// future implimenation: be able to click on POIs on the map and have a small info view come up (kinda like eventInfoView, just a small popup), and on that view have a plus button that takes the title, phone number, and address, and creates a contact for them.
+
 enum Tab {
     case honeymoon
     case map
@@ -18,9 +20,10 @@ enum Tab {
 }
 
 struct HomeContentView: View {
-    @State private var selectedTab: Int = 2 // controls which tab displays upon app launch
+    @State private var selectedTab: Int = 2
     @Binding var selectedColor: UIColor
     @StateObject private var eventViewModel = EventViewModel()
+    @Binding var weddingCity: String
     
     var body: some View {
         ZStack {
@@ -39,7 +42,7 @@ struct HomeContentView: View {
                     }
                     .tag(1)
 
-                WeddingHomeView(selectedColor: $selectedColor)
+                WeddingHomeView(selectedColor: $selectedColor, weddingCity: $weddingCity)
                     .environmentObject(eventViewModel)
                     .tabItem {
                         Image(systemName: "house")
@@ -70,7 +73,7 @@ struct HomeContentView: View {
 
 struct HomeContentView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeContentView(selectedColor: .constant(UIColor.systemCyan))
+        HomeContentView(selectedColor: .constant(UIColor.systemCyan), weddingCity: .constant("South Jordan, UT"))
             .environmentObject(EventViewModel())
             .environmentObject(SpotifyAuthManager.shared)
     }

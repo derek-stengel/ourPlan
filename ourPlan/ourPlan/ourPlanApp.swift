@@ -12,6 +12,7 @@ struct ourPlanApp: App {
     @StateObject private var authManager = SpotifyAuthManager.shared
     @State private var selectedColor: UIColor = .systemIndigo
     @StateObject private var eventViewModel = EventViewModel()
+    @State private var weddingCity: String = "New York, NY"
     
     init() {
         requestNotificationAuthorization()
@@ -19,7 +20,7 @@ struct ourPlanApp: App {
     
     var body: some Scene {
         WindowGroup {
-            HomeContentView(selectedColor: $selectedColor)
+            HomeContentView(selectedColor: $selectedColor, weddingCity: $weddingCity)
                 .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
                 .environmentObject(eventViewModel) // Pass the view model to the environment
                 .environmentObject(authManager) // Pass the authManager to the environment

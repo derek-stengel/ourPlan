@@ -56,7 +56,7 @@ class EventViewModel: ObservableObject {
                 return dateTime1 < dateTime2
             }
     
-            return Array(sortedEvents.prefix(3))
+            return Array(sortedEvents.prefix(5))
         }
     
     func saveEvents() {
