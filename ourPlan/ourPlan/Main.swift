@@ -23,7 +23,8 @@ enum Tab {
 struct HomeContentView: View {
     @State private var selectedTab: Int = 2
     @Binding var selectedColor: UIColor
-    @StateObject private var eventViewModel = EventViewModel()
+//    @StateObject private var eventViewModel = EventViewModel() // maybe not needed since already present in app.swift
+//    @StateObject private var peopleViewModel = PeopleViewModel() // maybe not needed since already present in app.swift
     @Binding var weddingCity: String
     
     var body: some View {
@@ -37,7 +38,7 @@ struct HomeContentView: View {
                     .tag(0)
 
                 MapDisplayView(selectedColor: $selectedColor)
-                    .environmentObject(PeopleViewModel()) // maybe ?
+//                    .environmentObject(peopleViewModel)
                     .tabItem {
                         Image(systemName: "location")
                         Text("Maps")
@@ -45,7 +46,7 @@ struct HomeContentView: View {
                     .tag(1)
 
                 WeddingHomeView(selectedColor: $selectedColor, weddingCity: $weddingCity)
-                    .environmentObject(eventViewModel)
+//                    .environmentObject(eventViewModel)
                     .tabItem {
                         Image(systemName: "house")
                         Text("Home")
@@ -53,7 +54,7 @@ struct HomeContentView: View {
                     .tag(2)
 
                 EventListView(selectedColor: $selectedColor)
-                    .environmentObject(eventViewModel)
+//                    .environmentObject(eventViewModel)
                     .tabItem {
                         Image(systemName: "calendar.badge.plus")
                         Text("Events")
@@ -61,7 +62,7 @@ struct HomeContentView: View {
                     .tag(3)
 
                 PeopleListView(selectedColor: $selectedColor)
-                    .environmentObject(PeopleViewModel()) // maybe?
+//                    .environmentObject(peopleViewModel)
                     .tabItem {
                         Image(systemName: "list.bullet.clipboard")
                         Text("People")

@@ -13,7 +13,7 @@ struct LocationInfoView: View {
     let location: Location
     @State private var selectedLocation: Location? = nil
     @Binding var selectedColor: UIColor
-    @EnvironmentObject var peopleViewModel: PeopleViewModel // this is here so the info can populate the sheet
+    @EnvironmentObject var peopleViewModel: PeopleViewModel
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -47,8 +47,12 @@ struct LocationInfoView: View {
         .frame(maxWidth: .infinity)
         .background(Color(.systemCyan)) // delete this before pushing version 1.1
         .sheet(item: $selectedLocation) { location in
-            AddPersonView(name: location.name, phoneNumber: location.phoneNumber ?? "", address: location.address ?? "")
-                .environmentObject(PeopleViewModel())
+            AddPersonView(
+                name: location.name,
+                phoneNumber: location.phoneNumber ?? "",
+                address: location.address ?? ""
+            )
+            .environmentObject(peopleViewModel)
         }
     }
 }

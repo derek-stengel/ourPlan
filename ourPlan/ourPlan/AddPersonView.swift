@@ -42,7 +42,14 @@ struct AddPersonView: View {
             .navigationBarItems(leading: Button("Cancel") {
                 dismiss()
             }, trailing: Button("Save") {
-                viewModel.addPerson(name: name, job: job, phoneNumber: phoneNumber, email: email, address: address)
+                viewModel.addPerson(
+                    name: name,
+                    job: job,
+                    phoneNumber: phoneNumber,
+                    email: email,
+                    address: address
+                )
+                
                 dismiss()
             }
             .disabled(name.isEmpty))

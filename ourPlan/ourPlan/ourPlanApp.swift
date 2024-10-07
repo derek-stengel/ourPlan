@@ -12,6 +12,7 @@ struct ourPlanApp: App {
     @StateObject private var authManager = SpotifyAuthManager.shared
     @State private var selectedColor: UIColor = .systemIndigo
     @StateObject private var eventViewModel = EventViewModel()
+    @StateObject private var peopleViewModel = PeopleViewModel()
     @State private var weddingCity: String = "New York, NY"
     
     init() {
@@ -23,7 +24,7 @@ struct ourPlanApp: App {
             HomeContentView(selectedColor: $selectedColor, weddingCity: $weddingCity)
                 .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
                 .environmentObject(eventViewModel)
-                .environmentObject(PeopleViewModel())
+                .environmentObject(peopleViewModel)
                 .environmentObject(authManager)
                 .onOpenURL { url in
                     SpotifyAuthManager.shared.handleCallback(url: url)

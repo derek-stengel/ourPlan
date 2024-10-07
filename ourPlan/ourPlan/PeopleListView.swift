@@ -11,7 +11,7 @@ import Contacts
 import MessageUI
 
 struct PeopleListView: View {
-    @EnvironmentObject var viewModel: PeopleViewModel
+    @EnvironmentObject var peopleViewModel: PeopleViewModel
     @State private var showingAddPerson = false
     @State private var showingSyncContacts = false
     @State private var showingAlert = false
@@ -22,7 +22,7 @@ struct PeopleListView: View {
     var body: some View {
         NavigationView {
             VStack {
-                if !viewModel.contactsImported {
+                if !peopleViewModel.contactsImported {
                     Spacer()
                     Button(action: {
                         showingSyncContacts = true
@@ -42,9 +42,9 @@ struct PeopleListView: View {
                                 ForEach(groupedPeople[key] ?? []) { $person in
                                     HStack {
                                         Button(action: {
-                                            if let index = viewModel.people.firstIndex(where: { $0.id == person.id }) {
-                                                viewModel.people[index].isSelected.toggle()
-                                                viewModel.objectWillChange.send()
+                                            if let index = peopleViewModel.people.firstIndex(where: { $0.id == person.id }) {
+                                                peopleViewModel.people[index].isSelected.toggle()
+                                                peopleViewModel.objectWillChange.send()
                                             }
                                         }) {
                                             Image(systemName: person.isSelected ? "circle.fill" : "circle")
@@ -69,7 +69,7 @@ struct PeopleListView: View {
                                 .onDelete { offsets in
                                     offsets.forEach { index in
                                         if let person = groupedPeople[key]?[index].wrappedValue {
-                                            viewModel.deletePerson(by: person.id)
+                                            peopleViewModel.deletePerson(by: person.id)
                                         }
                                     }
                                 }
@@ -82,7 +82,7 @@ struct PeopleListView: View {
             }
             .navigationBarItems(
                 leading: HStack {
-                    if viewModel.contactsImported {
+                    if peopleViewModel.contactsImported {
                         Button(action: {
                             showingSyncContacts = true
                         }) {
@@ -115,12 +115,12 @@ struct PeopleListView: View {
             )
             .sheet(isPresented: $showingAddPerson) {
                 AddPersonView()
-                    .environmentObject(PeopleViewModel())
+                    .environmentObject(peopleViewModel)
             }
             .sheet(isPresented: $showingSyncContacts) {
-                SyncContactsView(viewModel: viewModel)
+                SyncContactsView(viewModel: peopleViewModel)
                     .onDisappear {
-                        viewModel.contactsImported = true
+                        peopleViewModel.contactsImported = true
                     }
             }
             .sheet(item: $selectedContacts) { contacts in
@@ -137,7 +137,7 @@ struct PeopleListView: View {
     }
 
     private func sendMessage() {
-        let selectedContacts = viewModel.people.filter { $0.isSelected }.compactMap {
+        let selectedContacts = peopleViewModel.people.filter { $0.isSelected }.compactMap {
             !$0.phoneNumber.isEmpty ? $0.phoneNumber : $0.email
         }
         
@@ -150,12 +150,12 @@ struct PeopleListView: View {
     
     
     private func movePerson(from source: IndexSet, to destination: Int) {
-        viewModel.people.move(fromOffsets: source, toOffset: destination)
+        peopleViewModel.people.move(fromOffsets: source, toOffset: destination)
     }
     
     private var groupedPeople: [String: [Binding<Person>]] {
         let grouped = Dictionary(
-            grouping: viewModel.people,
+            grouping: peopleViewModel.people,
             by: { String($0.name.prefix(1).uppercased()) }
         )
     
@@ -165,8 +165,8 @@ struct PeopleListView: View {
                 Binding(
                     get: { person },
                     set: { newValue in
-                        if let index = viewModel.people.firstIndex(where: { $0.id == newValue.id }) {
-                            viewModel.people[index] = newValue
+                        if let index = peopleViewModel.people.firstIndex(where: { $0.id == newValue.id }) {
+                            peopleViewModel.people[index] = newValue
                         }
                     }
                 )

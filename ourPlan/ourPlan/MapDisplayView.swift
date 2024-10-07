@@ -13,6 +13,7 @@ import UIKit
 
 struct MapDisplayView: View {
     @StateObject private var viewModel = MapViewModel()
+    @EnvironmentObject var peopleViewModel: PeopleViewModel
     @State private var selectedLocation: Location? = nil
     @State private var searchText: String = ""
     @State private var city: String = ""
@@ -49,7 +50,7 @@ struct MapDisplayView: View {
                 VStack {
                     Spacer()
                     LocationInfoView(location: location, selectedColor: $selectedColor)
-                        .environmentObject(PeopleViewModel())
+                        .environmentObject(peopleViewModel)
                         .padding()
                         .background(Color.white)
                         .cornerRadius(10)
