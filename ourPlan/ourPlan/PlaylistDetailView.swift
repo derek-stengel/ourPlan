@@ -5,7 +5,7 @@
 //  Created by Derek Stengel on 9/3/24.
 //
 
-// note for this file. I removed the audio functionality while i work on the 3rd party rights, so i can push what i have to the app store, and ill publish this in a later update. 
+// note for this file. I removed the audio functionality while i work on the 3rd party rights, so i can push what i have to the app store, and ill publish this in a later update.
 
 import SwiftUI
 import AVFoundation
