@@ -10,14 +10,8 @@ import SwiftUI
 import Contacts
 import MessageUI
 
-struct SelectedContacts: Identifiable {
-    var id: String { UUID().uuidString }
-    
-    let selectedContacts: [String]
-}
-
 struct PeopleListView: View {
-    @StateObject private var viewModel = PeopleViewModel()
+    @EnvironmentObject var viewModel: PeopleViewModel
     @State private var showingAddPerson = false
     @State private var showingSyncContacts = false
     @State private var showingAlert = false
@@ -89,7 +83,6 @@ struct PeopleListView: View {
             .navigationBarItems(
                 leading: HStack {
                     if viewModel.contactsImported {
-                        //                        EditButton()
                         Button(action: {
                             showingSyncContacts = true
                         }) {
@@ -121,12 +114,13 @@ struct PeopleListView: View {
                 }
             )
             .sheet(isPresented: $showingAddPerson) {
-                AddPersonView(viewModel: viewModel)
+                AddPersonView()
+                    .environmentObject(PeopleViewModel())
             }
             .sheet(isPresented: $showingSyncContacts) {
                 SyncContactsView(viewModel: viewModel)
                     .onDisappear {
-                        viewModel.contactsImported = true // Update the state on disappear
+                        viewModel.contactsImported = true
                     }
             }
             .sheet(item: $selectedContacts) { contacts in
@@ -159,7 +153,6 @@ struct PeopleListView: View {
         viewModel.people.move(fromOffsets: source, toOffset: destination)
     }
     
-    // Simplified and broken down the groupedPeople and groupedPeopleKeys properties
     private var groupedPeople: [String: [Binding<Person>]] {
         let grouped = Dictionary(
             grouping: viewModel.people,
@@ -181,12 +174,17 @@ struct PeopleListView: View {
         }
         return result
     }
-    
+
     private var groupedPeopleKeys: [String] {
         groupedPeople.keys.sorted()
     }
 }
 
+struct SelectedContacts: Identifiable {
+    var id: String { UUID().uuidString }
+    
+    let selectedContacts: [String]
+}
 
 struct MessageComposeView: UIViewControllerRepresentable {
     @Environment(\.dismiss) var dismiss
@@ -230,5 +228,6 @@ struct MessageComposeView: UIViewControllerRepresentable {
 struct PeopleListView_Previews: PreviewProvider {
     static var previews: some View {
         PeopleListView(selectedColor: .constant(.orange))
+            .environmentObject(PeopleViewModel())
     }
 }

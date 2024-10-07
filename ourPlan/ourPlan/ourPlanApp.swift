@@ -22,13 +22,13 @@ struct ourPlanApp: App {
         WindowGroup {
             HomeContentView(selectedColor: $selectedColor, weddingCity: $weddingCity)
                 .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
-                .environmentObject(eventViewModel) // Pass the view model to the environment
-                .environmentObject(authManager) // Pass the authManager to the environment
+                .environmentObject(eventViewModel)
+                .environmentObject(PeopleViewModel())
+                .environmentObject(authManager)
                 .onOpenURL { url in
                     SpotifyAuthManager.shared.handleCallback(url: url)
                 }
                 .onAppear {
-                    // Ensure event data is loaded when the app launches
                     eventViewModel.loadEvents()
                 }
         }

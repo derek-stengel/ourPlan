@@ -56,7 +56,7 @@ class PeopleViewModel: ObservableObject {
     }
     
     func fetchContacts() {
-        let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactJobTitleKey, CNContactPhoneNumbersKey, CNContactEmailAddressesKey]
+        let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactJobTitleKey, CNContactPhoneNumbersKey, CNContactEmailAddressesKey, CNContactPostalAddressesKey]
         let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
         
         do {
@@ -79,7 +79,16 @@ class PeopleViewModel: ObservableObject {
         let job = contact.jobTitle.isEmpty ? "" : contact.jobTitle
         let phoneNumber = contact.phoneNumbers.first?.value.stringValue ?? "No Phone Number Given"
         let email = contact.emailAddresses.first?.value as String? ?? "No Email Provided"
-        addPerson(name: fullName, job: job, phoneNumber: phoneNumber, email: email)
+        var address = "No address found"
+        if let postalAddress = contact.postalAddresses.first?.value {
+            let street = postalAddress.street
+            let city = postalAddress.city
+            let state = postalAddress.state
+            let postalCode = postalAddress.postalCode
+            address = "\(street), \(city), \(state) \(postalCode)"
+        }
+        
+        addPerson(name: fullName, job: job, phoneNumber: phoneNumber, email: email, address: address)
         removeContact(contact)
     }
     
@@ -87,8 +96,8 @@ class PeopleViewModel: ObservableObject {
         contacts.removeAll { $0.identifier == contact.identifier }
     }
     
-    func addPerson(name: String, job: String, phoneNumber: String, email: String) {
-        let newPerson = Person(name: name, job: job, phoneNumber: phoneNumber, email: email)
+    func addPerson(name: String, job: String, phoneNumber: String, email: String, address: String) {
+        let newPerson = Person(name: name, job: job, phoneNumber: phoneNumber, email: email, address: address)
         people.append(newPerson)
         contactsImported = true
         saveContactsImportedStatus()

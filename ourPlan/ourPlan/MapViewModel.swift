@@ -30,7 +30,7 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func applyStateFilter(_ state: String) {
             self.locations = self.locations.filter { $0.address?.contains(state) == true }
-        }
+    }
     
     func searchForRestaurants(city: String, state: String, radius: Double, searchText: String) {
         locations.removeAll()
@@ -52,11 +52,23 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
             }
             
             let newLocations = response.mapItems.map { item in
-                Location(
+                let streetNumber = item.placemark.subThoroughfare ?? ""
+                let street = item.placemark.thoroughfare ?? ""
+                let city = item.placemark.locality ?? ""
+                let state = item.placemark.administrativeArea ?? ""
+                let postalCode = item.placemark.postalCode ?? ""
+                
+                let fullStreet = [streetNumber, street].filter { !$0.isEmpty }.joined(separator: " ")
+                
+                let fullAddress = [fullStreet, city, state, postalCode]
+                    .filter { !$0.isEmpty }
+                    .joined(separator: ", ")
+                
+                return Location(
                     name: item.name ?? "Unknown",
                     coordinate: item.placemark.coordinate,
                     phoneNumber: item.phoneNumber,
-                    address: item.placemark.thoroughfare != nil ? "\(item.placemark.thoroughfare ?? ""), \(item.placemark.locality ?? ""), \(item.placemark.administrativeArea ?? "")" : nil
+                    address: fullAddress.isEmpty ? nil : fullAddress
                 )
             }
             

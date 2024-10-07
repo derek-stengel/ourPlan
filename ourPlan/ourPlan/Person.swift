@@ -15,6 +15,7 @@ struct Person: Identifiable, Codable {
     var job: String
     var phoneNumber: String
     var email: String
+    var address: String
     var isSelected: Bool = false
 }
 
@@ -23,6 +24,7 @@ struct Contact: Identifiable {
     let fullName: String
     let jobTitle: String
     let phoneNumber: String
+    let address: String
     
     init(contact: CNContact) {
         self.id = contact.identifier
@@ -32,7 +34,17 @@ struct Contact: Identifiable {
         if let firstPhoneNumber = contact.phoneNumbers.first?.value.stringValue {
             self.phoneNumber = firstPhoneNumber
         } else {
-            self.phoneNumber = "No phone number Given"
+            self.phoneNumber = "No phone number given"
+        }
+        
+        if let firstAddress = contact.postalAddresses.first?.value {
+            let street = firstAddress.street
+            let city = firstAddress.city
+            let state = firstAddress.state
+            let postalCode = firstAddress.postalCode
+            self.address = "\(street), \(city), \(state) \(postalCode)"
+        } else {
+            self.address = "No address given"
         }
     }
 }

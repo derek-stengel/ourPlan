@@ -136,7 +136,8 @@ struct SyncContactsView: View {
                     CNContactJobTitleKey as CNKeyDescriptor,
                     CNContactPhoneNumbersKey as CNKeyDescriptor,
                     CNContactEmailAddressesKey as CNKeyDescriptor,
-                    CNContactIdentifierKey as CNKeyDescriptor
+                    CNContactIdentifierKey as CNKeyDescriptor,
+                    CNContactPostalAddressesKey as CNKeyDescriptor
                 ]
                 let request = CNContactFetchRequest(keysToFetch: keysToFetch)
                 

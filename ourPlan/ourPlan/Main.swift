@@ -9,7 +9,8 @@ import Foundation
 import SwiftUI
 import SpotifyiOS
 
-// future implimenation: be able to click on POIs on the map and have a small info view come up (kinda like eventInfoView, just a small popup), and on that view have a plus button that takes the title, phone number, and address, and creates a contact for them.
+// contacts created via the LocationInfoView's plus (addPersonView) don't appear in PeopleListView in real time, even with an environment object
+// add a button to LocationInfoView that allows the user to press a button and launch Google Maps with the coordinates
 
 enum Tab {
     case honeymoon
@@ -36,6 +37,7 @@ struct HomeContentView: View {
                     .tag(0)
 
                 MapDisplayView(selectedColor: $selectedColor)
+                    .environmentObject(PeopleViewModel()) // maybe ?
                     .tabItem {
                         Image(systemName: "location")
                         Text("Maps")
@@ -59,6 +61,7 @@ struct HomeContentView: View {
                     .tag(3)
 
                 PeopleListView(selectedColor: $selectedColor)
+                    .environmentObject(PeopleViewModel()) // maybe?
                     .tabItem {
                         Image(systemName: "list.bullet.clipboard")
                         Text("People")
@@ -76,5 +79,6 @@ struct HomeContentView_Previews: PreviewProvider {
         HomeContentView(selectedColor: .constant(UIColor.systemCyan), weddingCity: .constant("South Jordan, UT"))
             .environmentObject(EventViewModel())
             .environmentObject(SpotifyAuthManager.shared)
+            .environmentObject(PeopleViewModel())
     }
 }

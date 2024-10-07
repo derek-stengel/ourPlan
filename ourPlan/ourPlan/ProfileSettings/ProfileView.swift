@@ -205,7 +205,6 @@ struct ProfileView: View {
     }
 }
 
-
 #Preview {
     ProfileView(weddingDate: .constant(Date()), userName: .constant("Derek"), spouseName: .constant("Kaylee"), selectedColor: .constant(.systemIndigo), weddingCity: .constant("South Jordan, UT"))
 }

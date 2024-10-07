@@ -48,7 +48,8 @@ struct MapDisplayView: View {
             if let location = selectedLocation {
                 VStack {
                     Spacer()
-                    LocationInfoView(location: location)
+                    LocationInfoView(location: location, selectedColor: $selectedColor)
+                        .environmentObject(PeopleViewModel())
                         .padding()
                         .background(Color.white)
                         .cornerRadius(10)

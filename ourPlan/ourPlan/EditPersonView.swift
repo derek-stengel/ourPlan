@@ -26,10 +26,17 @@ struct EditPersonView: View {
             Section(header: Text("Email")) {
                 TextField("Email Address", text: $person.email)
             }
+            Section(header: Text("Address")) {
+                TextField("Address", text: $person.address)
+            }
         }
         .navigationTitle("Edit Person")
         .navigationBarItems(trailing: Button("Save") {
             dismiss()
         })
     }
+}
+
+#Preview {
+    EditPersonView(person: .constant(Person(name: "Derek", job: "IOS Coder", phoneNumber: "801-874-6573", email: "derek.stengel@gmail.com", address: "9547 S High Meadow Dr")))
 }

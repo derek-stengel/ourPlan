@@ -11,12 +11,13 @@ import Contacts
 
 struct AddPersonView: View {
     @Environment(\.dismiss) var dismiss
-    @ObservedObject var viewModel: PeopleViewModel
+    @EnvironmentObject var viewModel: PeopleViewModel
 
-    @State private var name = ""
-    @State private var job = ""
-    @State private var phoneNumber = ""
-    @State private var email = ""
+    @State var name: String = ""
+    @State var job: String = ""
+    @State var phoneNumber: String = ""
+    @State var email: String = ""
+    @State var address: String = ""
 
     var body: some View {
         NavigationView {
@@ -33,15 +34,24 @@ struct AddPersonView: View {
                 Section(header: Text("Email")) {
                     TextField("Email Address", text: $email)
                 }
+                Section(header: Text("Address")) {
+                    TextField("Address", text: $address)
+                }
             }
             .navigationTitle("Add Person")
             .navigationBarItems(leading: Button("Cancel") {
                 dismiss()
             }, trailing: Button("Save") {
-                viewModel.addPerson(name: name, job: job, phoneNumber: phoneNumber, email: email)
+                viewModel.addPerson(name: name, job: job, phoneNumber: phoneNumber, email: email, address: address)
                 dismiss()
             }
             .disabled(name.isEmpty))
         }
     }
 }
+
+#Preview {
+    AddPersonView()
+        .environmentObject(PeopleViewModel())
+}
+

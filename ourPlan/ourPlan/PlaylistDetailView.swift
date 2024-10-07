@@ -1,9 +1,11 @@
-    //
-    //  PlaylistDetailView.swift
-    //  ourPlan
-    //
-    //  Created by Derek Stengel on 9/3/24.
-    //
+//
+//  PlaylistDetailView.swift
+//  ourPlan
+//
+//  Created by Derek Stengel on 9/3/24.
+//
+
+// note for this file. I removed the audio functionality while i work on the 3rd party rights, so i can push what i have to the app store, and ill publish this in a later update. 
 
 import SwiftUI
 import AVFoundation
@@ -13,9 +15,9 @@ struct PlaylistDetailView: View {
     let playlist: Playlist
     @EnvironmentObject var authManager: SpotifyAuthManager
     @State private var tracks: [Track] = []
-    @State private var isPlaying = false
+    //    @State private var isPlaying = false
     @State private var currentTrack: Track?
-    @State private var audioPlayer: AVPlayer?
+    //    @State private var audioPlayer: AVPlayer?
     
     var body: some View {
         VStack {
@@ -33,13 +35,13 @@ struct PlaylistDetailView: View {
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                         }
-                        Spacer()
-                        Button(action: {
-                            playPreview(for: track)
-                        }) {
-                            Image(systemName: currentTrack?.id == track.id && isPlaying ? "pause.circle" : "play.circle")
-                                .font(.title)
-                        }
+                        //                        Spacer()
+                        //                        Button(action: {
+                        //                            playPreview(for: track)
+                        //                        }) {
+                        //                            Image(systemName: currentTrack?.id == track.id && isPlaying ? "pause.circle" : "play.circle")
+                        //                                .font(.title)
+                        //                        }
                     }
                 }
                 .navigationTitle(playlist.name)
@@ -48,9 +50,9 @@ struct PlaylistDetailView: View {
         .onAppear {
             fetchTracks()
         }
-        .onDisappear {
-            audioPlayer?.pause()
-        }
+        //        .onDisappear {
+        //            audioPlayer?.pause()
+        //        }
     }
     
     func fetchTracks() {
@@ -82,22 +84,27 @@ struct PlaylistDetailView: View {
         }.resume()
     }
     
-    func playPreview(for track: Track) {
-        guard let previewUrl = track.previewUrl else { return }
-        
-        if let currentTrack = currentTrack, currentTrack.id == track.id {
-            // Pause if the same track is playing
-            if isPlaying {
-                audioPlayer?.pause()
-            } else {
-                audioPlayer?.play()
-            }
-            isPlaying.toggle()
-        } else {
-            currentTrack = track
-            isPlaying = true
-            audioPlayer = AVPlayer(url: previewUrl)
-            audioPlayer?.play()
-        }
-    }
+    //    func playPreview(for track: Track) {
+    //        guard let previewUrl = track.previewUrl else { return }
+    //
+    //        if let currentTrack = currentTrack, currentTrack.id == track.id {
+    //            // Pause if the same track is playing
+    //            if isPlaying {
+    //                audioPlayer?.pause()
+    //            } else {
+    //                audioPlayer?.play()
+    //            }
+    //            isPlaying.toggle()
+    //        } else {
+    //            currentTrack = track
+    //            isPlaying = true
+    //            audioPlayer = AVPlayer(url: previewUrl)
+    //            audioPlayer?.play()
+    //        }
+    //    }
+}
+
+#Preview {
+    PlaylistDetailView(playlist: Playlist(id: "1", name: "Despacito", imageUrl: nil))
+        .environmentObject(SpotifyAuthManager())
 }
