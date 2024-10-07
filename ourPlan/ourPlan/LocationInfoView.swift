@@ -29,8 +29,8 @@ struct LocationInfoView: View {
                     Image(systemName: "plus")
                         .resizable()
                         .frame(width: 18, height: 18)
-//                        .foregroundColor(Color(selectedColor)) // change the foreground color back to this before publishing
-                        .foregroundColor(Color(.black)) // replace this
+                        .foregroundColor(Color(selectedColor)) // change the foreground color back to this before publishing
+//                        .foregroundColor(Color(.black)) // replace this
                         .padding(.bottom, 0)
                 }
             }
@@ -45,7 +45,7 @@ struct LocationInfoView: View {
         }
         .padding()
         .frame(maxWidth: .infinity)
-        .background(Color(.systemCyan)) // delete this before pushing version 1.1
+//        .background(Color(.systemCyan)) // delete this before pushing version 1.1
         .sheet(item: $selectedLocation) { location in
             AddPersonView(
                 name: location.name,
