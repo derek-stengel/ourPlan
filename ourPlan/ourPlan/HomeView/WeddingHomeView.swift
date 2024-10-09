@@ -89,13 +89,13 @@ struct WeddingHomeView: View {
                                 Image(uiImage: image)
                                     .resizable()
                                     .scaledToFill()
-                                    .frame(width: 340, height: 150)
+                                    .frame(width: 400, height: 180)
                                     .clipShape(RoundedRectangle(cornerRadius: 20))
                                     .padding()
                             } else {
                                 RoundedRectangle(cornerRadius: 20)
                                     .stroke(Color.gray, lineWidth: 4)
-                                    .frame(width: 340, height: 160)
+                                    .frame(width: 400, height: 180)
                                     .overlay(
                                         Text("Add Image")
                                             .foregroundColor(.gray)

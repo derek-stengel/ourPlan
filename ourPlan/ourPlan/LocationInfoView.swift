@@ -29,8 +29,7 @@ struct LocationInfoView: View {
                     Image(systemName: "plus")
                         .resizable()
                         .frame(width: 18, height: 18)
-                        .foregroundColor(Color(selectedColor)) // change the foreground color back to this before publishing
-//                        .foregroundColor(Color(.black)) // replace this
+                        .foregroundColor(Color(selectedColor))
                         .padding(.bottom, 0)
                 }
             }
@@ -42,10 +41,37 @@ struct LocationInfoView: View {
                 Text("Address: \(address)")
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
+            HStack {
+                Button(action: {
+                    openGoogleMaps(for: location)
+                }) {
+                    Text("Open in Google Maps")
+                        .fontWeight(.semibold)
+                        .padding()
+                        .frame(height: 40)
+                        .background(Color(selectedColor))
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
+                .padding(.top, 5)
+                
+                Spacer()
+                
+                if let phoneNumber = location.phoneNumber {
+                    Button(action: {
+                        openPhoneApp(with: phoneNumber)
+                    }) {
+                        Image(systemName: "phone")
+                            .resizable()
+                            .frame(width: 28, height: 28)
+                            .foregroundColor(Color(selectedColor))
+                    }
+                    .padding(.top, 5)
+                }
+            }
+            .frame(maxWidth: .infinity)
         }
-        .padding()
         .frame(maxWidth: .infinity)
-//        .background(Color(.systemCyan)) // delete this before pushing version 1.1
         .sheet(item: $selectedLocation) { location in
             AddPersonView(
                 name: location.name,
@@ -55,4 +81,23 @@ struct LocationInfoView: View {
             .environmentObject(peopleViewModel)
         }
     }
+    
+    private func openGoogleMaps(for location: Location) {
+        guard let address = location.address else { return }
+        let urlString = "https://www.google.com/maps/search/?api=1&query=\(address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"
+        if let url = URL(string: urlString) {
+            UIApplication.shared.open(url)
+        }
+    }
+    
+    private func openPhoneApp(with phoneNumber: String) {
+        let urlString = "tel:\(phoneNumber)"
+        if let url = URL(string: urlString) {
+            UIApplication.shared.open(url)
+        }
+    }
+}
+
+#Preview {
+    LocationInfoView(location: Location(name: "Random Bakery", coordinate: CLLocationCoordinate2D(latitude: 40.7608, longitude: -111.8910), phoneNumber: "801-874-6573", address: "841 Sesame St, Salt Lake City, UT"), selectedColor: .constant(.systemCyan))
 }

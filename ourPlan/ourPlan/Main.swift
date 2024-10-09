@@ -9,9 +9,6 @@ import Foundation
 import SwiftUI
 import SpotifyiOS
 
-// contacts created via the LocationInfoView's plus (addPersonView) don't appear in PeopleListView in real time, even with an environment object
-// add a button to LocationInfoView that allows the user to press a button and launch Google Maps with the coordinates
-
 enum Tab {
     case honeymoon
     case map
