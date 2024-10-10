@@ -10,9 +10,9 @@ import SwiftUI
 @main
 struct ourPlanApp: App {
     @StateObject private var authManager = SpotifyAuthManager.shared
-    @State private var selectedColor: UIColor = .systemIndigo
     @StateObject private var eventViewModel = EventViewModel()
     @StateObject private var peopleViewModel = PeopleViewModel()
+    @State private var selectedColor: UIColor = .systemIndigo
     @State private var weddingCity: String = "New York, NY"
     
     init() {

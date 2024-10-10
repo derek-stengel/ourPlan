@@ -58,6 +58,7 @@ func requestNotificationAuthorization() {
 }
 
 extension UserDefaults {
+    // color logic
     func setColor(_ color: UIColor?, forKey key: String) {
         guard let color = color else { return }
         let data = try? NSKeyedArchiver.archivedData(withRootObject: color, requiringSecureCoding: false)
@@ -72,6 +73,7 @@ extension UserDefaults {
 }
 
 extension UserDefaults {
+    // image picker logic
     func setImage(_ image: UIImage?, forKey key: String) {
         guard let image = image else { return }
 

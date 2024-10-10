@@ -36,6 +36,16 @@ struct FilterView: View {
                     viewModel.searchForRestaurants(city: city, state: state, radius: radius, searchText: "")
                     dismiss()
                 }
+
+                Section {
+                    Text("Enabling precise location in the Settings app will allow a dot on the map displaying where you currently are.")
+                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .background(Color(UIColor.secondarySystemBackground))
+                        .cornerRadius(10)
+                }
+                .listRowBackground(Color(UIColor.secondarySystemBackground))
             }
             .navigationTitle("Filters")
             .navigationBarItems(trailing: Button("Cancel") {
@@ -49,15 +59,6 @@ struct FilterView: View {
     }
 }
 
-struct FilterView_Previews: PreviewProvider {
-    static var previews: some View {
-        @State var city = "San Francisco"
-        @State var state = "CA"
-        @State var radius = 10.0
-        
-        FilterView(viewModel: MapViewModel(), city: $city, state: $state, radius: $radius)
-            .preferredColorScheme(.light)
-            .padding()
-    }
+#Preview {
+    FilterView(viewModel: MapViewModel(), city: .constant("Salt Lake"), state: .constant("UT"), radius: .constant(50.0))
 }
-

@@ -43,7 +43,7 @@ struct WeddingHomeView: View {
                     
                     // Top profile view
                     VStack(alignment: .leading, spacing: 10) {
-                        HStack {
+                        HStack(spacing: 20) {
                             VStack(alignment: .leading, spacing: 4) {
                                 HStack {
                                     let daysRemaining = calculateDaysRemaining(until: weddingDate)
@@ -77,6 +77,7 @@ struct WeddingHomeView: View {
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                             }
+//                            .padding() // c1
                         }
                     }
                     .padding(14)
@@ -89,13 +90,15 @@ struct WeddingHomeView: View {
                                 Image(uiImage: image)
                                     .resizable()
                                     .scaledToFill()
-                                    .frame(width: 400, height: 180)
+                                    .frame(height: 180)
+                                    .frame(maxWidth: .infinity)
                                     .clipShape(RoundedRectangle(cornerRadius: 20))
                                     .padding()
                             } else {
                                 RoundedRectangle(cornerRadius: 20)
                                     .stroke(Color.gray, lineWidth: 4)
-                                    .frame(width: 400, height: 180)
+                                    .frame(height: 180)
+                                    .frame(maxWidth: .infinity)
                                     .overlay(
                                         Text("Add Image")
                                             .foregroundColor(.gray)

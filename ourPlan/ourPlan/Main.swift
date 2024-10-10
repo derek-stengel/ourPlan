@@ -9,6 +9,21 @@ import Foundation
 import SwiftUI
 import SpotifyiOS
 
+// MARK:                                   -- Future Add-ons --
+
+// MARK: Functionality
+// Be able to create and edit playlists in app. Add a search bar to allow the user to search for songs, and append them to their playlists in app.
+// Google maps having correct location management. Currently returns the location lat & long / address, not the name of the location as if searched up in the first place.
+// Dynamic event cells on WeddingHomeView based on ios version?
+// Allow the custom filters do allow the user to change from custom string filters to color coding their events instead (either a dot as a section header or cells colored to that color at like 0.3 opacity and black text or something).
+
+// MARK: UI Changes
+// Spotify view custom color theme in the UI?
+// Tab bar background (iOS 18 only)
+
+// MARK: Bug Fixes
+// Event filters showing up in editEventView
+
 enum Tab {
     case honeymoon
     case map
