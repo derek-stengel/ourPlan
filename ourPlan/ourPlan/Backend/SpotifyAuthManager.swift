@@ -102,6 +102,7 @@ class SpotifyAuthManager: ObservableObject {
                 self.accessToken = tokenResponse.access_token
                 self.refreshToken = tokenResponse.refresh_token
                 self.expirationDate = Date().addingTimeInterval(TimeInterval(tokenResponse.expires_in))
+                
             })
             .store(in: &cancellables)
     }

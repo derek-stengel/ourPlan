@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import SpotifyiOS
 
-// MARK:                                   -- Future Add-ons --
+// MARK:                                       -- Future Add-ons --
 
 // MARK: Functionality
 // Be able to create and edit playlists in app. Add a search bar to allow the user to search for songs, and append them to their playlists in app.
@@ -24,6 +24,8 @@ import SpotifyiOS
 // MARK: Bug Fixes
 // Event filters showing up in editEventView
 
+// search bar works. Create a new view that displays all the playlists, that displays after the add to playlist button in spotifySearchView is pressed. add binding to all views to make it update in real time, then 1.1 should be good. also, run through all your code and clean it up.
+
 enum Tab {
     case honeymoon
     case map
@@ -32,7 +34,7 @@ enum Tab {
     case people
 }
 
-struct HomeContentView: View {
+struct MainHousingView: View {
     @State private var selectedTab: Int = 2
     @Binding var selectedColor: UIColor
 //    @StateObject private var eventViewModel = EventViewModel() // maybe not needed since already present in app.swift
@@ -42,7 +44,7 @@ struct HomeContentView: View {
     var body: some View {
         ZStack {
             TabView(selection: $selectedTab) {
-                SpotifyPlaylistView(selectedColor: $selectedColor)
+                SpotifyPlaylistView(userPlaylists: [], selectedColor: $selectedColor)
                     .tabItem {
                         Image(systemName: "music.quarternote.3")
                         Text("Spotify")
@@ -89,7 +91,7 @@ struct HomeContentView: View {
 
 struct HomeContentView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeContentView(selectedColor: .constant(UIColor.systemCyan), weddingCity: .constant("South Jordan, UT"))
+        MainHousingView(selectedColor: .constant(UIColor.systemCyan), weddingCity: .constant("South Jordan, UT"))
             .environmentObject(EventViewModel())
             .environmentObject(SpotifyAuthManager.shared)
             .environmentObject(PeopleViewModel())

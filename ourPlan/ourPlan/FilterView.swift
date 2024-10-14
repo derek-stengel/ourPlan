@@ -37,15 +37,15 @@ struct FilterView: View {
                     dismiss()
                 }
 
-                Section {
-                    Text("Enabling precise location in the Settings app will allow a dot on the map displaying where you currently are.")
-                        .foregroundColor(.gray)
-                        .multilineTextAlignment(.center)
-                        .padding()
-                        .background(Color(UIColor.secondarySystemBackground))
-                        .cornerRadius(10)
-                }
-                .listRowBackground(Color(UIColor.secondarySystemBackground))
+//                Section {
+//                    Text("Enabling precise location in the Settings app will allow a dot on the map displaying where you currently are.")
+//                        .foregroundColor(.gray)
+//                        .multilineTextAlignment(.center)
+//                        .padding()
+//                        .background(Color(UIColor.secondarySystemBackground))
+//                        .cornerRadius(10)
+//                }
+//                .listRowBackground(Color(UIColor.secondarySystemBackground))
             }
             .navigationTitle("Filters")
             .navigationBarItems(trailing: Button("Cancel") {

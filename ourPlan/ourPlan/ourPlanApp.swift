@@ -21,7 +21,7 @@ struct ourPlanApp: App {
     
     var body: some Scene {
         WindowGroup {
-            HomeContentView(selectedColor: $selectedColor, weddingCity: $weddingCity)
+            MainHousingView(selectedColor: $selectedColor, weddingCity: $weddingCity)
                 .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
                 .environmentObject(eventViewModel)
                 .environmentObject(peopleViewModel)

@@ -104,6 +104,7 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let newLocation = locations.last else { return }
-        region.center = newLocation.coordinate
+//        region.center = newLocation.coordinate
+        // this shows the dot on the map, however, it recenters the view every time the user moves.
     }
 }
