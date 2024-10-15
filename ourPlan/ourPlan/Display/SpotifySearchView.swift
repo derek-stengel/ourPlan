@@ -6,52 +6,73 @@
 //
 
 import SwiftUI
+import SpotifyiOS
 
 struct SpotifySearchView: View {
     @EnvironmentObject var authManager: SpotifyAuthManager
     @State private var searchQuery: String = ""
     @State private var searchResults: [Track] = []
+    @State private var selectedTrack: Track?
     @State private var selectedPlaylist: Playlist?
+    @State private var showPlaylistSelection = false
     @State private var showError = false
+    
+    @Binding var selectedColor: UIColor
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        VStack {
-            // Search bar
-            HStack {
-                TextField("Search for songs...", text: $searchQuery, onCommit: {
-                    searchTracks(query: searchQuery)
-                })
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-                
-                Button(action: {
-                    searchTracks(query: searchQuery)
-                }) {
-                    Image(systemName: "magnifyingglass")
-                }
-                .padding(.trailing)
-            }
-            
-            // Display search results
-            List(searchResults, id: \.id) { track in
+        NavigationView {
+            VStack {
                 HStack {
-                    Text(track.name)
-                    Spacer()
+                    TextField("Search for songs...", text: $searchQuery, onCommit: {
+                        searchTracks(query: searchQuery)
+                    })
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                    
                     Button(action: {
-                        if let playlist = selectedPlaylist {
-                            addTrackToPlaylist(track: track, playlist: playlist)
-                        }
+                        searchTracks(query: searchQuery)
                     }) {
-                        Text("Add to Playlist")
-                            .font(.system(size: 12, weight: .medium))
-                            .frame(width: 100, height: 8)
-                            .padding()
-                            .background(Color.green.gradient.opacity(0.8))
-                            .foregroundColor(.black)
-                            .cornerRadius(10)
+                        Image(systemName: "magnifyingglass")
+                    }
+                    .padding(.trailing)
+                }
+                
+                List(searchResults, id: \.id) { track in
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(track.name)
+                                .font(.system(size: 18, weight: .semibold))
+                            Text(track.artist)
+                                .font(.system(size: 14, weight: .light))
+                        }
+                        Spacer()
+                        Button(action: {
+                            selectedTrack = track
+                            showPlaylistSelection = true
+                        }) {
+                            Text("Add to Playlist")
+                                .font(.system(size: 12, weight: .medium))
+                                .frame(width: 100, height: 8)
+                                .padding()
+                                .background(Color.green.gradient.opacity(0.8))
+                                .foregroundColor(.black)
+                                .cornerRadius(10)
+                        }
                     }
                 }
+            }
+            .navigationBarTitle("Search Tracks", displayMode: .inline)
+            .navigationBarItems(leading: Button(action: {
+                dismiss()
+            }) {
+                Image(systemName: "chevron.left")
+                    .foregroundColor(Color(selectedColor))
+                Text("Back")
+                    .foregroundColor(Color(selectedColor))
+            })
+            .sheet(isPresented: $showPlaylistSelection) {
+                PlaylistSelectionView(selectedTrack: $selectedTrack, selectedPlaylist: $selectedPlaylist)
             }
         }
     }
@@ -121,6 +142,6 @@ struct SpotifySearchView: View {
 }
 
 #Preview {
-    SpotifySearchView()
+    SpotifySearchView(selectedColor: .constant(.green))
         .environmentObject(SpotifyAuthManager())
 }

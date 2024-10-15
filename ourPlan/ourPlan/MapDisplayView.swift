@@ -43,7 +43,7 @@ struct MapDisplayView: View {
                 viewModel.checkLocationAuthorizationStatus()
             }
             
-//            .toolbarBackgroundVisibility(.visible, for: .tabBar) // add this in a future iOS 18 update
+//            .toolbarBackgroundVisibility(.visible, for: .tabBar)  // add this in a future iOS 18 update
             .toolbarBackground(Color(selectedColor).opacity(0.1), for: .tabBar)
             
             if let location = selectedLocation {

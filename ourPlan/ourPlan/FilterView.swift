@@ -33,10 +33,22 @@ struct FilterView: View {
                 Button("Apply") {
                     applyFilters()
                     viewModel.applyStateFilter(state)
-                    viewModel.searchForRestaurants(city: city, state: state, radius: radius, searchText: "")
                     dismiss()
                 }
 
+                Section {
+                    HStack {
+                        Spacer()
+                        Text("The map is currently undergoing bug fixes. Some locations may not display as intended.")
+                            .foregroundColor(.gray)
+                            .multilineTextAlignment(.center)
+                            .padding()
+                            .background(Color(UIColor.secondarySystemBackground))
+                            .cornerRadius(10)
+                        Spacer()
+                    }
+                }
+                .listRowBackground(Color(UIColor.secondarySystemBackground))
 //                Section {
 //                    Text("Enabling precise location in the Settings app will allow a dot on the map displaying where you currently are.")
 //                        .foregroundColor(.gray)

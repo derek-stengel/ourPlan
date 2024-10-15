@@ -18,13 +18,17 @@ import SpotifyiOS
 // Allow the custom filters do allow the user to change from custom string filters to color coding their events instead (either a dot as a section header or cells colored to that color at like 0.3 opacity and black text or something).
 
 // MARK: UI Changes
-// Spotify view custom color theme in the UI?
+// MAP:
+// completely overhaul the map view
 // Tab bar background (iOS 18 only)
+
+// Spotify:
+// Spotify view custom color theme in the UI?
+// Have the ability for users to search by artists (have the filter button just change the searchQuery and searchResults from type Track? to type Artist? or something)
+
 
 // MARK: Bug Fixes
 // Event filters showing up in editEventView
-
-// search bar works. Create a new view that displays all the playlists, that displays after the add to playlist button in spotifySearchView is pressed. add binding to all views to make it update in real time, then 1.1 should be good. also, run through all your code and clean it up.
 
 enum Tab {
     case honeymoon
@@ -84,9 +88,36 @@ struct MainHousingView: View {
                     .tag(4)
             }
             .tint(Color.init(uiColor: selectedColor))
+//            .onAppear {
+//                setupTabBarAppearance()
+//            }
+            
         }
         .preferredColorScheme(.light)
     }
+    
+    // Reconfigure this after doing the map view
+//    func setupTabBarAppearance() {
+//        // Customize the appearance of the tab bar
+//        let tabBarAppearance = UITabBarAppearance()
+//        tabBarAppearance.configureWithOpaqueBackground()
+//        
+//        // Set the background color of the tab bar
+//        tabBarAppearance.backgroundColor = UIColor.white
+//        
+//        // Set the color for unselected items
+//        tabBarAppearance.stackedLayoutAppearance.normal.iconColor = UIColor.black
+//        tabBarAppearance.stackedLayoutAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.gray]
+//        
+//        // Set the color for selected items
+//        tabBarAppearance.stackedLayoutAppearance.selected.iconColor = selectedColor
+//        tabBarAppearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: selectedColor]
+//        
+//        UITabBar.appearance().standardAppearance = tabBarAppearance
+//        if #available(iOS 15.0, *) {
+//            UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+//        }
+//    }
 }
 
 struct HomeContentView_Previews: PreviewProvider {

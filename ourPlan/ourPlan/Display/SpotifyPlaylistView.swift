@@ -57,8 +57,6 @@ struct SpotifyPlaylistView: View {
                         ForEach(userPlaylists, id: \.id) { playlist in
                             NavigationLink(destination: PlaylistDetailView(playlist: playlist).environmentObject(authManager)) {
                                 HStack {
-                                    Text(playlist.name)
-                                    Spacer()
                                     if let imageUrl = playlist.imageUrl {
                                         AsyncImage(url: imageUrl) { image in
                                             image.resizable()
@@ -69,6 +67,11 @@ struct SpotifyPlaylistView: View {
                                             ProgressView()
                                         }
                                     }
+                                    Spacer().frame(width: 15)
+                                    Text(playlist.name)
+                                        .font(.system(size: 18))
+                                        .bold()
+                                    Spacer()
                                 }
                             }
                             .onTapGesture {
@@ -80,6 +83,7 @@ struct SpotifyPlaylistView: View {
                             HStack {
                                 Spacer()
                                 Text("Changes made directly reflect on Spotify within a few minutes.")
+                                    .font(.system(size: 14))
                                     .foregroundColor(.gray)
                                     .multilineTextAlignment(.center)
                                     .padding()
@@ -121,10 +125,11 @@ struct SpotifyPlaylistView: View {
                         }) {
                             Image(systemName: "magnifyingglass")
                         }
+                            .fullScreenCover(isPresented: $showSearchView) {
+                                SpotifySearchView(selectedColor: $selectedColor)
+                                    .environmentObject(authManager)
+                            }
                     )
-                    .sheet(isPresented: $showSearchView) {
-                        SpotifySearchView()
-                    }
                     .onChange(of: authManager.accessToken) { _ in
                         refreshSpotifyData()
                     }
@@ -142,8 +147,8 @@ struct SpotifyPlaylistView: View {
                             .presentationDetents([createPlaylistSheetHeight], selection: $createPlaylistSheetHeight)
                             .presentationDragIndicator(.hidden)
                     }
-                }
-            }
+                } // this
+            } // this one too
         }
     }
     
@@ -264,7 +269,8 @@ struct SpotifyPlaylistView_Previews: PreviewProvider {
     static var previews: some View {
         let mockPlaylists = [
             Playlist(id: "1", name: "Chill Vibes", imageUrl: URL(string: "https://via.placeholder.com/50")),
-            Playlist(id: "2", name: "Workout Hits", imageUrl: URL(string: "https://via.placeholder.com/50"))
+            Playlist(id: "2", name: "Your Top 50", imageUrl: URL(string: "https://via.placeholder.com/50")),
+            Playlist(id: "3", name: "Workout Hits", imageUrl: URL(string: "https://via.placeholder.com/50"))
         ]
         
         return SpotifyPlaylistView(userPlaylists: mockPlaylists, selectedColor: .constant(UIColor.green))

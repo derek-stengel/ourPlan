@@ -12,8 +12,8 @@ import CoreLocation
 
 class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 40.7608, longitude: -111.8910), // Default to Salt Lake City
-        span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        center: CLLocationCoordinate2D(latitude: 39.8283, longitude: -98.5795), // Default to United States
+        span: MKCoordinateSpan(latitudeDelta: 50, longitudeDelta: 50) // Zoomed out
     )
     
     @Published var locations: [Location] = []  // This will hold the found restaurant locations
@@ -104,7 +104,6 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let newLocation = locations.last else { return }
-//        region.center = newLocation.coordinate
-        // this shows the dot on the map, however, it recenters the view every time the user moves.
+        region.center = newLocation.coordinate
     }
 }
