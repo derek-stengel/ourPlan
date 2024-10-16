@@ -35,5 +35,3 @@ struct ourPlanApp: App {
         }
     }
 }
-
-// The purpose of this app is to help organize your wedding in one place, from notifications, to easily messaging large groups, to building your ideal spotify playlist. 

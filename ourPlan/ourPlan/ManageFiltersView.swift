@@ -40,9 +40,3 @@ struct ManageFiltersView: View {
     }
 }
 
-struct ManageFiltersView_Previews: PreviewProvider {
-    static var previews: some View {
-        ManageFiltersView(filters: .constant(["Custom Filter 1", "Custom Filter 2"]), selectedColor: .constant(.blue))
-    }
-}
-

@@ -51,7 +51,7 @@ struct SpotifyPlaylistView: View {
                             .cornerRadius(10)
                     }
                 }
-            } else {
+            } else { // comment this line up to var body: some View { to override the login button
                 NavigationView {
                     List {
                         ForEach(userPlaylists, id: \.id) { playlist in
@@ -82,7 +82,7 @@ struct SpotifyPlaylistView: View {
                         Section {
                             HStack {
                                 Spacer()
-                                Text("Changes made directly reflect on Spotify within a few minutes.")
+                                Text("Changes made directly reflect on Spotify instantly.")
                                     .font(.system(size: 14))
                                     .foregroundColor(.gray)
                                     .multilineTextAlignment(.center)
@@ -147,8 +147,8 @@ struct SpotifyPlaylistView: View {
                             .presentationDetents([createPlaylistSheetHeight], selection: $createPlaylistSheetHeight)
                             .presentationDragIndicator(.hidden)
                     }
-                } // this
-            } // this one too
+                } // comment this line to override the login button
+            } // comment this line to override the login button
         }
     }
     

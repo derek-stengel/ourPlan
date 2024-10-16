@@ -5,8 +5,6 @@
 //  Created by Derek Stengel on 8/8/24.
 //
 
-// MapDisplayView.swift
-
 import MapKit
 import SwiftUI
 import UIKit
@@ -42,8 +40,6 @@ struct MapDisplayView: View {
             .onAppear {
                 viewModel.checkLocationAuthorizationStatus()
             }
-            
-//            .toolbarBackgroundVisibility(.visible, for: .tabBar)  // add this in a future iOS 18 update
             .toolbarBackground(Color(selectedColor).opacity(0.1), for: .tabBar)
             
             if let location = selectedLocation {
@@ -74,7 +70,7 @@ struct MapDisplayView: View {
                     }
                    
                     TextField("Search for a restaurant", text: $searchText, onCommit: {
-                        viewModel.searchForRestaurants(city: city, state: state, radius: radius, searchText: searchText)
+                        applyFilters()
                     })
                     .textFieldStyle(PlainTextFieldStyle())
                     .padding(10)
@@ -83,8 +79,7 @@ struct MapDisplayView: View {
                     .cornerRadius(10)
 
                     Button(action: {
-                        viewModel.searchForRestaurants(city: city, state: state, radius: radius, searchText: searchText)
-                        viewModel.applyStateFilter(state)
+                        applyFilters()
                     }) {
                         Image(systemName: "arrow.up.right")
                             .resizable()
@@ -106,7 +101,15 @@ struct MapDisplayView: View {
         }
         .sheet(isPresented: $isFilterPresented) {
             FilterView(viewModel: viewModel, city: $city, state: $state, radius: $radius)
+                .onDisappear {
+                    applyFilters() // Apply filters when the filter view is dismissed
+                }
         }
+    }
+    
+    private func applyFilters() {
+        viewModel.searchForRestaurants(city: city, state: state, radius: radius, searchText: searchText)
+        print("Applied Filters: City: \(city), State: \(state), Radius: \(radius), SearchText: \(searchText)")
     }
 }
 
@@ -115,3 +118,4 @@ struct MapDisplayView_Previews: PreviewProvider {
         MapDisplayView(selectedColor: .constant(.black))
     }
 }
+

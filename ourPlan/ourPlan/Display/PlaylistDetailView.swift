@@ -26,23 +26,26 @@
                         .foregroundColor(.gray)
                         .padding()
                 } else {
-                    List(tracks, id: \.id) { track in
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text(track.name)
-                                    .font(.headline)
-                                Text(track.artist)
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
+                    List {
+                        ForEach(tracks, id: \.id) { track in
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text(track.name)
+                                        .font(.headline)
+                                    Text(track.artist)
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
+                                }
+                                //                        Spacer()
+                                //                        Button(action: {
+                                //                            playPreview(for: track)
+                                //                        }) {
+                                //                            Image(systemName: currentTrack?.id == track.id && isPlaying ? "pause.circle" : "play.circle")
+                                //                                .font(.title)
+                                //                        }
                             }
-                            //                        Spacer()
-                            //                        Button(action: {
-                            //                            playPreview(for: track)
-                            //                        }) {
-                            //                            Image(systemName: currentTrack?.id == track.id && isPlaying ? "pause.circle" : "play.circle")
-                            //                                .font(.title)
-                            //                        }
                         }
+                        .onDelete(perform: deleteTrack)
                     }
                     .navigationTitle(playlist.name)
                 }
@@ -54,6 +57,47 @@
             //            audioPlayer?.pause()
             //        }
         }
+        
+        func deleteTrack(at offsets: IndexSet) {
+            let trackIndex = offsets.first!
+            let track = tracks[trackIndex]
+            
+            tracks.remove(atOffsets: offsets)
+            
+            deleteTrackFromSpotify(track: track)
+        }
+        
+        func deleteTrackFromSpotify(track: Track) {
+                guard let token = authManager.accessToken else { return }
+                
+                let url = URL(string: "https://api.spotify.com/v1/playlists/\(playlist.id)/tracks")!
+                var request = URLRequest(url: url)
+                request.httpMethod = "DELETE"
+                request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+                
+                let body: [String: Any] = [
+                    "tracks": [
+                        [
+                            "uri": "spotify:track:\(track.id)"
+                        ]
+                    ]
+                ]
+                
+                request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])
+                
+                URLSession.shared.dataTask(with: request) { data, response, error in
+                    if let error = error {
+                        print("Error deleting track: \(error)")
+                        return
+                    }
+                    
+                    if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                        print("Track deleted successfully")
+                    } else {
+                        print("Failed to delete track: \(response.debugDescription)")
+                    }
+                }.resume()
+            }
         
         func fetchTracks() {
             guard let token = authManager.accessToken else { return }

@@ -16,3 +16,4 @@ struct Location: Identifiable {
     let phoneNumber: String?
     let address: String?
 }
+

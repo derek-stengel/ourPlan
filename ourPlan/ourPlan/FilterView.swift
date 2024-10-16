@@ -32,14 +32,13 @@ struct FilterView: View {
                 
                 Button("Apply") {
                     applyFilters()
-                    viewModel.applyStateFilter(state)
                     dismiss()
                 }
 
                 Section {
                     HStack {
                         Spacer()
-                        Text("The map is currently undergoing bug fixes. Some locations may not display as intended.")
+                        Text("Allowing precise location in Settings -> Apps -> OurPlans allows a dot to appear on the map displaying your current location.")
                             .foregroundColor(.gray)
                             .multilineTextAlignment(.center)
                             .padding()
@@ -49,18 +48,13 @@ struct FilterView: View {
                     }
                 }
                 .listRowBackground(Color(UIColor.secondarySystemBackground))
-//                Section {
-//                    Text("Enabling precise location in the Settings app will allow a dot on the map displaying where you currently are.")
-//                        .foregroundColor(.gray)
-//                        .multilineTextAlignment(.center)
-//                        .padding()
-//                        .background(Color(UIColor.secondarySystemBackground))
-//                        .cornerRadius(10)
-//                }
-//                .listRowBackground(Color(UIColor.secondarySystemBackground))
             }
             .navigationTitle("Filters")
-            .navigationBarItems(trailing: Button("Cancel") {
+            .navigationBarItems(leading: Button("Cancel") {
+                dismiss()
+            },
+                trailing: Button("Done") {
+                applyFilters()
                 dismiss()
             })
         }
@@ -68,9 +62,11 @@ struct FilterView: View {
     
     private func applyFilters() {
         viewModel.searchForRestaurants(city: city, state: state, radius: radius, searchText: "")
+        print("Filter Applied: City: \(city), State: \(state), Radius: \(radius)")
     }
 }
 
 #Preview {
     FilterView(viewModel: MapViewModel(), city: .constant("Salt Lake"), state: .constant("UT"), radius: .constant(50.0))
 }
+
