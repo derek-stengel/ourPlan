@@ -40,6 +40,11 @@ struct MapDisplayView: View {
             .onAppear {
                 viewModel.checkLocationAuthorizationStatus()
             }
+            .gesture(
+                DragGesture().onEnded { _ in
+                    viewModel.stopCenteringOnUser()
+                }
+            )
             .toolbarBackground(Color(selectedColor).opacity(0.1), for: .tabBar)
             
             if let location = selectedLocation {

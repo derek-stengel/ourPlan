@@ -20,6 +20,7 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     private let locationManager = CLLocationManager()
     @AppStorage("locationPermissionShown") private var locationPermissionShown = false
+    private var shouldCenterOnUser = true
     
     override init() {
         super.init()
@@ -29,9 +30,9 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func applyStateFilter(_ state: String) {
-            self.locations = self.locations.filter { $0.address?.contains(state) == true }
+        self.locations = self.locations.filter { $0.address?.contains(state) == true }
     }
-
+    
     func searchForRestaurants(city: String, state: String, radius: Double, searchText: String) {
         // Clear out old locations
         locations.removeAll()
@@ -116,7 +117,7 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
             }
         }
     }
-
+    
     // Helper function to calculate distance in miles between two coordinates
     private func calculateDistance(from userLocation: CLLocationCoordinate2D, to location: CLLocationCoordinate2D) -> Double {
         let userCLLocation = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
@@ -125,8 +126,8 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         // Convert meters to miles
         return userCLLocation.distance(from: targetLocation) / 1609.34
     }
-
-
+    
+    
     
     func checkLocationAuthorizationStatus() {
         if !locationPermissionShown {
@@ -154,6 +155,13 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let newLocation = locations.last else { return }
-        region.center = newLocation.coordinate
+        
+        if shouldCenterOnUser {
+            region.center = newLocation.coordinate
+        }
+    }
+    
+    func stopCenteringOnUser() {
+        shouldCenterOnUser = false
     }
 }
