@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FD3344D12C876F3000B61B57 /* WeddingRotatingColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3344D02C876F3000B61B57 /* WeddingRotatingColor.swift */; };
 		FD3344D42C87DC1300B61B57 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3344D32C87DC1300B61B57 /* Playlist.swift */; };
 		FD3344D62C87E4F900B61B57 /* PlaylistDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3344D52C87E4F900B61B57 /* PlaylistDetailView.swift */; };
 		FD37767A2C9B45A40027497C /* EventInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3776792C9B45A40027497C /* EventInformationView.swift */; };
@@ -48,7 +47,6 @@
 		FDCECC5C2C66A7190020C37D /* BackgroundFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC5B2C66A7190020C37D /* BackgroundFunctions.swift */; };
 		FDCECC5E2C66A72E0020C37D /* NameEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECC5D2C66A72E0020C37D /* NameEntryView.swift */; };
 		FDEE6B2C2C8F856F00213E85 /* HomeScreenGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEE6B2B2C8F856F00213E85 /* HomeScreenGradient.swift */; };
-		FDEEA1C92C87515300BC8645 /* SpotifyRotatingColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEEA1C82C87515300BC8645 /* SpotifyRotatingColor.swift */; };
 		FDEEA1CB2C875E3A00BC8645 /* hexExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEEA1CA2C875E3A00BC8645 /* hexExtension.swift */; };
 		FDF75EE32C99D3FC001B1C8B /* CreateCustomFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF75EE22C99D3FC001B1C8B /* CreateCustomFilterView.swift */; };
 		FDF75EE52C99D7C7001B1C8B /* ManageFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF75EE42C99D7C7001B1C8B /* ManageFiltersView.swift */; };
@@ -56,7 +54,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FD3344D02C876F3000B61B57 /* WeddingRotatingColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeddingRotatingColor.swift; sourceTree = "<group>"; };
 		FD3344D32C87DC1300B61B57 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		FD3344D52C87E4F900B61B57 /* PlaylistDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistDetailView.swift; sourceTree = "<group>"; };
 		FD3776792C9B45A40027497C /* EventInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInformationView.swift; sourceTree = "<group>"; };
@@ -97,7 +94,6 @@
 		FDCECC5B2C66A7190020C37D /* BackgroundFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundFunctions.swift; sourceTree = "<group>"; };
 		FDCECC5D2C66A72E0020C37D /* NameEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEntryView.swift; sourceTree = "<group>"; };
 		FDEE6B2B2C8F856F00213E85 /* HomeScreenGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenGradient.swift; sourceTree = "<group>"; };
-		FDEEA1C82C87515300BC8645 /* SpotifyRotatingColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyRotatingColor.swift; sourceTree = "<group>"; };
 		FDEEA1CA2C875E3A00BC8645 /* hexExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hexExtension.swift; sourceTree = "<group>"; };
 		FDF75EE22C99D3FC001B1C8B /* CreateCustomFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCustomFilterView.swift; sourceTree = "<group>"; };
 		FDF75EE42C99D7C7001B1C8B /* ManageFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageFiltersView.swift; sourceTree = "<group>"; };
@@ -120,8 +116,6 @@
 		FD3344D22C876F3500B61B57 /* ViewModifers */ = {
 			isa = PBXGroup;
 			children = (
-				FDEEA1C82C87515300BC8645 /* SpotifyRotatingColor.swift */,
-				FD3344D02C876F3000B61B57 /* WeddingRotatingColor.swift */,
 				FDEE6B2B2C8F856F00213E85 /* HomeScreenGradient.swift */,
 				FDEEA1CA2C875E3A00BC8645 /* hexExtension.swift */,
 				FDF75EE72C99DCF4001B1C8B /* CustomSheetModifier.swift */,
@@ -406,7 +400,6 @@
 				FD720FB12CBD5DC800BEC615 /* SpotifySearchView.swift in Sources */,
 				FDF75EE82C99DCF4001B1C8B /* CustomSheetModifier.swift in Sources */,
 				FDCECC572C6680EB0020C37D /* WeddingHomeView.swift in Sources */,
-				FDEEA1C92C87515300BC8645 /* SpotifyRotatingColor.swift in Sources */,
 				FDCECC4D2C653B2D0020C37D /* MapViewModel.swift in Sources */,
 				FDCECC552C6555640020C37D /* FilterView.swift in Sources */,
 				FDCECC492C6537640020C37D /* Map.swift in Sources */,
@@ -421,7 +414,6 @@
 				FDCECC012C575B710020C37D /* ourPlan.xcdatamodeld in Sources */,
 				FDCECC132C59253B0020C37D /* PeopleListView.swift in Sources */,
 				FDF75EE32C99D3FC001B1C8B /* CreateCustomFilterView.swift in Sources */,
-				FD3344D12C876F3000B61B57 /* WeddingRotatingColor.swift in Sources */,
 				FDCECC082C575B930020C37D /* Main.swift in Sources */,
 				FD6CF0F12C6E49A40070B7FE /* EditEventView.swift in Sources */,
 				FD6CF0F32C6E52960070B7FE /* AddEventView.swift in Sources */,
@@ -571,7 +563,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ourPlan/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ourPlan;
+				INFOPLIST_KEY_CFBundleDisplayName = OurPlans;
 				INFOPLIST_KEY_NSContactsUsageDescription = "We need access to your contacts to allow you to sync with your wedding plan.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -582,7 +574,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stengel.ourPlan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -608,7 +600,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ourPlan/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ourPlan;
+				INFOPLIST_KEY_CFBundleDisplayName = OurPlans;
 				INFOPLIST_KEY_NSContactsUsageDescription = "We need access to your contacts to allow you to sync with your wedding plan.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -619,7 +611,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stengel.ourPlan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

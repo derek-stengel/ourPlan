@@ -102,7 +102,7 @@ struct MapDisplayView: View {
         .sheet(isPresented: $isFilterPresented) {
             FilterView(viewModel: viewModel, city: $city, state: $state, radius: $radius)
                 .onDisappear {
-                    applyFilters() // Apply filters when the filter view is dismissed
+                    applyFilters()
                 }
         }
     }

@@ -22,7 +22,6 @@ class CitySearchViewModel: NSObject, ObservableObject, MKLocalSearchCompleterDel
         searchCompleter.queryFragment = query
     }
 
-    // Delegate methods
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         self.completions = completer.results
     }

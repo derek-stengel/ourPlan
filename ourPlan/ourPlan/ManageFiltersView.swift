@@ -25,7 +25,6 @@ struct ManageFiltersView: View {
             .navigationTitle("Manage Filters")
             .navigationBarItems(
                 trailing: Button("Done") {
-                    // Save updated filters to UserDefaults
                     Event.defaultFilters = filters
                     dismiss()
                 }
